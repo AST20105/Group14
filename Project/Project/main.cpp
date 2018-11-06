@@ -115,6 +115,12 @@ public:
 				genres[1] = " ";
 				genres[2] = " ";
 			}
+			else {
+				for (int i = 0; i < originalgenre.length(); i++){
+					if()
+					
+				}
+			}
 			/*Different case of genres: case 1: genres[3] = "Drama,Short,Western"
 			case 2: genres[2] = "Drama,Short"
 			case 3: genres[1] = Drama
