@@ -7,6 +7,7 @@ List::List() {
 
 };
 
+
 List::~List() {
 
 };
@@ -21,8 +22,7 @@ void List::createNode(string ptconst, string ptitleType, string pprimaryTitle, s
 	temp->genres[0] = pgenres;
 	temp->genres[1] = pgenres;
 	temp->genres[2] = pgenres;
-	temp->next = head;
-	head = temp;
+	temp->next = NULL;
 
 	//determine if the list is empty
 	if (head == NULL) {
@@ -31,6 +31,22 @@ void List::createNode(string ptconst, string ptitleType, string pprimaryTitle, s
 		temp = NULL;
 	}
 };
+
+
+void List::createfilNode(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres, Node * next) {
+	filterNode * temp = new filterNode;
+	temp->tconst = ptconst;
+	temp->titleType = ptitleType;
+	temp->primaryTitle = pprimaryTitle;
+	temp->startYear = pstartYear;
+	temp->runtimeMinutes = pruntimeMinutes;
+	temp->genres[0] = pgenres;
+	temp->genres[1] = pgenres;
+	temp->genres[2] = pgenres;
+	temp->next = next;
+	temp->filnext = NULL;
+};
+
 
 void List::display() {
 	if (head == NULL) {
@@ -43,7 +59,18 @@ void List::display() {
 	}
 	cout << endl;
 
-};
+}
+void List::separateYear(Node* x){
+	filterNode* Data = ;
+
+
+}
+
+
+
+
+
+
 
 void List::insertion() {
 
