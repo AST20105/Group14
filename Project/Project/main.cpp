@@ -104,8 +104,7 @@ public:
 			string symbol = "\"";
 			string symbolofnothing = "\N";
 			getline(dataSet, originalgenre, '\n');
-			cout << originalgenre.substr(0, 2);
-			if ((originalgenre.substr(0, 0) != symbol) && (originalgenre.substr(0, 2) != symbolofnothing)) {
+			if ((originalgenre.substr(0, 1) != symbol) && (originalgenre.substr(0, 2) != symbolofnothing)) {
 				genres[0] = originalgenre;
 				genres[1] = " ";
 				genres[2] = " ";
@@ -116,10 +115,33 @@ public:
 				genres[2] = " ";
 			}
 			else {
-				for (int i = 0; i < originalgenre.length(); i++){
-					if()
-					
+				int count = 0;
+				for (int i = 0; i < originalgenre.size(); i++) {
+					if (originalgenre[i] == ',') {
+						count++;
+					}
 				}
+				if (count = 1) {
+					int remPos = 0;
+					remPos = originalgenre.find(",");
+					genres[0] = originalgenre.substr(1, remPos-1);
+					genres[1] = originalgenre.substr(remPos+1, originalgenre.length() - remPos - 2);
+					genres[2] = " ";
+				}
+				else if (count = 2){
+					int remPos = 0;
+					remPos = originalgenre.find(",");
+					genres[0] = originalgenre.substr(1, remPos-1);
+
+					int remPos2 = 0;
+					remPos2 = originalgenre.find_last_of(",");
+					genres[1] = originalgenre.substr(remPos, remPos2 - remPos - 2);
+
+					genres[2] = originalgenre.substr(remPos+1, originalgenre.length() - remPos - remPos2 - 2);
+
+				}
+
+				
 			}
 			/*Different case of genres: case 1: genres[3] = "Drama,Short,Western"
 			case 2: genres[2] = "Drama,Short"
