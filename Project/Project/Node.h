@@ -1,3 +1,6 @@
+#ifndef Node_h
+#define Node_h
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -14,6 +17,19 @@ public:
 	string genres[3];
 	// To make a pointer pointing to the next set of data, linking process
 	Node * next;
+
+public:
+	Node(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres) {
+		this->tconst = ptconst;
+		this->titleType = ptitleType;
+		this->primaryTitle = pprimaryTitle;
+		this->startYear = pstartYear;
+		this->runtimeMinutes = pruntimeMinutes;
+		this->genres[0] = pgenres;
+		this->genres[1] = pgenres;
+		this->genres[2] = pgenres;
+		this->next = NULL;
+	};
 };
 
 
@@ -30,3 +46,5 @@ public:
 	// To make a pointer pointing to the next set of data, linking process
 	filterNode * filnext;
 };
+
+#endif

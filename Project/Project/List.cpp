@@ -12,7 +12,7 @@ List::~List() {
 
 };
 
-void List::createNode(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres) {
+/*void List::createNode(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres) {
 	Node * temp = new Node;
 	temp->tconst = ptconst;
 	temp->titleType = ptitleType;
@@ -30,7 +30,7 @@ void List::createNode(string ptconst, string ptitleType, string pprimaryTitle, s
 		tail = temp;
 		temp = NULL;
 	}
-};
+};*/
 
 
 void List::createfilNode(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres, Node * next) {
@@ -60,10 +60,22 @@ void List::display() {
 	cout << endl;
 
 }
-void List::separateYear(Node* x){
-	filterNode* Data = ;
+
+filterNode List::make_Type_List(Node* x, string condition){
+	Node *innernodelist = x;
+	filterNode * temp = new filterNode;
+	for (; innernodelist != NULL;innernodelist=innernodelist->next) {
+		if (condition == "short") {
+			if (innernodelist->titleType==condition) {
+				
+			}
+
+		}
+	}
+	Node *create_table = new Node(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres);
 
 
+	return create_table,create_table;
 }
 
 
