@@ -12,6 +12,8 @@ public:
 	void display();
 	filterNode make_Type_List(Node *, string );
 	void insertion();
+	void searchingByX;
+
 
 };
 

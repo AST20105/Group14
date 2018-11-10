@@ -32,6 +32,51 @@ List::~List() {
 	}
 };*/
 
+void List::insertion(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres) {
+	Node* NewNode = new Node(ptconst, ptitleType, pprimaryTitle, pstartYear, pruntimeMinutes, pgenres);
+	if (head == NULL) {
+		head = NewNode
+	}
+	else {
+		Node* CurrNode = head;
+		for (; CurrNode->next; CurrNode = CurrNode->next);
+		CurrNode->next = NewNode;
+	}
+}
+
+void List::searchingByX(string x) {
+	Node* CurrNode = head;
+	int counter = 0;
+	for (CurrNode = head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->tconst == x) {
+			cout << CurrNode << endl;
+			counter++;
+		}
+	}if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
+
+void List::deletion(int x) {
+	Node* CurrNode = head, *preNode = NULL;
+	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = currNode, CurrNode = CurrNode->next) {
+		if (CurrNode->tconst != x) {
+			cout << "Data cannot find" << endl;
+		}
+		else
+		{
+			preNode->next = CurrNode->next;
+			delete CurrNode;
+			cout << "Data has been deleted" << endl;
+		}
+	}
+}
+
+
+	
 
 void List::createfilNode(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres, Node * next) {
 	filterNode * temp = new filterNode;
