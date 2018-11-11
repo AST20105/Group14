@@ -97,7 +97,7 @@ void List::fileinput() {
 void List::searchingByX(string x) {
 	Node* CurrNode = head;
 	int counter = 0;
-	for (CurrNode = head; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
 		if (CurrNode->tconst == x) {
 			cout << CurrNode << endl;
 			counter++;
@@ -111,8 +111,9 @@ void List::searchingByX(string x) {
 }
 
 void List::deletion(string x) {
-	Node* CurrNode = head, *preNode = NULL;
-	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = currNode, CurrNode = CurrNode->next) {
+	Node* CurrNode = head;
+	Node *preNode = NULL;
+	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = CurrNode, CurrNode = CurrNode->next) {
 		if (CurrNode->tconst != x) {
 			cout << "Data cannot find" << endl;
 		}
