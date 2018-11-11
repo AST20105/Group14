@@ -14,12 +14,15 @@ public:
 	~List();
 	void fileinput();
 	void display();
+	void MainDecision(int x);
 	filterNode make_Type_List(Node *, string );
 	void searchingByID(string x);
 	void deletion(string x);
 	void searchingByName(string x);
-	void InsertionBytitleType(string x);
+	//void InsertionBytitleType(string x);
 	void Statistical(string x);
+	void MakeSearchingChoice();
+	void MakeDeletion();
 
 
 };

@@ -112,6 +112,41 @@ void List::searchingByID(string x) {
 }
 
 
+void List::MakeSearchingChoice(){
+	int y;
+	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
+	cin >> y;
+	switch (y)
+	{	
+	case 0: return;
+	case 1: searchingByID;
+	case 2: searchingByName;
+	case 3: //
+	case 4: //
+	case 5: //
+	default: MakeSearchingChoice;
+	}
+}
+
+void List::MainDecision(int x) {
+	switch (x)
+	{
+	case 0: return;
+	case 1:	cout << "xxx";
+	case 2:	List::MakeSearchingChoice;
+	case 3: List::MakeDeletion;
+	default: MainDecision(x);
+	}
+}
+
+void List::MakeDeletion() {
+	string x;
+	cout << "Enter the ID that you want to delete " << endl;
+	cin >> x;
+	deletion(x);
+}
+
+
 void List::searchingByName(string x) {
 	Node* CurrNode = head;
 	int counter = 0;
@@ -170,7 +205,7 @@ void List::Statistical(string x){
 
 
 
-void List::deletion(string x) {
+void List::deletion(string x) { 
 	Node* CurrNode = head, *preNode = NULL;
 	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = CurrNode, CurrNode = CurrNode->next) {
 		if (CurrNode->tconst != x) {

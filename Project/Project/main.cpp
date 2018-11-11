@@ -89,6 +89,15 @@ public:
 
 
 int main() {
+	int choice;
+	cout << "************************************************************" << endl;
+	cout << "Enter the file name for the program" << endl;
+	cout << "Welcome to the program, it use for searching and update data." << endl;
+	cout << "Choose What function you want to do " << endl;
+	cout << "0. End		1. Insertion		2. Searching		3. Deletion" << endl;
+	cin >> choice;
+	List::MainDecision(choice);
+
 	List* n1 = new List();
 	n1->fileinput();
 	n1->display();
