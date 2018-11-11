@@ -95,7 +95,61 @@ void List::fileinput() {
 };
 
 
-void List::searchingByID(string x) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void List::MainDecision(int x) {
+	switch (x)
+	{
+	case 0: return;
+	case 1:	cout << "xxx";
+	case 2:	List::MakeSearchingChoice;
+	case 3: List::MakeDeletionChoice;
+	default: MainDecision(x);
+	}
+}
+
+
+
+void List::MakeSearchingChoice() {
+	int y;
+	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
+	cin >> y;
+	switch (y)
+	{
+	case 0: return;
+	case 1: searchingByID;
+	case 2: searchingByName;
+	case 3: //
+	case 4: //
+	case 5: //
+	default: MakeSearchingChoice;
+	}
+}
+
+
+
+void List::searchingByID() {
+	string x;
+	cout << "Enter the ID of the data" << endl;
+	cin >> x;
 	Node* CurrNode = head;
 	int counter = 0;
 	for (CurrNode = head; CurrNode != NULL; CurrNode = CurrNode->next) {
@@ -112,42 +166,10 @@ void List::searchingByID(string x) {
 }
 
 
-void List::MakeSearchingChoice(){
-	int y;
-	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
-	cin >> y;
-	switch (y)
-	{	
-	case 0: return;
-	case 1: searchingByID;
-	case 2: searchingByName;
-	case 3: //
-	case 4: //
-	case 5: //
-	default: MakeSearchingChoice;
-	}
-}
-
-void List::MainDecision(int x) {
-	switch (x)
-	{
-	case 0: return;
-	case 1:	cout << "xxx";
-	case 2:	List::MakeSearchingChoice;
-	case 3: List::MakeDeletion;
-	default: MainDecision(x);
-	}
-}
-
-void List::MakeDeletion() {
+void List::searchingByName() {
 	string x;
-	cout << "Enter the ID that you want to delete " << endl;
+	cout << "Enter the Name of the data" << endl;
 	cin >> x;
-	deletion(x);
-}
-
-
-void List::searchingByName(string x) {
 	Node* CurrNode = head;
 	int counter = 0;
 	for (CurrNode = head; CurrNode != NULL; CurrNode = CurrNode->next) {
@@ -163,8 +185,146 @@ void List::searchingByName(string x) {
 }
 
 
+void List::searchingByYear() {
+	string x;
+	cout << "Enter the Year of the data" << endl;
+	cin >> x;
+	Node* CurrNode = head;
+	int counter = 0;
+	for (CurrNode = head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->startYear == x) {
+			cout << CurrNode;
+			counter++;
+		}
+	}
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
 
-void List::Statistical(string x){
+
+void List::searchingByPgType(string x) {
+	if (x == "short") {
+		return; //shortlist;
+	}
+	else if (x == "movies")	{
+		return;//movielist;
+	}
+	else if (x == "tvseries") {
+		return;//tvserieslist;
+	}
+	else if (x == "tvepisode") {
+		return;//tvepisodelist;
+	}
+	else if (x == "video") {
+		return;//videolist;
+	}
+	else {
+		cout << "No data match" << endl;
+	}
+}
+
+void List::searchingByType() {
+	string x;
+	cout << "Enter the Type of the data" << endl;
+	cin >> x;
+	Node* CurrNode = head;
+	int counter = 0;
+	for (CurrNode = head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		for (int i = 0; i < sizeof(CurrNode->genres); i++) {
+			if (CurrNode->genres[i] == x) {
+				cout << CurrNode;
+				counter++;
+			}
+		}
+	}
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
+
+
+void List::MakeDeletionChoice() {
+	int x;
+	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
+	cin >> x;
+	switch (x)	
+	{
+	case 0: return;
+	case 1: DeletionByID;
+	case 2: DeletionByName;
+	case 3: DeletionByYear;
+	case 4: //
+	case 5: //
+	default: MakeDeletionChoice;
+	}
+}
+
+
+void List::DeletionByID() {
+	string x;
+	cout << "Enter the ID of the data" << endl;
+	cin >> x;
+	Node* CurrNode = head, *preNode = NULL;
+	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = CurrNode, CurrNode = CurrNode->next);
+		if (CurrNode->tconst != x) {
+			cout << "Data cannot find" << endl;
+		}
+		else
+		{
+			preNode->next = CurrNode->next;
+			delete CurrNode;
+			cout << "Data has been deleted" << endl;
+		}
+}
+
+void List::DeletionByName() {
+	string x;
+	cout << "Enter the Name of the data" << endl;
+	cin >> x;
+	Node* CurrNode = head, *preNode = NULL;
+	for (; CurrNode != NULL && CurrNode->primaryTitle != x; preNode = CurrNode, CurrNode = CurrNode->next);
+	if (CurrNode->primaryTitle != x) {
+		cout << "Data cannot find" << endl;
+	}
+	else {
+		preNode->next = CurrNode->next;
+		delete CurrNode;
+		cout << "Data hase been deleted" << endl;
+	}
+}
+
+
+void List::DeletionByYear() {
+	string x;
+	cout << "Enter the Year of the data" << endl;
+	cin >> x;
+	Node* CurrNode = head, *preNode = NULL;
+	int counter = 0;
+	for (CurrNode = head; CurrNode->next != NULL; preNode = CurrNode, CurrNode = CurrNode->next) {
+		if (CurrNode->startYear == x) {
+			preNode->next = CurrNode->next;
+			delete CurrNode;
+			counter++;
+		}
+	}
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of data deleted: " << counter << endl;
+	}
+}
+
+
+
+/*void List::Statistical(string x){
 	Node * CurrNode = head;
 	int counter = 0;
 	for (; CurrNode->next != NULL; CurrNode = CurrNode->next) {
@@ -178,7 +338,7 @@ void List::Statistical(string x){
 	else {
 		cout << "There are total " << counter << " movie for " << x << endl;
 	}
-}
+}*/
 
 
 
@@ -204,21 +364,6 @@ void List::Statistical(string x){
 }*/
 
 
-
-void List::deletion(string x) { 
-	Node* CurrNode = head, *preNode = NULL;
-	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = CurrNode, CurrNode = CurrNode->next) {
-		if (CurrNode->tconst != x) {
-			cout << "Data cannot find" << endl;
-		}
-		else
-		{
-			preNode->next = CurrNode->next;
-			delete CurrNode;
-			cout << "Data has been deleted" << endl;
-		}
-	}
-}
 
 
 void List::display() {
