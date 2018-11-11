@@ -95,6 +95,58 @@ void List::fileinput() {
 };
 
 
+void List::searchingByID(string x) {
+	Node* CurrNode = head;
+	int counter = 0;
+	for (CurrNode = head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->tconst == x) {
+			cout << CurrNode << endl;
+			counter++;
+		}
+	}if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
+
+
+void List::searchingByName(string x) {
+	Node* CurrNode = head;
+	int counter = 0;
+	for (CurrNode = head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->primaryTitle.find(x) != string::npos) {
+			cout << CurrNode << endl;
+		}
+	}if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
+
+void List::InsertionBytitleType(string x) {
+	Node * CurrNode = head;
+
+}
+
+void List::deletion(string x) {
+	Node* CurrNode = head, *preNode = NULL;
+	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = CurrNode, CurrNode = CurrNode->next) {
+		if (CurrNode->tconst != x) {
+			cout << "Data cannot find" << endl;
+		}
+		else
+		{
+			preNode->next = CurrNode->next;
+			delete CurrNode;
+			cout << "Data has been deleted" << endl;
+		}
+	}
+}
+
 
 void List::display() {
 	if (head == NULL) {
@@ -135,3 +187,5 @@ void List::display() {
 void List::insertion() {
 
 }
+*/
+
