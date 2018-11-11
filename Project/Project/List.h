@@ -15,8 +15,10 @@ public:
 	void fileinput();
 	void display();
 	filterNode make_Type_List(Node *, string );
-	void searchingByX(string x);
+	void searchingByID(string x);
 	void deletion(string x);
+	void searchingByName(string x);
+	void InsertionBytitleType(string x);
 
 
 };
