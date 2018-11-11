@@ -3,7 +3,6 @@
 List::List() {
 
 	head = NULL;
-	filhead = NULL;
 };
 
 
@@ -39,10 +38,13 @@ void List::fileinput() {
 			getline(dataSet, primaryTitle, '\t');
 			getline(dataSet, startYear, '\t');
 			getline(dataSet, runtimeMinutes, '\t');
+
+
 			string originalgenre = " ";
 			string symbol = "\"";
-			string symbolofnothing = "\N";
-			getline(dataSet, originalgenre, '\n');
+			string symbolofnothing = symbol;
+			
+			getline(dataSet, originalgenre, '/N');
 			if ((originalgenre.substr(0, 1) != symbol) && (originalgenre.substr(0, 2) != symbolofnothing)) {
 				genres[0] = originalgenre;
 				genres[1] = " ";
