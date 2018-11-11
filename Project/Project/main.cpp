@@ -3,6 +3,8 @@
 #include <vector>
 #include <fstream>
 #include <list>
+#include "List.h"
+
 
 using namespace std;
 
@@ -117,7 +119,9 @@ public:
 			}
 			else {
 				for (int i = 0; i < originalgenre.length(); i++){
-					if()
+					if () {
+
+					}
 					
 				}
 			}
