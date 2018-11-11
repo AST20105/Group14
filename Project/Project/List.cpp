@@ -127,10 +127,48 @@ void List::searchingByName(string x) {
 	}
 }
 
-void List::InsertionBytitleType(string x) {
-	Node * CurrNode = head;
 
+
+void List::Statistical(string x){
+	Node * CurrNode = head;
+	int counter = 0;
+	for (; CurrNode->next != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->titleType == x) {
+			counter++;
+		}
+	}
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "There are total " << counter << " movie for " << x << endl;
+	}
 }
+
+
+
+
+
+
+/*void List::InsertionBytitleType(string x) {
+	Node * CurrNode = head;
+	Node * TypeNode = NULL;
+	int counter = 0;
+	for (; CurrNode->next != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->primaryTitle == x) {
+			TypeNode = new Node (CurrNode->tconst, CurrNode->titleType, CurrNode->primaryTitle, CurrNode->startYear, CurrNode->runtimeMinutes, CurrNode->genres[0], CurrNode->genres[1], CurrNode->genres[2]);
+			TypeNode = TypeNode->next;
+			counter++;
+		}
+	}if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of data inserted: " << counter << endl;
+	}
+}*/
+
+
 
 void List::deletion(string x) {
 	Node* CurrNode = head, *preNode = NULL;

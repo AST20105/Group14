@@ -19,6 +19,7 @@ public:
 	void deletion(string x);
 	void searchingByName(string x);
 	void InsertionBytitleType(string x);
+	void Statistical(string x);
 
 
 };
