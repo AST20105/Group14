@@ -1,24 +1,20 @@
-#ifndef List_h
-#define List_h
+#ifndef FilList_h
+#define FilList_h
 
 #include "Node.h"
 #include <iostream>
 using namespace std;
 
-class List {
+class FilList {
 public:
-	Node * head;
 	filterNode * filhead;
+
 public:
-	List();
-	~List();
-	void fileinput();
+	FilList();
 	void searchingByX(string x);
 	void deletion_of_node(string x);
-	void display();
 	void fildisplay();
-	List make_Type_List(Node *x, string  condition);
-
+	FilList make_Type_List(Node *x, string  condition);
 };
 
 #endif

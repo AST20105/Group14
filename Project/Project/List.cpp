@@ -3,7 +3,7 @@
 List::List() {
 
 	head = NULL;
-
+	filhead = NULL;
 };
 
 
@@ -110,8 +110,7 @@ void List::searchingByX(string x) {
 	}
 }
 
-
-void List::deletion(string x) {
+void List::deletion_of_node(string x) {
 	Node* CurrNode = head;
 	Node *preNode = NULL;
 	for (; CurrNode != NULL; preNode = CurrNode, CurrNode = CurrNode->next) {
@@ -150,19 +149,3 @@ void List::display() {
 
 }
 
-/*filterNode List::make_Type_List(Node* x, string condition){
-	Node *innernodelist = x;
-	filterNode * temp = new filterNode;
-	for (; innernodelist != NULL;innernodelist=innernodelist->next) {
-		if (condition == "short") {
-			if (innernodelist->titleType==condition) {
-				
-			}
-
-		}
-	}
-	Node *create_table = new Node(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres);
-
-
-	return create_table,create_table;
-}*/

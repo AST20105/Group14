@@ -115,10 +115,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FilList.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FilList.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
