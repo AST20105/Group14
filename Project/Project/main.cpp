@@ -10,8 +10,7 @@ using namespace std;
 int main() {
 	List* n1 = new List();
 	n1->fileinput();
-	n1->display()
-		;
+	n1->display();
 	system("pause");
 	return 0;
 
