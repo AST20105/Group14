@@ -13,10 +13,8 @@ public:
 	List();
 	~List();
 	void fileinput();
-	void createfilNode(string, string, string, string, string, string, Node *);
 	void display();
 	filterNode make_Type_List(Node *, string );
-	void insertion(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres);
 	void searchingByX(string x);
 	void deletion(string x);
 
