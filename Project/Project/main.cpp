@@ -6,6 +6,7 @@
 #include "List.h"
 
 
+
 using namespace std;
 
 class Node {
@@ -157,7 +158,7 @@ int main() {
 	List* n1 = new List();
 	n1->fileinput();
 	n1->display();
-	system("pause");
+	system ("pause");
 	return 0;
 
 }
