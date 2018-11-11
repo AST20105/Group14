@@ -12,7 +12,7 @@ int main() {
 	List* n1 = new List();
 	FilList* n2 = new FilList();
 	n1->fileinput();
-	n1->display();
+	//n1->display();
 	string type;
 	cout << "intput type: ";
 	cin >> type;

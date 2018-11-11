@@ -3,7 +3,7 @@
 
 #include "Node.h"
 #include <iostream>
-#include <fstream> 
+
 using namespace std;
 
 class List {
@@ -17,8 +17,6 @@ public:
 	void searchingByX(string x);
 	void deletion_of_node(string x);
 	void display();
-	void fildisplay();
-	List make_Type_List(Node *x, string  condition);
 
 };
 

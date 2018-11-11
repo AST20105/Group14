@@ -21,6 +21,8 @@ void List::fileinput() {
 	string genres[3];
 	ifstream dataSet;
 	string filename = " ";
+	char c1[20], c2[20],c3[20], c4[20], c5[20], c6[20], c7[20], c8[20];
+	FILE * pFile;
 	cout << "Which dataSet you want to input?" << endl;
 	cout << "Filename: ";
 	cin >> filename;
@@ -39,12 +41,12 @@ void List::fileinput() {
 			getline(dataSet, startYear, '\t');
 			getline(dataSet, runtimeMinutes, '\t');
 
-
 			string originalgenre = " ";
 			string symbol = "\"";
 			string symbolofnothing = symbol;
-			
-			getline(dataSet, originalgenre, '/N');
+	
+
+			getline(dataSet, originalgenre, '\n');
 			if ((originalgenre.substr(0, 1) != symbol) && (originalgenre.substr(0, 2) != symbolofnothing)) {
 				genres[0] = originalgenre;
 				genres[1] = " ";
