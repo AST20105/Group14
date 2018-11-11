@@ -3,9 +3,11 @@
 #include <vector>
 #include <fstream>
 #include <list>
+#include <cstdio>
+#include <ctime>
 
 using namespace std;
-
+//DataSet Name : DataSet1_1000
 class Node {
 protected:
 	// All the data member (Attributes)
@@ -89,6 +91,7 @@ public:
 		cout << "Filename: ";
 		cin >> filename;
 		cout << endl;
+
 		//CHeck whether the file can open correctly
 		dataSet.open(filename);
 		if (!(dataSet.is_open())) {
@@ -117,7 +120,6 @@ public:
 			}
 			else {
 				for (int i = 0; i < originalgenre.length(); i++){
-					if()
 					
 				}
 			}
@@ -152,8 +154,19 @@ public:
 
 
 int main() {
+	std::clock_t start;
+	double duration;
+
+	start = std::clock();
+
 	Node n1;
 	n1.fileinput();
+
+
+	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+
+	std::cout << "Program Run time: " << duration / 1000 << "mins" << '\n';
+
 	system("pause");
 	return 0;
 
