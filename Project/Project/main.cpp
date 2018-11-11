@@ -154,10 +154,10 @@ public:
 
 
 int main() {
-	std::clock_t start;
+	clock_t start;
 	double duration;
 
-	start = std::clock();
+	start = clock();
 
 	Node n1;
 	n1.fileinput();
@@ -165,7 +165,7 @@ int main() {
 
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 
-	std::cout << "Program Run time: " << duration / 1000 << "mins" << '\n';
+	cout << "Program Run time: " << duration / 1000 << "mins" << '\n';
 
 	system("pause");
 	return 0;
