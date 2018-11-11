@@ -1,4 +1,5 @@
 #include "List.h"
+#include "Node.h"
 
 List::List() {
 	//create an empty list
@@ -60,9 +61,9 @@ void List::searchingByX(string x) {
 	}
 }
 
-void List::deletion(int x) {
+void List::deletion(string x) {
 	Node* CurrNode = head, *preNode = NULL;
-	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = currNode, CurrNode = CurrNode->next) {
+	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = CurrNode, CurrNode = CurrNode->next) {
 		if (CurrNode->tconst != x) {
 			cout << "Data cannot find" << endl;
 		}
@@ -124,11 +125,3 @@ filterNode List::make_Type_List(Node* x, string condition){
 }
 
 
-
-
-
-
-
-void List::insertion() {
-
-}
