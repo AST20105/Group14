@@ -14,7 +14,10 @@ int main() {
 	string id;
 	cout << "intput id: ";
 	cin >> id;
-	n1->searchingByX(id);
+	n1->deletion(id);
+	system("pause");
+	system("cls");
+	n1->display();
 	system("pause");
 	return 0;
 

@@ -99,7 +99,7 @@ void List::searchingByX(string x) {
 	int counter = 0;
 	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
 		if (CurrNode->tconst == x) {
-			cout << CurrNode << endl;
+			cout << CurrNode->tconst<< "\t" << CurrNode->titleType<< "\t" << CurrNode->primaryTitle<< "\t" << CurrNode->startYear<< "\t" << CurrNode->runtimeMinutes<< "\t" << CurrNode->genres[0]<< "\t" << CurrNode->genres[1]<< "\t" << CurrNode->genres[2] << endl;
 			counter++;
 		}
 	}if (counter == 0) {
@@ -110,18 +110,29 @@ void List::searchingByX(string x) {
 	}
 }
 
+
 void List::deletion(string x) {
 	Node* CurrNode = head;
 	Node *preNode = NULL;
-	for (; CurrNode != NULL && CurrNode->tconst != x; preNode = CurrNode, CurrNode = CurrNode->next) {
-		if (CurrNode->tconst != x) {
+	for (; CurrNode != NULL; preNode = CurrNode, CurrNode = CurrNode->next) {
+		if (CurrNode->next == NULL && CurrNode->tconst != x) {
 			cout << "Data cannot find" << endl;
+			return;
 		}
-		else
+		else if(CurrNode->tconst == x)
 		{
-			preNode->next = CurrNode->next;
-			delete CurrNode;
-			cout << "Data has been deleted" << endl;
+			if (CurrNode == head) {
+				head = CurrNode->next;
+				delete CurrNode;
+				cout << "First Data has been deleted" << endl;
+				return;
+			}
+			else {
+				preNode->next = CurrNode->next;
+				delete CurrNode;
+				cout << "Data has been deleted" << endl;
+				return;
+			}
 		}
 	}
 }
