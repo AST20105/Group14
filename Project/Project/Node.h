@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+
 using namespace std;
 
 class Node
@@ -19,15 +20,15 @@ public:
 	Node * next;
 
 public:
-	Node(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres) {
+	Node(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres0, string pgenres1, string pgenres2) {
 		this->tconst = ptconst;
 		this->titleType = ptitleType;
 		this->primaryTitle = pprimaryTitle;
 		this->startYear = pstartYear;
 		this->runtimeMinutes = pruntimeMinutes;
-		this->genres[0] = pgenres;
-		this->genres[1] = pgenres;
-		this->genres[2] = pgenres;
+		this->genres[0] = pgenres0;
+		this->genres[1] = pgenres1;
+		this->genres[2] = pgenres2;
 		this->next = NULL;
 	};
 };
@@ -43,8 +44,20 @@ public:
 	string runtimeMinutes;
 	string genres[3];
 	Node * next;
-	// To make a pointer pointing to the next set of data, linking process
 	filterNode * filnext;
+public:
+	filterNode(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres0, string pgenres1, string pgenres2, Node * next) {
+		this->tconst = ptconst;
+		this->titleType = ptitleType;
+		this->primaryTitle = pprimaryTitle;
+		this->startYear = pstartYear;
+		this->runtimeMinutes = pruntimeMinutes;
+		this->genres[0] = pgenres0;
+		this->genres[1] = pgenres1;
+		this->genres[2] = pgenres2;
+		this->next = next;
+		this->filnext = NULL;
+	};
 };
 
 #endif

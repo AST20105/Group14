@@ -119,9 +119,7 @@ public:
 			}
 			else {
 				for (int i = 0; i < originalgenre.length(); i++){
-					if () {
-
-					}
+					if()
 					
 				}
 			}
@@ -156,10 +154,10 @@ public:
 
 
 int main() {
-	Node n1;
-	n1.fileinput();
+	List* n1 = new List();
+	n1->fileinput();
+	n1->display();
 	system("pause");
 	return 0;
 
 }
-//0000

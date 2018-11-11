@@ -1,0 +1,10 @@
+tt0000001	short	Carmencita	1894	1	"Documentary,Short"
+tt0000002	short	Le clown et ses chiens	1892	5	"Animation,Short"
+tt0000003	short	Pauvre Pierrot	1892	4	"Animation,Comedy,Romance"
+tt0000004	short	Un bon bock	1892	\N	"Animation,Short"
+tt0000005	short	Blacksmith Scene	1893	1	"Comedy,Short"
+tt0000006	short	Chinese Opium Den	1894	1	Short
+tt0000007	short	Corbett and Courtney Before the Kinetograph	1894	1	"Short,Sport"
+tt0000008	short	Edison Kinetoscopic Record of a Sneeze	1894	1	"Documentary,Short"
+tt0000009	movie	Miss Jerry	1894	45	Romance
+tt0000010	short	Employees Leaving the Lumire Factory	1895	1	"Documentary,Short"
