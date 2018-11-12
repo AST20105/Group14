@@ -137,8 +137,8 @@ void List::MakeSearchingChoice() {
 	case 0: return;
 	case 1: searchingByID;
 	case 2: searchingByName;
-	case 3: //
-	case 4: //
+	case 3: searchingByYear;
+	case 4: searchingByPgType;
 	case 5: //
 	default: MakeSearchingChoice;
 	}
@@ -206,24 +206,20 @@ void List::searchingByYear() {
 }
 
 
-void List::searchingByPgType(string x) {
-	if (x == "short") {
-		return; //shortlist;
-	}
-	else if (x == "movies")	{
-		return;//movielist;
-	}
-	else if (x == "tvseries") {
-		return;//tvserieslist;
-	}
-	else if (x == "tvepisode") {
-		return;//tvepisodelist;
-	}
-	else if (x == "video") {
-		return;//videolist;
-	}
-	else {
-		cout << "No data match" << endl;
+void List::searchingByPgType() {
+	int x;
+	cout << "Which programme type?" << endl;
+	cout << "1. short	2. movie	3. tvseries		4. tvepisode	5. video	0. End" << endl;
+	cin >> x;
+	switch (x)
+	{
+	case 0: return;
+	case 1: cout << ""; //shortlist
+	case 2: cout << ""; //movielist
+	case 3: cout << ""; //tvserieslist
+	case 4: cout << ""; //tvepisode
+	case 5:	cout << ""; //videolist
+	default: searchingByPgType();
 	}
 }
 

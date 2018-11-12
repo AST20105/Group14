@@ -21,7 +21,7 @@ public:
 	void searchingByID();
 	void searchingByName();
 	void searchingByYear();
-	void searchingByPgType(string x);
+	void searchingByPgType();
 	void searchingByType();
 
 
