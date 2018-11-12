@@ -19,8 +19,10 @@ public:
 
 	void MainDecision();
 
-	void MakeSearchingChoice();
-	void searchingByID();
+	void MakeSearchingChoice(int x);
+	void MangeInDataSetSearch();
+
+	void searchingByID(int x);
 	void searchingByName();
 	void searchingByYear();
 	void searchingByPgType();

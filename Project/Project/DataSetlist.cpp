@@ -193,19 +193,19 @@ void DataSetlist::display() {
 
 }
 
-void DataSetlist::MainDecision() {
+void DataSetlist::MainDecision(){
 	int choice;
 	cout << "*************************************************************" << endl;
 	cout << "Welcome to the program, it use for searching and update data." << endl;
 	cout << "*************************************************************" << endl;
 	cout << "Choose What function you want to do " << endl;
-	cout << "0. End		1. Insertion		2. Searching		3. Deletion" << endl;
+	cout << "0. End		1. Insertion	2. Searching	3. Deletion" << endl;
 	cin >> choice;
 	switch (choice)
 	{
 	case 0: return;
 	case 1:	fileinput(); display(); system("pause"); system("cls"); MainDecision();
-	case 2:	MakeSearchingChoice(); system("pause"); system("cls"); MainDecision();
+	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MakeDeletionChoice(); system("pause"); system("cls"); MainDecision();
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
 	}
@@ -215,35 +215,76 @@ void DataSetlist::MainDecision() {
 
 
 
-void DataSetlist::MakeSearchingChoice() {
-	int y;
-	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
-	cin >> y;
-	switch (y)
-	{
-	case 0: return;
-	case 1: searchingByID(); MainDecision();
-	case 2: searchingByName(); MainDecision();
-	case 3: searchingByYear(); MainDecision();
-	case 4: searchingByPgType(); MainDecision();
-	case 5: //
-	default: MakeSearchingChoice(); MainDecision();
+void DataSetlist::MangeInDataSetSearch() {
+	int counter = 0;
+	int x;
+	bool check = false;
+	DataSet* CurrNode = DataSethead;
+	cout << "which DataSet you want to modify" << endl;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode=CurrNode->next) {
+		counter++;
+		cout << "DataSet " << counter << endl;
+	}
+	cin >> x;
+	counter = 0;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			check = true;
+			break;
+		}
+	}
+	if (check == false) {
+		cout << "Wrong input" << endl;
+		MangeInDataSetSearch();
+	}
+	else {
+		MakeSearchingChoice(x);
 	}
 }
 
 
 
 
-void DataSetlist::searchingByID() {
-	string x;
+void DataSetlist::MakeSearchingChoice(int x) {
+	int y;
+	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	0. Stop Searching" << endl;
+	cin >> y;
+	switch (y)
+	{
+	case 0: return;
+	case 1: searchingByID(x); MainDecision();
+	case 2: searchingByName(); MainDecision();
+	case 3: searchingByYear(); MainDecision();
+	case 4: searchingByPgType(); MainDecision();
+	case 5: //
+	default: MakeSearchingChoice(x); MainDecision();
+	}
+}
+
+
+
+
+void DataSetlist::searchingByID(int x) {
+	string y;
 	cout << "Enter the ID of the data" << endl;
-	cin >> x;
+	cin >> y;
 	cout << "*************************************************************" << endl;
-	Node* CurrNode = DataSethead->listSet->head;
 	int counter = 0;
-	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL; CurrNode = CurrNode->next) {
-		if (CurrNode->tconst == x) {
-			cout << CurrNode->tconst<<"\t"<<CurrNode->titleType<<"\t"<<CurrNode->primaryTitle<<"\t"<<CurrNode->startYear<<"\t"<<CurrNode->runtimeMinutes<<"\t"<<CurrNode->genres[0]<<"\t"<< CurrNode->genres[1] << "\t" << CurrNode->genres[2] << endl;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+
+
+	counter = 0;
+	Node* CurrNode1 = CurrNode->listSet->head;
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (CurrNode1->tconst == y) {
+			cout << CurrNode1->tconst<<"\t"<<CurrNode1->titleType<<"\t"<< CurrNode1->primaryTitle<<"\t"<< CurrNode1->startYear<<"\t"<< CurrNode1->runtimeMinutes<<"\t"<< CurrNode1->genres[0]<<"\t"<< CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			counter++;
 		}
 	}if (counter == 0) {
