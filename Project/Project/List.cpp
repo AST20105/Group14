@@ -7,13 +7,7 @@ List::List() {
 
 };
 
-
-List::~List() {
-
-};
-
-
-void List::fileinput() {
+/*void List::fileinput() {
 	Node * innerhead = head;
 	string tconst;
 	string titleType;
@@ -92,7 +86,7 @@ void List::fileinput() {
 			}
 		} while (!dataSet.eof());
 	}
-};
+};*/
 
 
 
@@ -115,7 +109,7 @@ void List::fileinput() {
 
 
 
-void List::MainDecision() {
+/*void List::MainDecision() {
 	int choice;
 	cout << "*************************************************************" << endl;
 	cout << "Welcome to the program, it use for searching and update data." << endl;
@@ -192,7 +186,7 @@ void List::searchingByName() {
 }
 
 
-/*void List::searchingByYear() {
+void List::searchingByYear() {
 	string x;
 	cout << "Enter the Year of the data" << endl;
 	cin >> x;
@@ -210,7 +204,7 @@ void List::searchingByName() {
 	else {
 		cout << "Number of Data: " << counter << endl;
 	}
-}*/
+}
 
 
 void List::searchingByPgType() {
@@ -323,90 +317,8 @@ void List::DeletionByYear() {
 	else {
 		cout << "Number of data deleted: " << counter << endl;
 	}
-}
-
-
-
-/*void List::Statistical(string x){
-	Node * CurrNode = head;
-	int counter = 0;
-	for (; CurrNode->next != NULL; CurrNode = CurrNode->next) {
-		if (CurrNode->titleType == x) {
-			counter++;
-		}
-	}
-	if (counter == 0) {
-		cout << "No data match" << endl;
-	}
-	else {
-		cout << "There are total " << counter << " movie for " << x << endl;
-	}
 }*/
 
 
 
-
-
-
-/*void List::InsertionBytitleType(string x) {
-	Node * CurrNode = head;
-	Node * TypeNode = NULL;
-	int counter = 0;
-	for (; CurrNode->next != NULL; CurrNode = CurrNode->next) {
-		if (CurrNode->primaryTitle == x) {
-			TypeNode = new Node (CurrNode->tconst, CurrNode->titleType, CurrNode->primaryTitle, CurrNode->startYear, CurrNode->runtimeMinutes, CurrNode->genres[0], CurrNode->genres[1], CurrNode->genres[2]);
-			TypeNode = TypeNode->next;
-			counter++;
-		}
-	}if (counter == 0) {
-		cout << "No data match" << endl;
-	}
-	else {
-		cout << "Number of data inserted: " << counter << endl;
-	}
-}*/
-
-
-
-
-void List::display() {
-	if (head == NULL) {
-		cout << "Empty list is provided" << endl;
-	}
-	Node * displaynode = head;
-	while (displaynode != NULL) {
-		cout << displaynode->tconst << "\t" << displaynode->titleType << "\t" << displaynode->primaryTitle << "\t" << displaynode->startYear << "\t" << displaynode->runtimeMinutes << "\t" << displaynode->genres[0] << "\t" << displaynode->genres[1] << "\t" << displaynode->genres[2] << endl;
-		displaynode = displaynode->next;
-	}
-	cout << endl;
-
-}
-
-/*filterNode List::make_Type_List(Node* x, string condition){
-	Node *innernodelist = x;
-	filterNode * temp = new filterNode;
-	for (; innernodelist != NULL;innernodelist=innernodelist->next) {
-		if (condition == "short") {
-			if (innernodelist->titleType==condition) {
-				
-			}
-
-		}
-	}
-	Node *create_table = new Node(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres);
-
-
-	return create_table,create_table;
-}
-
-
-
-
-
-
-
-void List::insertion() {
-
-}
-*/
 

@@ -188,18 +188,248 @@ void DataSetlist::display() {
 			displayset1 = displayset1->next;
 		}
 	}
-	/*else {
-		Node * displaynode1 = DataSethead->listSet->head;
-		while (displaynode1 != NULL) {
-		
-			while (displaynode1 != NULL) {
-				cout << displaynode1->next->tconst << "\t" << displaynode1->next->titleType << "\t" << displaynode1->next->primaryTitle << "\t" << displaynode1->next->startYear << "\t" << displaynode1->next->runtimeMinutes << "\t" << displaynode1->next->genres[0] << "\t" << displaynode1->next->genres[1] << "\t" << displaynode1->next->genres[2] << endl;
-				displaynode1 = displaynode1->next;
-				cout << endl;
-			}
-			displaynode1 = displaynode1->next;
-		}
-	}*/
 	cout << endl;
 
+
+}
+
+void DataSetlist::MainDecision() {
+	int choice;
+	cout << "*************************************************************" << endl;
+	cout << "Welcome to the program, it use for searching and update data." << endl;
+	cout << "*************************************************************" << endl;
+	cout << "Choose What function you want to do " << endl;
+	cout << "0. End		1. Insertion		2. Searching		3. Deletion" << endl;
+	cin >> choice;
+	switch (choice)
+	{
+	case 0: return;
+	case 1:	fileinput(); display(); system("pause"); system("cls"); MainDecision();
+	case 2:	MakeSearchingChoice(); system("pause"); system("cls"); MainDecision();
+	case 3: MakeDeletionChoice(); system("pause"); system("cls"); MainDecision();
+	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
+	}
+
+
+}
+
+
+
+void DataSetlist::MakeSearchingChoice() {
+	int y;
+	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
+	cin >> y;
+	switch (y)
+	{
+	case 0: return;
+	case 1: searchingByID(); MainDecision();
+	case 2: searchingByName(); MainDecision();
+	case 3: searchingByYear(); MainDecision();
+	case 4: searchingByPgType(); MainDecision();
+	case 5: //
+	default: MakeSearchingChoice(); MainDecision();
+	}
+}
+
+
+
+
+void DataSetlist::searchingByID() {
+	string x;
+	cout << "Enter the ID of the data" << endl;
+	cin >> x;
+	cout << "*************************************************************" << endl;
+	Node* CurrNode = DataSethead->listSet->head;
+	int counter = 0;
+	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->tconst == x) {
+			cout << CurrNode->tconst<<"\t"<<CurrNode->titleType<<"\t"<<CurrNode->primaryTitle<<"\t"<<CurrNode->startYear<<"\t"<<CurrNode->runtimeMinutes<<"\t"<<CurrNode->genres[0]<<"\t"<< CurrNode->genres[1] << "\t" << CurrNode->genres[2] << endl;
+			counter++;
+		}
+	}if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
+
+
+
+void DataSetlist::searchingByName() {
+	string x;
+	cout << "Enter the Name of the data" << endl;
+	cin >> x;
+	Node* CurrNode = DataSethead->listSet->head;
+	int counter = 0;
+	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->primaryTitle.find(x) != string::npos) {
+			cout << CurrNode << endl;
+		}
+	}if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
+
+
+void DataSetlist::searchingByYear() {
+	string x;
+	cout << "Enter the Year of the data" << endl;
+	cin >> x;
+	Node* CurrNode = DataSethead->listSet->head;
+	int counter = 0;
+	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (CurrNode->startYear == x) {
+			cout << CurrNode;
+			counter++;
+		}
+	}
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
+
+
+void DataSetlist::searchingByPgType() {
+	int x;
+	cout << "Which programme type?" << endl;
+	cout << "1. short	2. movie	3. tvseries		4. tvepisode	5. video	0. End" << endl;
+	cin >> x;
+	switch (x)
+	{
+	case 0: return;
+	case 1: cout << ""; //shortlist
+	case 2: cout << ""; //movielist
+	case 3: cout << ""; //tvserieslist
+	case 4: cout << ""; //tvepisode
+	case 5:	cout << ""; //videolist
+	default: searchingByPgType();
+	}
+}
+
+
+void DataSetlist::searchingByType() {
+	string x;
+	cout << "Enter the Type of the data" << endl;
+	cin >> x;
+	Node* CurrNode = DataSethead->listSet->head;
+	int counter = 0;
+	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		for (int i = 0; i < sizeof(CurrNode->genres); i++) {
+			if (CurrNode->genres[i] == x) {
+				cout << CurrNode;
+				counter++;
+			}
+		}
+	}
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void DataSetlist::MakeDeletionChoice() {
+	int x;
+	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
+	cin >> x;
+	switch (x)
+	{
+	case 0: return;
+	case 1: DeletionByID(); MainDecision();
+	case 2: DeletionByName(); MainDecision();
+	case 3: DeletionByYear(); MainDecision();
+	case 4: //
+	case 5: //
+	default: MakeDeletionChoice();
+	}
+}
+
+
+
+void DataSetlist::DeletionByID() {
+	string x;
+	cout << "Enter the ID of the data" << endl;
+	cin >> x;
+	Node* CurrNode = DataSethead->listSet->head, *preNode = NULL;
+	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL && CurrNode->tconst != x; preNode = CurrNode, CurrNode = CurrNode->next);
+	if (CurrNode->tconst != x) {
+		cout << "Data cannot find" << endl;
+	}
+	else
+	{
+		if (preNode == NULL && CurrNode->tconst == x) {
+			CurrNode = CurrNode->next;
+			cout << "Data has been deleted" << endl;
+		}
+		else {
+			preNode->next = CurrNode->next;
+			delete CurrNode;
+			cout << "Data has been deleted" << endl;
+		}
+	}
+}
+
+
+void DataSetlist::DeletionByName() {
+	string x;
+	cout << "Enter the Name of the data" << endl;
+	cin >> x;
+	Node* CurrNode = DataSethead->listSet->head, *preNode = NULL;
+	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL && CurrNode->primaryTitle != x; preNode = CurrNode, CurrNode = CurrNode->next);
+	if (CurrNode->primaryTitle != x) {
+		cout << "Data cannot find" << endl;
+	}
+	else {
+		preNode->next = CurrNode->next;
+		delete CurrNode;
+		cout << "Data hase been deleted" << endl;
+	}
+}
+
+
+void DataSetlist::DeletionByYear() {
+	string x;
+	cout << "Enter the Year of the data" << endl;
+	cin >> x;
+	Node* CurrNode = DataSethead->listSet->head, *preNode = NULL;
+	int counter = 0;
+	for (CurrNode = DataSethead->listSet->head; CurrNode->next != NULL; preNode = CurrNode, CurrNode = CurrNode->next) {
+		if (CurrNode->startYear == x) {
+			preNode->next = CurrNode->next;
+			delete CurrNode;
+			counter++;
+		}
+	}
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "Number of data deleted: " << counter << endl;
+	}
 }

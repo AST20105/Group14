@@ -12,11 +12,21 @@ public:
 public:
 	List();
 	~List();
-	void fileinput();
-	void createfilNode(string, string, string, string, string, string, Node *);
-	void display();
-	filterNode make_Type_List(Node *, string );
-	void insertion();
+
+	void MakeSearchingChoice();
+	void searchingByID();
+	void searchingByName();
+	//void searchingByYear();
+	void searchingByPgType();
+	void searchingByType();
+
+
+	void MakeDeletionChoice();
+	void DeletionByID();
+	void DeletionByName();
+	void DeletionByYear();
+
+
 
 };
 

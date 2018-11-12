@@ -10,9 +10,8 @@
 using namespace std;
 
 int main() {
-	List* n1 = new List();
-	n1->fileinput();
-	n1->display();
+	DataSetlist* n1 = new DataSetlist();
+	n1->MainDecision();
 	system("pause");
 	return 0;
 }
