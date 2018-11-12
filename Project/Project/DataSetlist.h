@@ -21,6 +21,7 @@ public:
 
 	void MakeSearchingChoice(int x);
 	void MangeInDataSetSearch();
+	void MangeInDataSetDelete();
 
 	void searchingByID(int x);
 	void searchingByName();
@@ -32,8 +33,8 @@ public:
 
 
 
-	void MakeDeletionChoice();
-	void DeletionByID();
+	void MakeDeletionChoice(int x);
+	void DeletionByID(int x);
 	void DeletionByName();
 	void DeletionByYear();
 
