@@ -115,14 +115,21 @@ void List::fileinput() {
 
 
 
-void List::MainDecision(int x) {
-	switch (x)
+void List::MainDecision() {
+	int choice;
+	cout << "*************************************************************" << endl;
+	cout << "Welcome to the program, it use for searching and update data." << endl;
+	cout << "*************************************************************" << endl;
+	cout << "Choose What function you want to do " << endl;
+	cout << "0. End		1. Insertion		2. Searching		3. Deletion" << endl;
+	cin >> choice;
+	switch (choice)
 	{
 	case 0: return;
-	case 1:	cout << "xxx";
-	case 2:	List::MakeSearchingChoice;
-	case 3: List::MakeDeletionChoice;
-	default: MainDecision(x);
+	case 1:	fileinput(); MainDecision();
+	case 2:	MakeSearchingChoice();
+	case 3: MakeDeletionChoice();
+	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision();
 	}
 }
 
@@ -135,12 +142,12 @@ void List::MakeSearchingChoice() {
 	switch (y)
 	{
 	case 0: return;
-	case 1: searchingByID;
-	case 2: searchingByName;
-	case 3: searchingByYear;
-	case 4: searchingByPgType;
+	case 1: searchingByID();
+	case 2: searchingByName();
+	//case 3: searchingByYear;
+	case 4: searchingByPgType();
 	case 5: //
-	default: MakeSearchingChoice;
+	default: MakeSearchingChoice();
 	}
 }
 
@@ -185,7 +192,7 @@ void List::searchingByName() {
 }
 
 
-void List::searchingByYear() {
+/*void List::searchingByYear() {
 	string x;
 	cout << "Enter the Year of the data" << endl;
 	cin >> x;
@@ -203,7 +210,7 @@ void List::searchingByYear() {
 	else {
 		cout << "Number of Data: " << counter << endl;
 	}
-}
+}*/
 
 
 void List::searchingByPgType() {
@@ -253,12 +260,12 @@ void List::MakeDeletionChoice() {
 	switch (x)	
 	{
 	case 0: return;
-	case 1: DeletionByID;
-	case 2: DeletionByName;
-	case 3: DeletionByYear;
+	case 1: DeletionByID();
+	case 2: DeletionByName();
+	case 3: DeletionByYear();
 	case 4: //
 	case 5: //
-	default: MakeDeletionChoice;
+	default: MakeDeletionChoice();
 	}
 }
 

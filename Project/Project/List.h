@@ -14,7 +14,7 @@ public:
 	~List();
 	void fileinput();
 	void display();
-	void MainDecision(int x);
+	void MainDecision();
 	filterNode make_Type_List(Node *, string );
 	//void InsertionBytitleType(string x);
 	void MakeSearchingChoice();
