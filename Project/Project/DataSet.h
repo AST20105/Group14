@@ -17,7 +17,8 @@ public:
 	DataSet * next;
 public:
 	DataSet() {
-		listSet = new List;
+		listSet = new List();
+		filListSet = new FilList();
 		next = NULL;
 	};
 

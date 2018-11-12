@@ -10,18 +10,17 @@ using namespace std;
 int main() {
 	DataSetlist* n1= new DataSetlist();
 	n1->fileinput();
-	n1->display();
-	n1->fileinput();
-	n1->display();
-	n1->fileinput();
-	n1->display();
-	/*string type;
-	cout << "intput type: ";
-	cin >> type;
-	n2 = &(n2->make_Type_List(n1->head, type));
-	system("pause");
-	system("cls"); 
-	//n2->fildisplay();*/
+	//n1->DataSethead->listSet->display();
+	//n1->display();
+	n1->DataSethead->filListSet->make_Type_List(n1->DataSethead->listSet->head,"short");
+	//n1->DataSethead->filListSet->fildisplay();
+	n1->DataSethead->filListSet->make_Type_List(n1->DataSethead->listSet->head, "movie");
+	n1->DataSethead->filListSet->fildisplay();
+	//n1->DataSethead->listSet->display();
+	
+	//n1->DataSethead->next->listSet->display();
+	
+	//n1->DataSethead->next->next->listSet->display();
 	system("pause");
 	return 0;
 

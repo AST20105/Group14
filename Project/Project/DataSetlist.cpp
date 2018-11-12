@@ -166,18 +166,22 @@ void DataSetlist::fileinput() {
 	}
 };
 
-void DataSetlist::display() {
+/*void DataSetlist::display() {
 	Node * displaynode = DataSethead->listSet->head;
+	DataSet * innerDataSethead = DataSethead;
 	if (displaynode == NULL) {
 		cout << "Empty list is provided" << endl;
 	}
-	if (DataSethead != NULL) {
+	if ((DataSethead != NULL) && (DataSethead->next == NULL)) {
 		while (displaynode != NULL) {
 			cout << displaynode->tconst << "\t" << displaynode->titleType << "\t" << displaynode->primaryTitle << "\t" << displaynode->startYear << "\t" << displaynode->runtimeMinutes << "\t" << displaynode->genres[0] << "\t" << displaynode->genres[1] << "\t" << displaynode->genres[2] << endl;
 			displaynode = displaynode->next;
 			cout << endl;
 		}
-		DataSet * displayset1 = DataSethead->next;
+	}
+	else {
+		for (; innerDataSethead->next != NULL; innerDataSethead = innerDataSethead->next) {}//can change to output target list
+		DataSet * displayset1 = innerDataSethead;
 		while (displayset1 != NULL) {
 			Node * displaynode1 = displayset1->listSet->head;
 			while (displaynode1 != NULL) {
@@ -185,21 +189,11 @@ void DataSetlist::display() {
 				displaynode1 = displaynode1->next;
 				cout << endl;
 			}
-			displayset1 = displayset1->next;
 		}
+	
 	}
-	/*else {
-		Node * displaynode1 = DataSethead->listSet->head;
-		while (displaynode1 != NULL) {
 		
-			while (displaynode1 != NULL) {
-				cout << displaynode1->next->tconst << "\t" << displaynode1->next->titleType << "\t" << displaynode1->next->primaryTitle << "\t" << displaynode1->next->startYear << "\t" << displaynode1->next->runtimeMinutes << "\t" << displaynode1->next->genres[0] << "\t" << displaynode1->next->genres[1] << "\t" << displaynode1->next->genres[2] << endl;
-				displaynode1 = displaynode1->next;
-				cout << endl;
-			}
-			displaynode1 = displaynode1->next;
-		}
-	}*/
+
 	cout << endl;
 
-}
+}*/

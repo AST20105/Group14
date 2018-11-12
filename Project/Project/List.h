@@ -11,8 +11,7 @@ public:
 	Node * head;
 public:
 	List();
-	void searchingByX(string x);
-	void deletion_of_node(string x);
+	void display();
 
 };
 
