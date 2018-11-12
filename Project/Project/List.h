@@ -9,14 +9,10 @@ using namespace std;
 class List {
 public:
 	Node * head;
-	filterNode * filhead;
 public:
 	List();
-	~List();
-	void fileinput();
 	void searchingByX(string x);
 	void deletion_of_node(string x);
-	void display();
 
 };
 

@@ -1,0 +1,10 @@
+tt0000011	short	Akrobatisches Potpourri	1895	1	"Documentary,Short"
+tt0000012	short	The Arrival of a Train	1896	1	"Documentary,Short"
+tt0000013	short	The Photographical Congress Arrives in Lyon	1895	1	"Documentary,Short"
+tt0000014	short	Tables Turned on the Gardener	1895	1	"Comedy,Short"
+tt0000015	short	Autour d'une cabine	1894	2	"Animation,Short"
+tt0000016	short	Barque sortant du port	1895	1	"Documentary,Short"
+tt0000017	short	Italienischer Bauerntanz	1895	1	"Documentary,Short"
+tt0000018	short	Das boxende Knguruh	1895	1	Short
+tt0000019	short	The Clown Barber	1898	\N	"Comedy,Short"
+tt0000020	short	The Derby 1895	1895	1	"Documentary,Short,Sport"

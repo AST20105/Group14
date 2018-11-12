@@ -115,11 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataSetlist.cpp" />
     <ClCompile Include="FilList.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataSet.h" />
+    <ClInclude Include="DataSetlist.h" />
     <ClInclude Include="FilList.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />

@@ -8,6 +8,7 @@ using namespace std;
 class FilList {
 public:
 	filterNode * filhead;
+	FilList * next;
 
 public:
 	FilList();
