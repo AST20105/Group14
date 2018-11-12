@@ -11,8 +11,12 @@ public:
 	Node * head;
 public:
 	List();
-	void searchingByX(string x);
-	void deletion_of_node(string x);
+	~List();
+	void fileinput();
+	void createfilNode(string, string, string, string, string, string, Node *);
+	void display();
+	filterNode make_Type_List(Node *, string );
+	void insertion();
 
 };
 
