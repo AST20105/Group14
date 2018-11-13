@@ -5,9 +5,7 @@
 DataSetlist::DataSetlist()
 {
 	DataSethead = new DataSet();
-	for (int i = 0; i < 10; i++) {
-		arrayOfList[i] = "";
-	};
+
 }
 
 void DataSetlist::fileinput() {
@@ -21,9 +19,6 @@ void DataSetlist::fileinput() {
 	string genres[3];
 	ifstream dataSet;
 	string filename = " ";
-
-	int lastdatasetpos = 0;
-
 
 	cout << "Which dataSet you want to input?" << endl;
 	cout << "Filename: ";
