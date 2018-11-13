@@ -223,9 +223,7 @@ void DataSetlist::MangeInDataSetSearch() {
 		counter++;
 		cout << "DataSet " << counter << endl;
 	}
-	cout << "*************************************************************" << endl;
 	cin >> x;
-	cout << "*************************************************************" << endl;
 	counter = 0;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;

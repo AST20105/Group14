@@ -24,8 +24,8 @@ public:
 	void MangeInDataSetDelete();
 
 	void searchingByID(int x);
-	void searchingByName();
-	void searchingByYear();
+	void searchingByName(int x);
+	void searchingByYear(int x);
 	void searchingByPgType();
 	void searchingByType();
 
@@ -35,7 +35,7 @@ public:
 
 	void MakeDeletionChoice(int x);
 	void DeletionByID(int x);
-	void DeletionByName();
+	void DeletionByName(int x);
 	void DeletionByYear();
 
 
