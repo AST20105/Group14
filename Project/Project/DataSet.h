@@ -18,6 +18,7 @@ public:
 public:
 	DataSet() {
 		listSet = new List;
+		filListSet = new FilList();
 		next = NULL;
 	};
 
