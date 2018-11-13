@@ -7,7 +7,7 @@ FilList::FilList() {
 void FilList::fildisplay() {
 
 	filterNode * innerhead = filhead;
-	int targetpos = 2;
+	int targetpos = 1;
 	if (innerhead == NULL) {
 		cout << "Empty list is provided" << endl;
 	}
