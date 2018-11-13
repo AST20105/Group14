@@ -7,20 +7,20 @@ FilList::FilList() {
 void FilList::fildisplay() {
 
 	filterNode * innerhead = filhead;
-	int targetpos = 2;
+	int targetpos = 1;
 	if (innerhead == NULL) {
 		cout << "Empty list is provided" << endl;
 	}
 	for (int i = 1; i < targetpos; innerhead = next->filhead) { i++; }//can change to looping to target list
 	filterNode * displaynode = innerhead;
-		while (displaynode != NULL) {
-			cout << displaynode->ftconst << "\t" << displaynode->ftitleType << "\t" << displaynode->fprimaryTitle << "\t" << displaynode->fstartYear << "\t" << displaynode->fruntimeMinutes << "\t" << displaynode->fgenres[0] << "\t" << displaynode->fgenres[1] << "\t" << displaynode->fgenres[2] << endl;
-			displaynode = displaynode->filnext;
-			cout << endl;
-		}
+	while (displaynode != NULL) {
+		cout << displaynode->ftconst << "\t" << displaynode->ftitleType << "\t" << displaynode->fprimaryTitle << "\t" << displaynode->fstartYear << "\t" << displaynode->fruntimeMinutes << "\t" << displaynode->fgenres[0] << "\t" << displaynode->fgenres[1] << "\t" << displaynode->fgenres[2] << endl;
+		displaynode = displaynode->filnext;
+		cout << endl;
+	}
 }
 
-	
+
 
 void FilList::make_Type_List(Node* x, string condition) {
 	Node *innernodelist = x;

@@ -13,6 +13,34 @@ public:
 public:
 	DataSetlist();
 	void fileinput();
+
+
+
+	void MainDecision();
+
+	void MakeSearchingChoice(int x);
+	void MangeInDataSetSearch();
+	void MangeInDataSetDelete();
+
+	void searchingByID(int x);
+	void searchingByName(int x);
+	void searchingByYear(int x);
+	void searchingByPgType();
+	void searchingByType();
+
+
+
+
+
+	void MakeDeletionChoice(int x);
+	void DeletionByID(int x);
+	void DeletionByName(int x);
+	void DeletionByYear();
+
+
+
+
+
 };
 
 #endif
