@@ -13,7 +13,6 @@ public:
 public:
 	DataSetlist();
 	void fileinput();
-	void display();
 
 
 

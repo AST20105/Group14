@@ -11,20 +11,7 @@ public:
 	Node * head;
 public:
 	List();
-	~List();
-
-	void MakeSearchingChoice();
-	void searchingByID();
-	void searchingByName();
-	//void searchingByYear();
-	void searchingByPgType();
-	void searchingByType();
-
-
-	void MakeDeletionChoice();
-	void DeletionByID();
-	void DeletionByName();
-	void DeletionByYear();
+	void display();
 
 
 

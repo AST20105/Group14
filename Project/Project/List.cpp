@@ -7,87 +7,20 @@ List::List() {
 
 };
 
-/*void List::fileinput() {
-	Node * innerhead = head;
-	string tconst;
-	string titleType;
-	string primaryTitle;
-	string startYear;
-	string runtimeMinutes;
-	string genres[3];
-	ifstream dataSet;
-	string filename = " ";
-	cout << "Which dataSet you want to input?" << endl;
-	cout << "Filename: ";
-	cin >> filename;
+void List::display() {
+	Node * displaynode = head;
+	if (displaynode == NULL) {
+		cout << "Empty list is provided" << endl;
+	}
+	while (displaynode != NULL) {
+		cout << displaynode->tconst << "\t" << displaynode->titleType << "\t" << displaynode->primaryTitle << "\t" << displaynode->startYear << "\t" << displaynode->runtimeMinutes << "\t" << displaynode->genres[0] << "\t" << displaynode->genres[1] << "\t" << displaynode->genres[2] << endl;
+		displaynode = displaynode->next;
+		cout << endl;
+	}
+
 	cout << endl;
 
-	dataSet.open(filename);
-	if (!(dataSet.is_open())) {
-		cerr << "Error. The file doesn't open correctly." << endl;
-	}
-	else {
-		do
-		{
-			getline(dataSet, tconst, '\t');
-			getline(dataSet, titleType, '\t');
-			getline(dataSet, primaryTitle, '\t');
-			getline(dataSet, startYear, '\t');
-			getline(dataSet, runtimeMinutes, '\t');
-			string originalgenre = " ";
-			string symbol = "\"";
-			string symbolofnothing = "\N";
-			getline(dataSet, originalgenre, '\n');
-			if ((originalgenre.substr(0, 1) != symbol) && (originalgenre.substr(0, 2) != symbolofnothing)) {
-				genres[0] = originalgenre;
-				genres[1] = " ";
-				genres[2] = " ";
-			}
-			else if (originalgenre.substr(1, 2) == symbolofnothing) {
-				genres[0] = " ";
-				genres[1] = " ";
-				genres[2] = " ";
-			}
-			else {
-				int count = 0;
-				for (int i = 0; i < originalgenre.size(); i++) {
-					if (originalgenre[i] == ',') {
-						count++;
-					}
-				}
-				if (count == 1) {
-					int remPos = 0;
-					remPos = originalgenre.find(",");
-					genres[0] = originalgenre.substr(1, remPos - 1);
-					genres[1] = originalgenre.substr(remPos + 1, originalgenre.length() - remPos - 2);
-					genres[2] = " ";
-				}
-				else if (count == 2) {
-					int remPos = 0;
-					remPos = originalgenre.find(",");
-					genres[0] = originalgenre.substr(1, remPos - 1);
-
-					int remPos2 = 0;
-					remPos2 = originalgenre.find_last_of(",");
-					genres[1] = originalgenre.substr(remPos + 1, remPos2 - remPos - 1);
-
-
-				}
-			}
-			if (head == NULL) {
-				Node * mainlist = new Node(tconst, titleType, primaryTitle, startYear, runtimeMinutes, genres[0], genres[1], genres[2]);
-				head = mainlist;
-				innerhead = head;
-			}
-			else {
-				Node * mainlist = new Node(tconst, titleType, primaryTitle, startYear, runtimeMinutes, genres[0], genres[1], genres[2]);
-				innerhead->next = mainlist;
-				innerhead = innerhead->next;
-			}
-		} while (!dataSet.eof());
-	}
-};*/
-
+}
 
 
 

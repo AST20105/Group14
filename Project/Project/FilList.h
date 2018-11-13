@@ -12,10 +12,8 @@ public:
 
 public:
 	FilList();
-	void searchingByX(string x);
-	void deletion_of_node(string x);
 	void fildisplay();
-	FilList make_Type_List(Node *x, string  condition);
+	void make_Type_List(Node *x, string  condition);
 };
 
 #endif

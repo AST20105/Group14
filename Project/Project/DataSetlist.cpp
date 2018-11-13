@@ -19,6 +19,8 @@ void DataSetlist::fileinput() {
 	ifstream dataSet;
 	string filename = " ";
 
+	int lastdatasetpos = 0;
+
 
 	cout << "Which dataSet you want to input?" << endl;
 	cout << "Filename: ";
@@ -164,36 +166,12 @@ void DataSetlist::fileinput() {
 			outerhead->next = newset;
 		}
 	}
-};
-
-void DataSetlist::display() {
-	Node * displaynode = DataSethead->listSet->head;
-	if (displaynode == NULL) {
-		cout << "Empty list is provided" << endl;
-	}
-	if (DataSethead != NULL) {
-		while (displaynode != NULL) {
-			cout << displaynode->tconst << "\t" << displaynode->titleType << "\t" << displaynode->primaryTitle << "\t" << displaynode->startYear << "\t" << displaynode->runtimeMinutes << "\t" << displaynode->genres[0] << "\t" << displaynode->genres[1] << "\t" << displaynode->genres[2] << endl;
-			displaynode = displaynode->next;
-			cout << endl;
-		}
-		DataSet * displayset1 = DataSethead->next;
-		while (displayset1 != NULL) {
-			Node * displaynode1 = displayset1->listSet->head;
-			while (displaynode1 != NULL) {
-				cout << displaynode1->tconst << "\t" << displaynode1->titleType << "\t" << displaynode1->primaryTitle << "\t" << displaynode1->startYear << "\t" << displaynode1->runtimeMinutes << "\t" << displaynode1->genres[0] << "\t" << displaynode1->genres[1] << "\t" << displaynode1->genres[2] << endl;
-				displaynode1 = displaynode1->next;
-				cout << endl;
-			}
-			displayset1 = displayset1->next;
-		}
-	}
-	cout << endl;
-
-
 }
 
+
+
 void DataSetlist::MainDecision(){
+	DataSet * InnerDataSetHead = DataSethead;
 	int choice;
 	cout << "*************************************************************" << endl;
 	cout << "Welcome to the program, it use for searching and update data." << endl;
@@ -204,7 +182,7 @@ void DataSetlist::MainDecision(){
 	switch (choice)
 	{
 	case 0: return;
-	case 1:	fileinput(); display(); system("pause"); system("cls"); MainDecision();
+	case 1:	fileinput(); for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next); InnerDataSetHead->listSet->display(); system("pause"); system("cls"); MainDecision();
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
