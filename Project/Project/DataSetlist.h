@@ -18,27 +18,33 @@ public:
 
 	void MainDecision();
 
-	void MangeInDataSetSearch();
-
 	void MakeSearchingChoice(int x);
 	void MangeInDataSetSearch();
 	void MangeInDataSetDelete();
 
-	//void searchingByID();
-	Node *searchingByID(DataSet * CurrNode, Node * CurrNode1, string pID, int counter);
-	void searchingByName();
-	void searchingByYear();
+	void searchingByID(int x);
+	void searchingByName(int x);
+	void searchingByYear(int x);
 	void searchingByPgType();
-	//void searchingByType();
+
+	void NumberOfType(int x);
+	void searchingByType1(int x);
+	void searchingByType2(int x);
+	void searchingByType3(int x);
 
 
 
 
+	void MakeDeletionChoice(int x);
+	void DeletionByID(int x);
+	void DeletionByName(int x);
+	void DeletionByYear(int x);
+	void DeletionByPgType(int x);
 
-	void MakeDeletionChoice();
-	void DeletionByID();
-	void DeletionByName();
-	void DeletionByYear();
+	void NumberOfTypeDel(int x);
+	void DeleteByType1(int x);
+	void DeleteByType2(int x);
+	void DeleteByType3(int x);
 
 
 
