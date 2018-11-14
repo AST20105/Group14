@@ -9,6 +9,7 @@ using namespace std;
 class DataSetlist
 {
 public:
+	string typelist[10];
 	DataSet * DataSethead;
 public:
 	DataSetlist();

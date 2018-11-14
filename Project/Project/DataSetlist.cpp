@@ -1,9 +1,23 @@
 #include "DataSetlist.h"
-#include <ctime>
+
+
+
 DataSetlist::DataSetlist()
 {
 	DataSethead = new DataSet();
-}
+	typelist[0] =  "movie";
+	typelist[1] = "short";
+	typelist[2] = "tvEpisode";
+	typelist[3] = "tvMiniSeries";
+	typelist[4] = "tvMovie";
+	typelist[5] = "tvSeries";
+	typelist[6] = "tvShort";
+	typelist[7] = "tvSpecial";
+	typelist[8] = "video";
+	typelist[9] = "videoGame";
+};
+	
+
 
 void DataSetlist::fileinput() {
 	DataSet * outerhead = DataSethead;
@@ -180,7 +194,27 @@ void DataSetlist::MainDecision(){
 	switch (choice)
 	{
 	case 0: system("cls"); cout << "Thanks for using our program!!" << endl; system("pause"); exit(0);
-	case 1:	fileinput();/*for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next); InnerDataSetHead->listSet->display(); system("pause"); InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short"); InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls");*/ MainDecision();
+	case 1:	{fileinput();
+		for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
+		InnerDataSetHead->listSet->display(); system("pause");
+		FilList * IninnerfillistHead = InnerDataSetHead->filListSet;
+		for (int i = 0; i < 10; i++) {
+			if (InnerDataSetHead->filListSet->filhead == NULL) {
+				FilList * newfillist = new FilList();
+				newfillist->make_Type_List(InnerDataSetHead->listSet->head, typelist[i]);
+				InnerDataSetHead->filListSet->filhead = newfillist->filhead;
+			}
+			else {
+				FilList * newfillist = new FilList();
+				newfillist->make_Type_List(InnerDataSetHead->listSet->head, typelist[i]);
+				IninnerfillistHead->next = newfillist;
+				IninnerfillistHead = IninnerfillistHead->next;
+			}
+		}
+
+		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
+		InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls"); MainDecision();
+	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
@@ -262,7 +296,7 @@ void DataSetlist::MakeSearchingChoice(int x) {
 	case 2: searchingByName(x); MainDecision();
 	case 3: searchingByYear(x); MainDecision();
 	//case 4: searchingByPgType(); MainDecision();
-	case 5: NumberOfType(x); MainDecision();
+	case 5: //
 	default: MakeSearchingChoice(x); MainDecision();
 	}
 }
@@ -271,14 +305,11 @@ void DataSetlist::MakeSearchingChoice(int x) {
 
 
 void DataSetlist::searchingByID(int x) {
-	int counter = 0;
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin >> y;
-	clock_t start;
-	double duration;
-	start = clock();
 	cout << "*************************************************************" << endl;
+	int counter = 0;
 	DataSet* CurrNode = DataSethead;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;
@@ -302,8 +333,6 @@ void DataSetlist::searchingByID(int x) {
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data: " << counter << endl;
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << '\n';
 }
 
 
@@ -393,138 +422,27 @@ void DataSetlist::searchingByPgType() {
 }
 
 
-
-
-void DataSetlist::NumberOfType(int x) {
-	int y;
-	cout << "How many type U want to input? Maximun: 3. " << endl;
-	cin >> y;
-	switch (y) {
-	case 1: searchingByType1(x); MainDecision();
-	case 2: searchingByType2(x); MainDecision();
-	case 3: searchingByType3(x); MainDecision();
-	default: NumberOfType(x);
-	}
-
-}
-
-void DataSetlist::searchingByType1(int x) {
-	string y;
-	cout << "Enter the type of the data: " << endl;
-	cin.ignore();
-	getline(cin, y);
-	cout << "*************************************************************" << endl;
-	int	counter = 0;
-	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-
-	counter = 0;
-	Node * CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (unsigned int i = 0; i < 3; i++) {
-			if (y.compare(CurrNode1->genres[i]) == 0) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+void DataSetlist::searchingByType() {
+	string x;
+	cout << "Enter the Type of the data" << endl;
+	cin >> x;
+	Node* CurrNode = DataSethead->listSet->head;
+	int counter = 0;
+	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL; CurrNode = CurrNode->next) {
+		for (int i = 0; i < sizeof(CurrNode->genres); i++) {
+			if (CurrNode->genres[i] == x) {
+				cout << CurrNode;
 				counter++;
-				break;
 			}
 		}
 	}
 	if (counter == 0) {
 		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
 	}
 	else {
 		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
 	}
 }
-
-void DataSetlist::searchingByType2(int x) {
-	string j,k;
-	cout << "Enter the first type of the data: " << endl;
-	cin.ignore();
-	getline(cin, j);
-	cout << "*************************************************************" << endl;
-	cout << "Enter the second type of the data: " << endl;
-	getline(cin, k);
-	cout << "*************************************************************" << endl;
-	int	counter = 0;
-	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-
-	counter = 0;
-	Node * CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (unsigned int i = 0; i < 3; i++) {
-			if ((j.compare(CurrNode1->genres[i]) == 0)|| (k.compare(CurrNode1->genres[i]) == 0)) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				counter++;
-				break;
-			}
-		}
-	}
-	if (counter == 0) {
-		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
-	}
-	else {
-		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
-	}
-}
-
-void DataSetlist::searchingByType3(int x) {
-	string j, k,l;
-	cout << "Enter the first type of the data: " << endl;
-	cin.ignore();
-	getline(cin, j);
-	cout << "*************************************************************" << endl;
-	cout << "Enter the second type of the data: " << endl;
-	getline(cin, k);
-	cout << "*************************************************************" << endl;
-	cout << "Enter the third type of the data: " << endl;
-	getline(cin, l);
-	cout << "*************************************************************" << endl;
-	int	counter = 0;
-	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-
-	counter = 0;
-	Node * CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (unsigned int i = 0; i < 3; i++) {
-			if (j.compare(CurrNode1->genres[i]) == 0 || k.compare(CurrNode1->genres[i]) == 0 || l.compare(CurrNode1->genres[i]) == 0) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				counter++;
-				break;
-			}
-		}
-	}
-	if (counter == 0) {
-		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
-	}
-	else {
-		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
-	}
-}
-
 
 
 
