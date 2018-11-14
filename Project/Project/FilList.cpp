@@ -5,18 +5,34 @@ FilList::FilList() {
 }
 
 void FilList::fildisplay() {
-
+	
 	filterNode * innerhead = filhead;
+	FilList * innernext = next;
 	int targetpos = 1;
 	if (innerhead == NULL) {
 		cout << "Empty list is provided" << endl;
 	}
 	for (int i = 1; i < targetpos; innerhead = next->filhead) { i++; }//can change to looping to target list
 	filterNode * displaynode = innerhead;
-	while (displaynode != NULL) {
-		cout << displaynode->ftconst << "\t" << displaynode->ftitleType << "\t" << displaynode->fprimaryTitle << "\t" << displaynode->fstartYear << "\t" << displaynode->fruntimeMinutes << "\t" << displaynode->fgenres[0] << "\t" << displaynode->fgenres[1] << "\t" << displaynode->fgenres[2] << endl;
-		displaynode = displaynode->filnext;
-		cout << endl;
+	for (int i = 0; i < 20; i++) {
+		if (i == 0) {
+			while (displaynode != NULL) {
+				cout << displaynode->ftconst << "\t" << displaynode->ftitleType << "\t" << displaynode->fprimaryTitle << "\t" << displaynode->fstartYear << "\t" << displaynode->fruntimeMinutes << "\t" << displaynode->fgenres[0] << "\t" << displaynode->fgenres[1] << "\t" << displaynode->fgenres[2] << endl;
+				displaynode = displaynode->filnext;
+				cout << endl;
+			}
+		}
+		else {
+			if (innernext->filhead != NULL) {
+				displaynode = innernext->filhead;
+				while (displaynode != NULL) {
+					cout << displaynode->ftconst << "\t" << displaynode->ftitleType << "\t" << displaynode->fprimaryTitle << "\t" << displaynode->fstartYear << "\t" << displaynode->fruntimeMinutes << "\t" << displaynode->fgenres[0] << "\t" << displaynode->fgenres[1] << "\t" << displaynode->fgenres[2] << endl;
+					displaynode = displaynode->filnext;
+					cout << endl;
+				}
+				innernext = innernext->next;
+			}
+		}
 	}
 }
 

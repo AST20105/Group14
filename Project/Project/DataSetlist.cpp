@@ -5,7 +5,19 @@
 DataSetlist::DataSetlist()
 {
 	DataSethead = new DataSet();
-}
+	typelist[0] =  "movie";
+	typelist[1] = "short";
+	typelist[2] = "tvEpisode";
+	typelist[3] = "tvMiniSeries";
+	typelist[4] = "tvMovie";
+	typelist[5] = "tvSeries";
+	typelist[6] = "tvShort";
+	typelist[7] = "tvSpecial";
+	typelist[8] = "video";
+	typelist[9] = "videoGame";
+};
+	
+
 
 void DataSetlist::fileinput() {
 	DataSet * outerhead = DataSethead;
@@ -182,7 +194,27 @@ void DataSetlist::MainDecision(){
 	switch (choice)
 	{
 	case 0: system("cls"); cout << "Thanks for using our program!!" << endl; system("pause"); exit(0);
-	case 1:	fileinput(); for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next); InnerDataSetHead->listSet->display(); system("pause"); InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short"); InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls"); MainDecision();
+	case 1:	{fileinput();
+		for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
+		InnerDataSetHead->listSet->display(); system("pause");
+		FilList * IninnerfillistHead = InnerDataSetHead->filListSet;
+		for (int i = 0; i < 10; i++) {
+			if (InnerDataSetHead->filListSet->filhead == NULL) {
+				FilList * newfillist = new FilList();
+				newfillist->make_Type_List(InnerDataSetHead->listSet->head, typelist[i]);
+				InnerDataSetHead->filListSet->filhead = newfillist->filhead;
+			}
+			else {
+				FilList * newfillist = new FilList();
+				newfillist->make_Type_List(InnerDataSetHead->listSet->head, typelist[i]);
+				IninnerfillistHead->next = newfillist;
+				IninnerfillistHead = IninnerfillistHead->next;
+			}
+		}
+
+		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
+		InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls"); MainDecision();
+	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
