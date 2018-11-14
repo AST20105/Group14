@@ -314,7 +314,7 @@ void DataSetlist::MangeInDataSetSearch() {
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 	cout << "Which DataSet you want to modify ? " << endl << endl ;
 	SetConsoleTextAttribute(hConsole, saved_colors);
-	///////////////////////TOBY 11.14 edited////////////////////////////
+	///////////////////////TOBY 11.14 edited////////////////////////////`1
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode=CurrNode->next) {
 		counter++;
 		cout << "DataSet " << counter << endl;
@@ -390,10 +390,11 @@ void DataSetlist::MakeSearchingChoice(int x) {
 
 
 
-void DataSetlist::searchingByID(int x) {
+void DataSetlist::searchingByID(int x) {    
 	string y;
 	cout << "Enter the ID of the data" << endl;
-	cin >> y;
+	cin >> y;   
+	//time, space complexity 
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
