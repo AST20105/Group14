@@ -247,7 +247,7 @@ void DataSetlist::MangeInDataSetDelete() {
 		MangeInDataSetSearch();
 	}
 	else {
-		MakeDeletionChoice(x);
+		MakeDeletionChoice();
 	}
 }
 
@@ -260,9 +260,9 @@ void DataSetlist::MakeSearchingChoice(int x) {
 	switch (y)
 	{
 	case 0: return;
-	case 1: searchingByID(x); MainDecision();
-	case 2: searchingByName(x); MainDecision();
-	case 3: searchingByYear(x); MainDecision();
+	case 1: searchingByID(); MainDecision();
+	case 2: searchingByName(); MainDecision();
+	case 3: searchingByYear(); MainDecision();
 	//case 4: searchingByPgType(); MainDecision();
 	case 5: //
 	default: MakeSearchingChoice(x); MainDecision();
@@ -272,7 +272,7 @@ void DataSetlist::MakeSearchingChoice(int x) {
 
 
 
-void DataSetlist::searchingByID(int x) {
+/*void DataSetlist::searchingByID() {
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin >> y;
@@ -301,11 +301,23 @@ void DataSetlist::searchingByID(int x) {
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data: " << counter << endl;
 	}
+}*/
+
+Node* DataSetlist::searchingByID(DataSet * CurrNode, Node * CurrNode1, string pID, int counter) {
+	if (CurrNode1 != NULL && CurrNode1->tconst != pID && CurrNode1->tconst == pID) {
+		CurrNode1 = CurrNode->listSet->head;
+		cout << CurrNode1->tconst<<"\t"<<CurrNode1->titleType<<"\t"<< CurrNode1->primaryTitle<<"\t"<< CurrNode1->startYear<<"\t"<< CurrNode1->runtimeMinutes<<"\t"<< CurrNode1->genres[0]<<"\t"<< CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		CurrNode1 = CurrNode1->next;
+		counter++;
+		return CurrNode1;
+	}
+		CurrNode1->next = searchingByID(CurrNode->next, CurrNode1->next, pID, counter + 1);
+		return CurrNode1;
 }
 
 
+void DataSetlist::searchingByName() {
 
-void DataSetlist::searchingByName(int x) {
 	string y;
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
@@ -338,38 +350,6 @@ void DataSetlist::searchingByName(int x) {
 	}
 }
 
-
-void DataSetlist::searchingByYear(int x) {
-	string y;
-	cout << "Enter the Year of the data" << endl;
-	cin >> y;
-	cout << "*************************************************************" << endl;
-	int	counter = 0;
-	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-
-	counter = 0;
-	Node* CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		if (CurrNode1->startYear == y) {
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-			counter++;
-		}
-	}
-	if (counter == 0) {
-		cout << "*************************************************************" << endl;
-		cout << "No data match" << endl;
-	}
-	else {
-		cout << "*************************************************************" << endl;
-		cout << "Number of Data: " << counter << endl;
-	}
-}
 
 
 void DataSetlist::searchingByPgType() {
@@ -404,6 +384,7 @@ void DataSetlist::searchingByType() {
 			}
 		}
 	}
+	
 	if (counter == 0) {
 		cout << "No data match" << endl;
 	}
@@ -413,27 +394,25 @@ void DataSetlist::searchingByType() {
 }
 
 
-
-
-void DataSetlist::MakeDeletionChoice(int x) {
+void DataSetlist::MakeDeletionChoice() {
 	int y;
 	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
 	cin >> y;
 	switch (y)
 	{
 	case 0: return;
-	case 1: DeletionByID(x); MainDecision();
-	case 2: DeletionByName(x); MainDecision();
+	case 1: DeletionByID(); MainDecision();
+	case 2: DeletionByName(); MainDecision();
 	case 3: DeletionByYear(); MainDecision();
 	case 4: //
 	case 5: //
-	default: MakeDeletionChoice(x);
+	default: MakeDeletionChoice();
 	}
 }
 
 
 
-void DataSetlist::DeletionByID(int x) {
+void DataSetlist::DeletionByID() {
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin >> y;
@@ -472,8 +451,7 @@ void DataSetlist::DeletionByID(int x) {
 	}
 }
 
-
-void DataSetlist::DeletionByName(int x) {
+void DataSetlist::DeletionByName() {
 	string y;
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
@@ -481,12 +459,12 @@ void DataSetlist::DeletionByName(int x) {
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	/*for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;
 		if (counter == x) {
 			break;
 		}
-	}
+	}*/
 	Node* CurrNode1 = CurrNode->listSet->head;
 	Node *preNode = NULL;
 	for (; CurrNode1 != NULL &&CurrNode1->primaryTitle != y; preNode = CurrNode1, CurrNode1 = CurrNode1->next);
@@ -518,7 +496,7 @@ void DataSetlist::DeletionByYear() {
 	string x;
 	cout << "Enter the Year of the data" << endl;
 	cin >> x;
-	Node* CurrNode = DataSethead->listSet->head, *preNode = NULL;
+	Node * CurrNode = DataSethead->listSet->head, *preNode = NULL;
 	int counter = 0;
 	for (CurrNode = DataSethead->listSet->head; CurrNode->next != NULL; preNode = CurrNode, CurrNode = CurrNode->next) {
 		if (CurrNode->startYear == x) {
