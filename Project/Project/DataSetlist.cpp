@@ -683,8 +683,6 @@ void DataSetlist::NumberOfTypeDel(int x) {
 
 }
 
-
-
 void DataSetlist::DeleteByType1(int x) {
 	string y;
 	cout << "Enter the type of the data: " << endl;
