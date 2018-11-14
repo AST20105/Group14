@@ -231,27 +231,4 @@ void List::DeletionByName() {
 }
 
 
-void List::DeletionByYear() {
-	string x;
-	cout << "Enter the Year of the data" << endl;
-	cin >> x;
-	Node* CurrNode = head, *preNode = NULL;
-	int counter = 0;
-	for (CurrNode = head; CurrNode->next != NULL; preNode = CurrNode, CurrNode = CurrNode->next) {
-		if (CurrNode->startYear == x) {
-			preNode->next = CurrNode->next;
-			delete CurrNode;
-			counter++;
-		}
-	}
-	if (counter == 0) {
-		cout << "No data match" << endl;
-	}
-	else {
-		cout << "Number of data deleted: " << counter << endl;
-	}
-}*/
-
-
-
-
+}
