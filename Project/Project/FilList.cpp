@@ -4,35 +4,39 @@ FilList::FilList() {
 	next = NULL;
 }
 
-void FilList::fildisplay() {
+void FilList::fildisplay(int x) {
 	
 	filterNode * innerhead = filhead;
 	FilList * innernext = next;
-	int targetpos = 1;
+	FilList * now = next;
+	int targetpos = x;
 	if (innerhead == NULL) {
 		cout << "Empty list is provided" << endl;
 	}
-	for (int i = 1; i < targetpos; innerhead = next->filhead) { i++; }//can change to looping to target list
+	for (int i = 1; i < targetpos;i++ ){
+		innerhead = now->filhead;
+		now = now->next;
+		 }//can change to looping to target list
 	filterNode * displaynode = innerhead;
-	for (int i = 0; i < 20; i++) {
-		if (i == 0) {
+	for (int i =0; innerhead!=NULL; innerhead = innerhead->filnext,i++) {
+		//if (i == 0) {
 			while (displaynode != NULL) {
 				cout << displaynode->ftconst << "\t" << displaynode->ftitleType << "\t" << displaynode->fprimaryTitle << "\t" << displaynode->fstartYear << "\t" << displaynode->fruntimeMinutes << "\t" << displaynode->fgenres[0] << "\t" << displaynode->fgenres[1] << "\t" << displaynode->fgenres[2] << endl;
 				displaynode = displaynode->filnext;
 				cout << endl;
 			}
-		}
-		else {
+		//}
+		/*else {
 			if (innernext->filhead != NULL) {
 				displaynode = innernext->filhead;
-				while (displaynode != NULL) {
+				//while (displaynode != NULL) {
 					cout << displaynode->ftconst << "\t" << displaynode->ftitleType << "\t" << displaynode->fprimaryTitle << "\t" << displaynode->fstartYear << "\t" << displaynode->fruntimeMinutes << "\t" << displaynode->fgenres[0] << "\t" << displaynode->fgenres[1] << "\t" << displaynode->fgenres[2] << endl;
 					displaynode = displaynode->filnext;
 					cout << endl;
-				}
+				//}
 				innernext = innernext->next;
 			}
-		}
+		}*/
 	}
 }
 
@@ -61,7 +65,12 @@ void FilList::make_Type_List(Node* x, string condition) {
 			}
 		}
 	}
-	else {
+	if (innerfilhead == NULL) {
+		filterNode * filterlist = new filterNode("", "", "", "", "", "", "", "", NULL);
+		filhead = filterlist;
+	}
+
+	/*else {
 		for (; next != NULL; next = next->next) {}
 		FilList * newlist = new FilList();
 		filterNode * innernewlisthead = newlist->filhead;
@@ -79,12 +88,17 @@ void FilList::make_Type_List(Node* x, string condition) {
 							innernewlisthead->filnext = filterlist;
 							innernewlisthead = innernewlisthead->filnext;
 							i++;
+							next = newlist;
 						}
 				}
-				next = newlist;
+			
+			}
+			if (i == 0) {
+				filterNode * filterlist = new filterNode("", "", "", "", "", "", "", "", NULL);
+				innerfilhead = filterlist;
 			}
 		}
-	}
+	}*/
 	cout << i << endl;
 }
 

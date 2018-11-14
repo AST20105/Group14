@@ -191,25 +191,30 @@ void DataSetlist::MainDecision(){
 	case 0: system("cls"); cout << "Thanks for using our program!!" << endl; system("pause"); exit(0);
 	case 1:	{fileinput();
 		for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
+		FilList * IninnerDataSetHead = InnerDataSetHead->filListSet;
 		//InnerDataSetHead->listSet->display(); 
 		system("pause");
-		FilList * IninnerfillistHead = InnerDataSetHead->filListSet;
 		for (int i = 0; i < 10; i++) {
-			if (InnerDataSetHead->filListSet->filhead == NULL) {
+			if (DataSethead->filListSet->filhead == NULL) {
 				FilList * newfillist = new FilList();
 				newfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-				InnerDataSetHead->filListSet->filhead = newfillist->filhead;
+				DataSethead->filListSet->filhead = newfillist->filhead;
 			}
 			else {
 				FilList * newfillist = new FilList();
 				newfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-				IninnerfillistHead->next = newfillist;
-				IninnerfillistHead = IninnerfillistHead->next;
+				InnerDataSetHead->filListSet->next = newfillist;
+				for (; InnerDataSetHead->filListSet->next != NULL; InnerDataSetHead->filListSet = InnerDataSetHead->filListSet->next) {};
+				InnerDataSetHead->filListSet->next = newfillist;
+				//IninnerDataSetHead = IninnerDataSetHead->next;
 			}
+			
 		}
 
 		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
-		//InnerDataSetHead->filListSet->fildisplay();
+		InnerDataSetHead->filListSet->fildisplay(1);
+		InnerDataSetHead->filListSet->fildisplay(2);
+
 		system("pause"); system("cls"); MainDecision();
 	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
@@ -292,7 +297,7 @@ void DataSetlist::MakeSearchingChoice(int x) {
 	case 1: searchingByID(x); MainDecision();
 	case 2: searchingByName(x); MainDecision();
 	case 3: searchingByYear(x); MainDecision();
-	//case 4: searchingByPgType(); MainDecision();
+	case 4: searchingByPgType(x); MainDecision();
 	case 5: //
 	default: MakeSearchingChoice(x); MainDecision();
 	}
@@ -401,22 +406,38 @@ void DataSetlist::searchingByYear(int x) {
 }
 
 
-void DataSetlist::searchingByPgType() {
+void DataSetlist::searchingByPgType(int y) {
 	int x;
 	cout << "Which programme type?" << endl;
-	cout << "1. short	2. movie	3. tvseries		4. tvepisode	5. video	0. End" << endl;
+	cout << "1. movie		2. short	3. tvEpisode	4. tvMiniSeries		5. tvMovie	" << endl;
+	cout << "6. tvSeries	7. tvShort	8. tvSpecial	9. video			10. videoGame	" << endl;
+	cout << "0. End" << endl;
 	cin >> x;
-	switch (x)
-	{
-	case 0: return;
-	case 1: cout << ""; //shortlist
-	case 2: cout << ""; //movielist
-	case 3: cout << ""; //tvserieslist
-	case 4: cout << ""; //tvepisode
-	case 5:	cout << ""; //videolist
-	default: searchingByPgType();
+	int	counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (; CurrNode != NULL; CurrNode->filListSet = CurrNode->filListSet->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
 	}
-}
+		switch (x)
+		{
+		case 0: return;
+		case 1: CurrNode->filListSet->fildisplay(1); system("pause"); system("cls"); MainDecision();  //shortlist
+		case 2: CurrNode->filListSet->fildisplay(2); system("pause"); system("cls"); MainDecision(); //movielist
+		case 3: CurrNode->filListSet->fildisplay(3); system("pause"); system("cls"); MainDecision(); //tvserieslist
+		case 4: CurrNode->filListSet->fildisplay(4); system("pause"); system("cls"); MainDecision(); //tvepisode
+		case 5:	CurrNode->filListSet->fildisplay(5); system("pause"); system("cls"); MainDecision(); //videolist
+		case 6:	CurrNode->filListSet->fildisplay(6); system("pause"); system("cls"); MainDecision();
+		case 7:	CurrNode->filListSet->fildisplay(7); system("pause"); system("cls"); MainDecision();
+		case 8:	CurrNode->filListSet->fildisplay(8); system("pause"); system("cls"); MainDecision();
+		case 9:	CurrNode->filListSet->fildisplay(9); system("pause"); system("cls"); MainDecision();
+		case 10:	CurrNode->filListSet->fildisplay(10); system("pause"); system("cls"); MainDecision();
+		default: searchingByPgType(y);
+		}
+	}
+
 
 
 void DataSetlist::searchingByType() {

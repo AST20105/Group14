@@ -12,7 +12,7 @@ public:
 
 public:
 	FilList();
-	void fildisplay();
+	void fildisplay(int x);
 	void make_Type_List(Node *x, string  condition);
 };
 
