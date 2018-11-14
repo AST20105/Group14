@@ -1,7 +1,5 @@
 #include "DataSetlist.h"
-
-
-
+#include <ctime>
 DataSetlist::DataSetlist()
 {
 	DataSethead = new DataSet();
@@ -274,6 +272,8 @@ void DataSetlist::MakeSearchingChoice(int x) {
 
 void DataSetlist::searchingByID(int x) {
 	string y;
+	clock_t start;
+	double time = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Enter the ID of the data" << endl;
 	cin >> y;
 	cout << "*************************************************************" << endl;
@@ -301,6 +301,7 @@ void DataSetlist::searchingByID(int x) {
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data: " << counter << endl;
 	}
+	cout << "Program Run time: " << time << '\n';
 }
 
 
@@ -521,6 +522,7 @@ void DataSetlist::searchingByType3(int x) {
 		cout << "*************************************************************" << endl;
 	}
 }
+
 
 
 
