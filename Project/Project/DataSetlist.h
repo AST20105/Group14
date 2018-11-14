@@ -25,12 +25,12 @@ public:
 	void searchingByID(int x);
 	void searchingByName(int x);
 	void searchingByYear(int x);
+	void searchingByPgType();
 
 	void NumberOfType(int x);
 	void searchingByType1(int x);
 	void searchingByType2(int x);
 	void searchingByType3(int x);
-	void searchingByPgType();
 
 
 
@@ -38,7 +38,13 @@ public:
 	void MakeDeletionChoice(int x);
 	void DeletionByID(int x);
 	void DeletionByName(int x);
-	void DeletionByYear();
+	void DeletionByYear(int x);
+	void DeletionByPgType(int x);
+
+	void NumberOfTypeDel(int x);
+	void DeleteByType1(int x);
+	void DeleteByType2(int x);
+	void DeleteByType3(int x);
 
 
 
