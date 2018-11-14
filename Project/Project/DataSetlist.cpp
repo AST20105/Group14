@@ -204,8 +204,8 @@ void DataSetlist::MainDecision(){
 			}
 		}
 		
-		InnerDataSetHead->filListSet->fildisplay(1);
-		InnerDataSetHead->filListSet->fildisplay(2);
+		//InnerDataSetHead->filListSet->fildisplay(1);
+		//InnerDataSetHead->filListSet->fildisplay(2);
 
 		system("pause"); system("cls"); MainDecision();
 	}
