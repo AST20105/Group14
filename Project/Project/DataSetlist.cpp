@@ -191,27 +191,19 @@ void DataSetlist::MainDecision(){
 	case 0: system("cls"); cout << "Thanks for using our program!!" << endl; system("pause"); exit(0);
 	case 1:	{fileinput();
 		for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
-		FilList * IninnerDataSetHead = InnerDataSetHead->filListSet;
-		//InnerDataSetHead->listSet->display(); 
 		system("pause");
+		FilList * innerfillist = InnerDataSetHead->filListSet;
 		for (int i = 0; i < 10; i++) {
-			if (DataSethead->filListSet->filhead == NULL) {
-				FilList * newfillist = new FilList();
-				newfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-				DataSethead->filListSet->filhead = newfillist->filhead;
+			if (innerfillist->filhead == NULL) {
+				innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
 			}
 			else {
-				FilList * newfillist = new FilList();
-				newfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-				InnerDataSetHead->filListSet->next = newfillist;
-				for (; InnerDataSetHead->filListSet->next != NULL; InnerDataSetHead->filListSet = InnerDataSetHead->filListSet->next) {};
-				InnerDataSetHead->filListSet->next = newfillist;
-				//IninnerDataSetHead = IninnerDataSetHead->next;
+				innerfillist->next = new FilList();
+				innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+				innerfillist = innerfillist->next;
 			}
-			
 		}
-
-		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
+		
 		InnerDataSetHead->filListSet->fildisplay(1);
 		InnerDataSetHead->filListSet->fildisplay(2);
 

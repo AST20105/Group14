@@ -47,7 +47,7 @@ void FilList::make_Type_List(Node* x, string condition) {
 	filterNode * innerfilhead = filhead;
 	FilList * innernext = next;
 	int i = 0;
-	if (innerfilhead == NULL) {
+	
 		for (; innernodelist != NULL; innernodelist = innernodelist->next) {
 			if (condition == innernodelist->tconst || condition == innernodelist->titleType|| condition == innernodelist->primaryTitle|| condition == innernodelist->startYear || condition == innernodelist->runtimeMinutes||condition == innernodelist->genres[0] || condition == innernodelist->genres[1] || condition == innernodelist->genres[2]) {
 					if (filhead == NULL) {
@@ -64,8 +64,8 @@ void FilList::make_Type_List(Node* x, string condition) {
 					}
 			}
 		}
-	}
-	if (innerfilhead == NULL) {
+	
+	if (i==0) {
 		filterNode * filterlist = new filterNode("", "", "", "", "", "", "", "", NULL);
 		filhead = filterlist;
 	}
