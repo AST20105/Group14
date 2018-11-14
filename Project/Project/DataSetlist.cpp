@@ -182,7 +182,7 @@ void DataSetlist::MainDecision(){
 	switch (choice)
 	{
 	case 0: system("cls"); cout << "Thanks for using our program!!" << endl; system("pause"); exit(0);
-	case 1:	fileinput(); for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next); InnerDataSetHead->listSet->display(); system("pause"); InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short"); InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls"); MainDecision();
+	case 1:	fileinput(); /*for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next); InnerDataSetHead->listSet->display(); system("pause"); InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short"); InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls");*/ MainDecision();
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
@@ -320,23 +320,24 @@ void DataSetlist::searchingByName(int x) {
 		}
 	}
 
-
 	counter = 0;
 	Node* CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL && CurrNode1->primaryTitle != y; CurrNode1 = CurrNode1->next);
-		if (CurrNode1->primaryTitle == y) {
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-			counter++;
-		}
-	if (counter == 0) {
-		cout << "*************************************************************" << endl;
-		cout << "No data match" << endl;
+	for (; CurrNode1 != NULL && !y.compare(CurrNode1->primaryTitle); CurrNode1 = CurrNode1->next);
+	if (y.compare(CurrNode1->primaryTitle) == 0) {
+		cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		counter++;
 	}
 	else {
-		cout << "*************************************************************" << endl;
-		cout << "Number of Data: " << counter << endl;
+		cout << "No data match"; system("pasue");
+		system("cls");
 	}
+	//cout << "*************************************************************" << endl;
+	//cout << "Number of Data: " << counter << endl;
 }
+
+
+
+
 
 
 void DataSetlist::searchingByYear(int x) {
