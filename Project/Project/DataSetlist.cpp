@@ -180,7 +180,7 @@ void DataSetlist::MainDecision(){
 	switch (choice)
 	{
 	case 0: system("cls"); cout << "Thanks for using our program!!" << endl; system("pause"); exit(0);
-	case 1:	fileinput(); for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next); InnerDataSetHead->listSet->display(); system("pause"); InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short"); InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls"); MainDecision();
+	case 1:	fileinput();/*for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next); InnerDataSetHead->listSet->display(); system("pause"); InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short"); InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls");*/ MainDecision();
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
@@ -271,13 +271,14 @@ void DataSetlist::MakeSearchingChoice(int x) {
 
 
 void DataSetlist::searchingByID(int x) {
+	int counter = 0;
 	string y;
-	clock_t start;
-	double time = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Enter the ID of the data" << endl;
 	cin >> y;
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
-	int counter = 0;
 	DataSet* CurrNode = DataSethead;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;
@@ -301,7 +302,8 @@ void DataSetlist::searchingByID(int x) {
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data: " << counter << endl;
 	}
-	cout << "Program Run time: " << time << '\n';
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << '\n';
 }
 
 
