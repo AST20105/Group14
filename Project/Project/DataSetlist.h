@@ -25,9 +25,12 @@ public:
 	void searchingByID(int x);
 	void searchingByName(int x);
 	void searchingByYear(int x);
-	void searchingByPgType();
-	void searchingByType();
 
+	void NumberOfType(int x);
+	void searchingByType1(int x);
+	void searchingByType2(int x);
+	void searchingByType3(int x);
+	void searchingByPgType();
 
 
 
