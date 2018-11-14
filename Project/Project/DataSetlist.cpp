@@ -407,9 +407,9 @@ void DataSetlist::searchingByPgType(int y) {
 	cin >> x;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (; CurrNode != NULL; CurrNode->filListSet = CurrNode->filListSet->next) {
+	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;
-		if (counter == x) {
+		if (counter == y) {
 			break;
 		}
 	}
