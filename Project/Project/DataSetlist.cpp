@@ -1,6 +1,51 @@
 #include "DataSetlist.h"
+#include <windows.h>
 
+typedef enum FG_COLORS //foreground colors
+{
+	FG_BLACK = 0,
+	FG_BLUE = 1,
+	FG_GREEN = 2,
+	FG_CYAN = 3,
+	FG_RED = 4,
+	FG_MAGENTA = 5,
+	FG_BROWN = 6,
+	FG_LIGHTGRAY = 7,
+	FG_GRAY = 8,
+	FG_LIGHTBLUE = 9,
+	FG_LIGHTGREEN = 10,
+	FG_LIGHTCYAN = 11,
+	FG_LIGHTRED = 12,
+	FG_LIGHTMAGENTA = 13,
+	FG_YELLOW = 14,
+	FG_WHITE = 15
+}FG_COLORS;
 
+typedef enum BG_COLORS //backfround colors
+{
+	BG_NAVYBLUE = 16,
+	BG_GREEN = 32,
+	BG_TEAL = 48,
+	BG_MAROON = 64,
+	BG_PURPLE = 80,
+	BG_OLIVE = 96,
+	BG_SILVER = 112,
+	BG_GRAY = 128,
+	BG_BLUE = 144,
+	BG_LIME = 160,
+	BG_CYAN = 176,
+	BG_RED = 192,
+	BG_MAGENTA = 208,
+	BG_YELLOW = 224,
+	BG_WHITE = 240
+}BG_COLORS;
+
+WORD GetConsoleTextAttribute(HANDLE hCon) //color
+{
+	CONSOLE_SCREEN_BUFFER_INFO con_info;
+	GetConsoleScreenBufferInfo(hCon, &con_info);
+	return con_info.wAttributes;
+}
 
 DataSetlist::DataSetlist()
 {
@@ -16,7 +61,8 @@ DataSetlist::DataSetlist()
 	typelist[8] = "video";
 	typelist[9] = "videoGame";
 };
-	
+
+
 
 
 void DataSetlist::fileinput() {
@@ -183,17 +229,52 @@ void DataSetlist::fileinput() {
 
 
 void DataSetlist::MainDecision(){
+	
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	DataSet * InnerDataSetHead = DataSethead;
 	int choice;
+	SetConsoleTextAttribute(hConsole, BG_OLIVE | FG_GREEN | BG_LIME);
+
+	cout << "_______ _______ _______         _______    _______ _______ _______________________ ________________  " << endl;
+	cout << "(  ____ (  ____ (  ___  |\\     /(  ____ )  (  ____ (  ____ (  ___  \__    _(  ____ (  ____ \\__   __/  " << endl;
+	cout << "| (    \\| (    )| (   ) | )   ( | (    )|  | (    )| (    )| (   ) |  )  ( | (    \\| (    \\/  ) (    " << endl;
+	cout << "| |     | (____)| |   | | |   | | (____)|  | (____)| (____)| |   | |  |  | | (__   | |        | |    " << endl;
+	cout << "| | ____|     __| |   | | |   | |  _____)  |  _____|     __| |   | |  |  | |  __)  | |        | |    " << endl;
+	cout << "| | \\_  | (\\ (  | |   | | |   | | (        | (     | (\\ (  | |   | |  |  | | (     | |        | |    " << endl;
+	cout << "| (___) | ) \\ \\_| (___) | (___) | )        | )     | ) \\ \\_| (___) |\\_)  ) | (____/| (____/\\  | |    " << endl;
+	cout << "(_______|/   \\__(_______(_______|/         |/      |/   \\__(_______(____/  (_______(_______/  )_(    " << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
-	cout << "Welcome to the program, it use for searching and update data." << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Welcome to Search and Update data here :) " << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
-	cout << "Choose What function you want to do " << endl;
-	cout << "0. End		1. Insertion	2. Searching	3. Deletion" << endl;
-	cin >> choice;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Choose What function you want to do (Please input number '0 ~ 4') " << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_YELLOW | FOREGROUND_INTENSITY);
+	cout << "1:Insertion 2:Searching 3:Deletion " ;	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+	cout << "0:Exit Program" << endl << endl; 	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
+	cin >> choice;  cout << endl; SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	if (choice == 1)
+		cout << "You chose Insertion" << endl << endl;
+	if (choice == 2)
+		cout << "You chose Searching" << endl << endl;
+	if (choice == 3)
+		cout << "You chose Deletion" << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
 	switch (choice)
 	{
-	case 0: system("cls"); cout << "Thanks for using our program!!" << endl; system("pause"); exit(0);
+	case 0: system("cls");	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+		cout << "Thanks for using our program ! Hope you can give us a praise after that." << endl;	SetConsoleTextAttribute(hConsole, saved_colors);
+		system("pause"); exit(0);
 	case 1:	{fileinput();
 		for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
 		InnerDataSetHead->listSet->display(); system("pause");
@@ -217,18 +298,23 @@ void DataSetlist::MainDecision(){
 	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
-	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
+	default: SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);  cout << "Please input a proper NUMBER !" << endl;	SetConsoleTextAttribute(hConsole, saved_colors);  system("pause"); system("cls"); MainDecision();
 	}
 }
 
 
 
 void DataSetlist::MangeInDataSetSearch() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int counter = 0;
 	int x;
 	bool check = false;
 	DataSet* CurrNode = DataSethead;
-	cout << "which DataSet you want to modify" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Which DataSet you want to modify ? " << endl << endl ;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	///////////////////////TOBY 11.14 edited////////////////////////////
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode=CurrNode->next) {
 		counter++;
 		cout << "DataSet " << counter << endl;
@@ -422,7 +508,7 @@ void DataSetlist::searchingByPgType() {
 }
 
 
-void DataSetlist::searchingByType() {
+/*void DataSetlist::searchingByType() {
 	string x;
 	cout << "Enter the Type of the data" << endl;
 	cin >> x;
@@ -442,7 +528,7 @@ void DataSetlist::searchingByType() {
 	else {
 		cout << "Number of Data: " << counter << endl;
 	}
-}
+}*/
 
 
 
