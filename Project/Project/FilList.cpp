@@ -45,8 +45,7 @@ void FilList::make_Type_List(Node* x, string condition) {
 	int i = 0;
 	if (innerfilhead == NULL) {
 		for (; innernodelist != NULL; innernodelist = innernodelist->next) {
-			if (condition == "short") {
-				if (innernodelist->titleType == condition) {
+			if (condition == innernodelist->tconst || condition == innernodelist->titleType|| condition == innernodelist->primaryTitle|| condition == innernodelist->startYear || condition == innernodelist->runtimeMinutes||condition == innernodelist->genres[0] || condition == innernodelist->genres[1] || condition == innernodelist->genres[2]) {
 					if (filhead == NULL) {
 						filterNode * filterlist = new filterNode(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres[0], innernodelist->genres[1], innernodelist->genres[2], innernodelist->next);
 						innerfilhead = filterlist;
@@ -59,23 +58,6 @@ void FilList::make_Type_List(Node* x, string condition) {
 						innerfilhead = innerfilhead->filnext;
 						i++;
 					}
-				}
-			}
-			if (condition == "movie") {
-				if (innernodelist->titleType == condition) {
-					if (filhead == NULL) {
-						filterNode * filterlist = new filterNode(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres[0], innernodelist->genres[1], innernodelist->genres[2], innernodelist->next);
-						innerfilhead = filterlist;
-						filhead = innerfilhead;
-						i++;
-					}
-					else {
-						filterNode * filterlist = new filterNode(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres[0], innernodelist->genres[1], innernodelist->genres[2], innernodelist->next);
-						innerfilhead->filnext = filterlist;
-						innerfilhead = innerfilhead->filnext;
-						i++;
-					}
-				}
 			}
 		}
 	}
@@ -85,8 +67,7 @@ void FilList::make_Type_List(Node* x, string condition) {
 		filterNode * innernewlisthead = newlist->filhead;
 		if (newlist->filhead == NULL) {
 			for (; innernodelist != NULL; innernodelist = innernodelist->next) {
-				if (condition == "short") {
-					if (innernodelist->titleType == condition) {
+				if (condition == innernodelist->tconst || condition == innernodelist->titleType || condition == innernodelist->primaryTitle || condition == innernodelist->startYear || condition == innernodelist->runtimeMinutes || condition == innernodelist->genres[0] || condition == innernodelist->genres[1] || condition == innernodelist->genres[2]) {
 						if (newlist->filhead == NULL) {
 							filterNode * filterlist = new filterNode(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres[0], innernodelist->genres[1], innernodelist->genres[2], innernodelist->next);
 							innernewlisthead = filterlist;
@@ -99,23 +80,6 @@ void FilList::make_Type_List(Node* x, string condition) {
 							innernewlisthead = innernewlisthead->filnext;
 							i++;
 						}
-					}
-				}
-				if (condition == "movie") {
-					if (innernodelist->titleType == condition) {
-						if (newlist->filhead == NULL) {
-							filterNode * filterlist = new filterNode(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres[0], innernodelist->genres[1], innernodelist->genres[2], innernodelist->next);
-							innernewlisthead = filterlist;
-							newlist->filhead = innernewlisthead;
-							i++;
-						}
-						else {
-							filterNode * filterlist = new filterNode(innernodelist->tconst, innernodelist->titleType, innernodelist->primaryTitle, innernodelist->startYear, innernodelist->runtimeMinutes, innernodelist->genres[0], innernodelist->genres[1], innernodelist->genres[2], innernodelist->next);
-							innernewlisthead->filnext = filterlist;
-							innernewlisthead = innernewlisthead->filnext;
-							i++;
-						}
-					}
 				}
 				next = newlist;
 			}
@@ -123,3 +87,4 @@ void FilList::make_Type_List(Node* x, string condition) {
 	}
 	cout << i << endl;
 }
+
