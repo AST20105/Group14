@@ -1,17 +1,20 @@
-/*#include "Node.h"
+#ifndef List_h
+#define List_h
+
+#include "Node.h"
+#include <iostream>
+
+using namespace std;
 
 class List {
-private:
+public:
 	Node * head;
-	Node * tail;
 public:
 	List();
-	~List();
-	void createNode(string ptconst, string ptitleType, string pprimaryTitle, string pstartYear, string pruntimeMinutes, string pgenres);
 	void display();
-	void insertion();
+
+
 
 };
 
-#pragma once
-*/
+#endif
