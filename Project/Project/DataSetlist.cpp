@@ -648,19 +648,32 @@ void DataSetlist::DeletionByYear() {
 	string x;
 	cout << "Enter the Year of the data" << endl;
 	cin >> x;
-	Node* CurrNode = DataSethead->listSet->head, *preNode = NULL;
+	cout << "*********************" << endl;
 	int counter = 0;
-	for (CurrNode = DataSethead->listSet->head; CurrNode->next != NULL; preNode = CurrNode, CurrNode = CurrNode->next) {
-		if (CurrNode->startYear == x) {
-			preNode->next = CurrNode->next;
-			delete CurrNode;
+	Node* CurrNode = DataSethead->listSet->head, *prevNode = NULL;
+	for (; CurrNode; CurrNode = CurrNode->next)
+		if (CurrNode->startYear == x)
 			counter++;
+	for (int i = 0; i < counter; i++) {
+		for (CurrNode = DataSethead->listSet->head; CurrNode&&CurrNode->startYear != x; CurrNode = CurrNode->next)
+			prevNode = CurrNode;
+		if (CurrNode) {
+			if (prevNode == NULL)
+				DataSethead->listSet->head = CurrNode->next;
+			else
+				prevNode->next = CurrNode->next;
+			delete CurrNode;
 		}
 	}
+
+	for (CurrNode = DataSethead->listSet->head; CurrNode; CurrNode = CurrNode->next)
+		cout << CurrNode->tconst << "\t" << CurrNode->titleType << "\t" << CurrNode->primaryTitle << "\t" << CurrNode->startYear << "\t" << CurrNode->runtimeMinutes << "\t" << CurrNode->genres[0] << "\t" << CurrNode->genres[1] << "\t" << CurrNode->genres[2] << endl;
+
 	if (counter == 0) {
 		cout << "No data match" << endl;
 	}
 	else {
 		cout << "Number of data deleted: " << counter << endl;
 	}
+
 }
