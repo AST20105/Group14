@@ -368,7 +368,8 @@ void DataSetlist::searchingByName(int x) {
 void DataSetlist::searchingByYear(int x) {
 	string y;
 	cout << "Enter the Year of the data" << endl;
-	cin >> y;
+	cin.ignore();
+	getline(cin, y);
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -378,23 +379,40 @@ void DataSetlist::searchingByYear(int x) {
 			break;
 		}
 	}
+	int i = 0;
+	for (; i < 20; i++) {
+		if (CurrNode->typelist[i] == "") {
+			CurrNode->typelist[i] = y;
+			break;
+		}
+	}
+	filterNode * innerfillist = CurrNode->filListSet->filhead;
+	for (; innerfillist != NULL; innerfillist = ) {}
 
-	counter = 0;
+		if (innerfillist == NULL) {
+			innerfillist->make_Type_List(CurrNode->listSet->head, y);
+		}
+		else {
+			innerfillist->next = new FilList();
+			innerfillist->next->make_Type_List(CurrNode->listSet->head, y);
+			innerfillist = innerfillist->next;
+		}
+		CurrNode->filListSet->fildisplay(i); system("pause"); system("cls"); MainDecision();
+	/*counter = 0;
 	Node* CurrNode1 = CurrNode->listSet->head;
 	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		if (CurrNode1->startYear == y) {
+		if (y.compare(CurrNode1->startYear) == 0) {
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			counter++;
 		}
 	}
 	if (counter == 0) {
-		cout << "*************************************************************" << endl;
 		cout << "No data match" << endl;
 	}
 	else {
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data: " << counter << endl;
-	}
+	}*/
 }
 
 

@@ -17,7 +17,7 @@ void FilList::fildisplay(int x) {
 		if (now != NULL) {
 		innerhead = now->filhead;
 		now = now->next;
-		}else {
+		}else{
 			cout << "No such type in this DataSet!" << endl;
 			system("pause");
 			return;
