@@ -264,7 +264,7 @@ void DataSetlist::MakeSearchingChoice(int x) {
 	case 1: searchingByID(x); MainDecision();
 	case 2: searchingByName(x); MainDecision();
 	case 3: searchingByYear(x); MainDecision();
-	//case 4: searchingByPgType(); MainDecision();
+	case 4: searchingByPgType(x); MainDecision();
 	case 5: NumberOfType(x); MainDecision();
 	default: cout << "wrong input." << endl; MakeSearchingChoice(x); MainDecision();
 	}
