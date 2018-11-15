@@ -1,5 +1,7 @@
-#include "DataSetlist.h"
+﻿#include "DataSetlist.h"
 #include <windows.h>
+#include <cstdio>
+#include <ctime>
 
 typedef enum FG_COLORS //foreground colors
 {
@@ -235,7 +237,31 @@ void DataSetlist::MainDecision(){
 	DataSet * InnerDataSetHead = DataSethead;
 	int choice;
 	SetConsoleTextAttribute(hConsole, BG_OLIVE | FG_GREEN | BG_LIME);
-
+	cout <<"                                                                #      #####   #######       #####     ###      #      ###    #######                           "<< endl;
+	cout <<"                                                               # #    #     #     #         #     #   #   #    ##     #   #   #                               "<< endl;  
+	cout <<"                                                              #   #   #           #               #  #     #  # #    #     #  #                                 "<< endl;
+	cout <<"                                                             #     #   #####      #          #####   #     #    #    #     #  ######                            "<< endl;
+	cout <<"                                                             #######        #     #         #        #     #    #    #     #        #                           "<< endl;
+	cout <<"                                                             #     #  #     #     #         #         #   #     #     #   #   #     #                           "<< endl;
+	cout <<"                                                             #     #   #####      #         #######    ###    #####    ###     #####                            "<< endl;
+	cout <<"                                                                                                                                                                "<< endl;
+	cout <<"                                                                      #####                                         #    #                                      "<< endl;
+	cout <<"                                                                     #     #  #####    ####   #    #  #####        ##    #    #                                 "<< endl;
+	cout <<"                                                                     #        #    #  #    #  #    #  #    #      # #    #    #                                 "<< endl;
+	cout <<"                                                                     #  ####  #    #  #    #  #    #  #    #        #    #    #                                 "<< endl;
+	cout <<"                                                                     #     #  #####   #    #  #    #  #####         #    #######                                "<< endl;
+	cout <<"                                                                     #     #  #   #   #    #  #    #  #             #         #                                 "<< endl;
+	cout <<"                                                                      #####   #    #   ####    ####   #           #####       #                                 "<< endl;
+	cout <<"                                                                                                                                                                "<< endl;
+	cout <<"                                             ######                                  ######                                                                     "<< endl;
+	cout <<"                                             #     #    ##    #####    ##            #     #  #####    ####    ####   ######   ####    ####   #  #    #   ####  "<< endl;
+	cout <<"                                             #     #   #  #     #     #  #           #     #  #    #  #    #  #    #  #       #       #       #  ##   #  #    # "<< endl;
+	cout <<"                                             #     #  #    #    #    #    #          ######   #    #  #    #  #       #####    ####    ####   #  # #  #  #      "<< endl;
+	cout <<"                                             #     #  ######    #    ######          #        #####   #    #  #       #            #       #  #  #  # #  #  ### "<< endl;
+	cout <<"                                             #     #  #    #    #    #    #          #        #   #   #    #  #    #  #       #    #  #    #  #  #   ##  #    # "<< endl;
+	cout <<"                                             ######   #    #    #    #    #          #        #    #   ####    ####   ######   ####    ####   #  #    #   ####  "<< endl;
+	cout <<"                                                                                                                                                                "<< endl;
+	/*
 	cout << "_______ _______ _______         _______    _______ _______ _______________________ ________________  " << endl;
 	cout << "(  ____ (  ____ (  ___  |\\     /(  ____ )  (  ____ (  ____ (  ___  \__    _(  ____ (  ____ \\__   __/  " << endl;
 	cout << "| (    \\| (    )| (   ) | )   ( | (    )|  | (    )| (    )| (   ) |  )  ( | (    \\| (    \\/  ) (    " << endl;
@@ -244,6 +270,7 @@ void DataSetlist::MainDecision(){
 	cout << "| | \\_  | (\\ (  | |   | | |   | | (        | (     | (\\ (  | |   | |  |  | | (     | |        | |    " << endl;
 	cout << "| (___) | ) \\ \\_| (___) | (___) | )        | )     | ) \\ \\_| (___) |\\_)  ) | (____/| (____/\\  | |    " << endl;
 	cout << "(_______|/   \\__(_______(_______|/         |/      |/   \\__(_______(____/  (_______(_______/  )_(    " << endl;
+	*/
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
@@ -294,7 +321,7 @@ void DataSetlist::MainDecision(){
 		}
 
 		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
-		InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls"); MainDecision();
+		/*InnerDataSetHead->filListSet->fildisplay();*/ system("pause"); system("cls"); MainDecision();
 	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
@@ -394,6 +421,9 @@ void DataSetlist::searchingByID(int x) {
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin >> y;   
+	clock_t start;
+	double duration;
+	start = clock();
 	//time, space complexity 
 	cout << "*************************************************************" << endl;
 	int counter = 0;
@@ -420,6 +450,8 @@ void DataSetlist::searchingByID(int x) {
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data: " << counter << endl;
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n' ;
 }
 
 
