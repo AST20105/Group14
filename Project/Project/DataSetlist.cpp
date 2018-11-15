@@ -530,7 +530,7 @@ void DataSetlist::MakeDeletionChoice(int x) {
 	case 2: DeletionByName(x); MainDecision();
 	case 3: DeletionByYear(x); MainDecision();
 	case 4: DeletionByPgType(x); MainDecision();
-	case 5: //
+	case 5: NumberOfTypeDel(x); MainDecision();
 	default: MakeDeletionChoice(x);
 	}
 }
@@ -738,15 +738,16 @@ void DataSetlist::NumberOfTypeDel(int x) {
 	cout << "How many type U want to input? Maximun: 3. " << endl;
 	cin >> y;
 	switch (y) {
-	case 1: searchingByType1(x); MainDecision();
-	case 2: searchingByType2(x); MainDecision();
-	case 3: searchingByType3(x); MainDecision();
+	case 1: DeleteByType1(x); MainDecision();
+	case 2: DeleteByType2(x); MainDecision();
+	case 3: DeleteByType3(x); MainDecision();
 	default: NumberOfType(x);
 	}
 
 }
 
 void DataSetlist::DeleteByType1(int x) {
+	bool check = false;
 	string y;
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
@@ -762,30 +763,55 @@ void DataSetlist::DeleteByType1(int x) {
 	}
 
 	counter = 0;
-	Node * CurrNode1 = CurrNode->listSet->head;
+	Node * newlist = NULL;
+
+
+	Node* CurrNode1 = CurrNode->listSet->head;
+	CurrNode->listSet->head = NULL;
+	Node *innerhead = CurrNode->listSet->head;
+
 	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		check = false;
 		for (int i = 0; i < 3; i++) {
 			if (y.compare(CurrNode1->genres[i])) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				//make list and replace the dataset which user seleted.
+				check = true;
+			}
+			else {
+				check = false;
 				break;
+			}
+		}
+			if (check == true) {
+				if (innerhead == NULL) {
+					Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+					innerhead = newlist1;
+					CurrNode->listSet->head = innerhead;
+				}
+				else {
+					Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+					innerhead->next = newlist1;
+					innerhead = innerhead->next;
+
+				}
 			}
 			else {
 				counter++;
 			}
-		}
 	}
+	CurrNode1 = CurrNode->listSet->head;
 	if (counter == 0) {
 		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
 	}
 	else {
-		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
+		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		}
+		cout << "Number of Datad deleted: " << counter << endl;
 	}
 }
 
 void DataSetlist::DeleteByType2(int x) {
+	bool check = false;
 	string j, k;
 	cout << "Enter the first type of the data: " << endl;
 	cin.ignore();
@@ -803,31 +829,56 @@ void DataSetlist::DeleteByType2(int x) {
 		}
 	}
 
+
 	counter = 0;
-	Node * CurrNode1 = CurrNode->listSet->head;
+	Node * newlist = NULL;
+
+
+	Node* CurrNode1 = CurrNode->listSet->head;
+	CurrNode->listSet->head = NULL;
+	Node *innerhead = CurrNode->listSet->head;
+
 	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (unsigned int i = 0; i < 3; i++) {
+		check = false;
+		for (int i = 0; i < 3; i++) {
 			if (j.compare(CurrNode1->genres[i]) && k.compare(CurrNode1->genres[i])) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				//make list and replace the dataset which user seleted.
-				break;
+				check = true;
 			}
 			else {
-				counter++;
+				check = false;
+				break;
 			}
 		}
+		if (check == true) {
+			if (innerhead == NULL) {
+				Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+				innerhead = newlist1;
+				CurrNode->listSet->head = innerhead;
+			}
+			else {
+				Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+				innerhead->next = newlist1;
+				innerhead = innerhead->next;
+
+			}
+		}
+		else {
+			counter++;
+		}
 	}
+	CurrNode1 = CurrNode->listSet->head;
 	if (counter == 0) {
 		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
 	}
 	else {
-		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
+		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		}
+		cout << "Number of Datad deleted: " << counter << endl;
 	}
 }
-
 void DataSetlist::DeleteByType3(int x) {
+	bool check = false;
 	string j, k, l;
 	cout << "Enter the first type of the data: " << endl;
 	cin.ignore();
@@ -849,25 +900,49 @@ void DataSetlist::DeleteByType3(int x) {
 	}
 
 	counter = 0;
-	Node * CurrNode1 = CurrNode->listSet->head;
+	Node * newlist = NULL;
+
+
+	Node* CurrNode1 = CurrNode->listSet->head;
+	CurrNode->listSet->head = NULL;
+	Node *innerhead = CurrNode->listSet->head;
+
 	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (unsigned int i = 0; i < 3; i++) {
+		check = false;
+		for (int i = 0; i < 3; i++) {
 			if (j.compare(CurrNode1->genres[i]) && k.compare(CurrNode1->genres[i]) && l.compare(CurrNode1->genres[i])) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				//make list and replace the dataset which user seleted.
-				break;
+				check = true;
 			}
 			else {
-				counter++;
+				check = false;
+				break;
 			}
 		}
+		if (check == true) {
+			if (innerhead == NULL) {
+				Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+				innerhead = newlist1;
+				CurrNode->listSet->head = innerhead;
+			}
+			else {
+				Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+				innerhead->next = newlist1;
+				innerhead = innerhead->next;
+
+			}
+		}
+		else {
+			counter++;
+		}
 	}
+	CurrNode1 = CurrNode->listSet->head;
 	if (counter == 0) {
 		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
 	}
 	else {
-		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
+		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		}
+		cout << "Number of Datad deleted: " << counter << endl;
 	}
 }
