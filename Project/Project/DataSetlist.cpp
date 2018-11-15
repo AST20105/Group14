@@ -645,9 +645,53 @@ void DataSetlist::DeletionByYear(int x){
 	}
 
 	counter = 0;
+	Node * newlist = NULL;
 	Node* CurrNode1 = CurrNode->listSet->head;
 	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 		if (y.compare(CurrNode1->startYear)) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			newlist = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+			newlist = newlist->next;
+			//make list and replace the dataset which user seleted.
+		}
+		else {
+			counter++;
+		}
+	}
+	CurrNode->listSet->head = newlist;
+	if (counter == 0) 
+{
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "*************************************************************" << endl;
+		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		}
+		cout << "Number of Datad deleted: " << counter << endl;
+	}
+}
+
+void DataSetlist::DeletionByPgType(int x) {
+	//combined fill list which type is not equal to data input 
+	string y;
+	cout << "Enter the PgType of the data" << endl;
+	cin.ignore();
+	getline(cin, y);
+	cout << "*************************************************************" << endl;
+	int	counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+
+	counter = 0;
+	Node* CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (y.compare(CurrNode1->titleType)) {
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			//make list and replace the dataset which user seleted.
 		}
@@ -655,18 +699,15 @@ void DataSetlist::DeletionByYear(int x){
 			counter++;
 		}
 	}
-	if (counter == 0) 
-{
+	if (counter == 0)
+	{
 		cout << "No data match" << endl;
 	}
 	else {
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data: " << counter << endl;
 	}
-}
 
-void DataSetlist::DeletionByPgType(int x) {
-	//combined fill list which type is not equal to data input 
 }
 
 
