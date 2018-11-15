@@ -126,5 +126,5 @@ void FilList::make_gen_List3(Node* x, string condition1, string condition2, stri
 	}
 
 
-	cout << i << endl;
+	//cout << i << endl;
 }
