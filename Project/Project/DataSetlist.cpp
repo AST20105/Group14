@@ -179,6 +179,7 @@ void DataSetlist::fileinput() {
 
 void DataSetlist::MainDecision(){
 	DataSet * InnerDataSetHead = DataSethead;
+	DataSet * IninnerDataSetHead = DataSethead;
 	int choice;
 	cout << "*************************************************************" << endl;
 	cout << "Welcome to the program, it use for searching and update data." << endl;
@@ -211,6 +212,11 @@ void DataSetlist::MainDecision(){
 	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
+	case 4: for (; IninnerDataSetHead != NULL; IninnerDataSetHead = IninnerDataSetHead->next) {
+		for (int i = 1; i <= 20; i++) {
+			IninnerDataSetHead->filListSet->fildisplay(i);
+		}
+	}
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
 	}
 }
@@ -240,7 +246,7 @@ void DataSetlist::MangeInDataSetSearch() {
 	}
 	if (check == false) {
 		cout << "Wrong input" << endl;
-		MangeInDataSetSearch();
+		MainDecision();;
 	}
 	else {
 		MakeSearchingChoice(x);
@@ -379,6 +385,7 @@ void DataSetlist::searchingByYear(int x) {
 			break;
 		}
 	}
+
 	int i = 0;
 	for (; i < 20; i++) {
 		if (CurrNode->typelist[i] == "") {
@@ -386,33 +393,12 @@ void DataSetlist::searchingByYear(int x) {
 			break;
 		}
 	}
-	filterNode * innerfillist = CurrNode->filListSet->filhead;
-	for (; innerfillist != NULL; innerfillist = ) {}
-
-		if (innerfillist == NULL) {
-			innerfillist->make_Type_List(CurrNode->listSet->head, y);
-		}
-		else {
-			innerfillist->next = new FilList();
-			innerfillist->next->make_Type_List(CurrNode->listSet->head, y);
-			innerfillist = innerfillist->next;
-		}
-		CurrNode->filListSet->fildisplay(i); system("pause"); system("cls"); MainDecision();
-	/*counter = 0;
-	Node* CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		if (y.compare(CurrNode1->startYear) == 0) {
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-			counter++;
-		}
-	}
-	if (counter == 0) {
-		cout << "No data match" << endl;
-	}
-	else {
-		cout << "*************************************************************" << endl;
-		cout << "Number of Data: " << counter << endl;
-	}*/
+	FilList * innerfillist = CurrNode->filListSet;
+	FilList * newfillist = new FilList();
+	for (; innerfillist->next != NULL; innerfillist = innerfillist->next){}
+			newfillist->make_Type_List(CurrNode->listSet->head, y);
+		innerfillist->next = newfillist;
+		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
 }
 
 
