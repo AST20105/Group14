@@ -19,7 +19,7 @@ public:
 	void MainDecision();
 	
 	void MangeInDataSetSearch();
-	void MangeInDataSetDelete();
+
 	void MangeInDataSetCombine(bool firsttime, int targetpos);
 
 
