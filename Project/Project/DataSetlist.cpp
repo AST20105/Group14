@@ -1,5 +1,6 @@
 #include "DataSetlist.h"
-
+#include <cstdio>
+#include <ctime>
 
 
 DataSetlist::DataSetlist()
@@ -27,6 +28,9 @@ void DataSetlist::fileinput() {
 	cout << "Which dataSet you want to input?" << endl;
 	cout << "Filename: ";
 	cin >> filename;
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << endl;
 
 	dataSet.open(filename);
@@ -173,6 +177,8 @@ void DataSetlist::fileinput() {
 		}
 	}
 	cout << i << endl;
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
 }
 
 
@@ -206,7 +212,8 @@ void DataSetlist::MainDecision(){
 		}
 
 		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
-		InnerDataSetHead->filListSet->fildisplay(); system("pause"); system("cls"); MainDecision();
+		//InnerDataSetHead->filListSet->fildisplay(); 
+		system("pause"); system("cls"); MainDecision();
 	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
@@ -239,6 +246,9 @@ void DataSetlist::MangeInDataSetSearch() {
 	}
 	cout << "*************************************************************" << endl;
 	cin >> x;
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	counter = 0;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
@@ -255,6 +265,8 @@ void DataSetlist::MangeInDataSetSearch() {
 	else {
 		MakeSearchingChoice(x);
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
 }
 
 void DataSetlist::MakeSearchingChoice(int x) {
@@ -278,6 +290,9 @@ void DataSetlist::searchingByID(int x) {
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -302,6 +317,8 @@ void DataSetlist::searchingByID(int x) {
 	else {
 		cout << "Number of Data: " << counter << endl;
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
 }
 
 void DataSetlist::searchingByName(int x) {
@@ -309,6 +326,9 @@ void DataSetlist::searchingByName(int x) {
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -317,6 +337,7 @@ void DataSetlist::searchingByName(int x) {
 		if (counter == x) {
 			break;
 		}
+
 	}
 
 	counter = 0;
@@ -334,6 +355,8 @@ void DataSetlist::searchingByName(int x) {
 	else {
 		cout << "Number of data: " << counter << endl;
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
 
 }
 
@@ -342,6 +365,9 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -369,6 +395,9 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 	newfillist->make_Type_List(CurrNode->listSet->head, y);
 	innerfillist->next = newfillist;
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::searchingByPgType(int y) {
@@ -405,7 +434,7 @@ void DataSetlist::searchingByPgType(int y) {
 
 void DataSetlist::NumberOfType(int x) {
 	int y;
-	cout << "How many type U want to input? Maximun: 3. " << endl;
+	cout << "How many type you want to input? Maximun: 3. " << endl;
 	cin >> y;
 	switch (y) {
 	case 1: searchingByType1(x); MainDecision();
@@ -420,6 +449,9 @@ void DataSetlist::searchingByType1(int x) {
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -447,6 +479,9 @@ void DataSetlist::searchingByType1(int x) {
 	newfillist->make_Type_List(CurrNode->listSet->head, y);
 	innerfillist->next = newfillist;
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::searchingByType2(int x) {
@@ -457,6 +492,9 @@ void DataSetlist::searchingByType2(int x) {
 	cout << "*************************************************************" << endl;
 	cout << "Enter the second type of the data: " << endl;
 	getline(cin, k);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -465,6 +503,7 @@ void DataSetlist::searchingByType2(int x) {
 		if (counter == x) {
 			break;
 		}
+
 	}
 
 	int i = 0;
@@ -484,6 +523,9 @@ void DataSetlist::searchingByType2(int x) {
 	newfillist->make_gen_List2(CurrNode->listSet->head, j , k);
 	innerfillist->next = newfillist;
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::searchingByType3(int x) {
@@ -497,6 +539,9 @@ void DataSetlist::searchingByType3(int x) {
 	cout << "*************************************************************" << endl;
 	cout << "Enter the third type of the data: " << endl;
 	getline(cin, l);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -524,6 +569,9 @@ void DataSetlist::searchingByType3(int x) {
 	newfillist->make_gen_List3(CurrNode->listSet->head, j, k ,l);
 	innerfillist->next = newfillist;
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 
@@ -540,6 +588,9 @@ void DataSetlist::MangeInDataSetModify(){
 	}
 	cout << "*************************************************************" << endl;
 	cin >> x;
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	counter = 0;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
@@ -556,6 +607,9 @@ void DataSetlist::MangeInDataSetModify(){
 	else {
 		MakeModifyingChoice(x);
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 
@@ -580,6 +634,9 @@ void DataSetlist::ModifyingByID(int x) {
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -628,6 +685,9 @@ void DataSetlist::ModifyingByID(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::ModifyingByName(int x){
@@ -635,6 +695,9 @@ void DataSetlist::ModifyingByName(int x){
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -685,6 +748,9 @@ void DataSetlist::ModifyingByName(int x){
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::ModifyingByYear(int x){
@@ -695,6 +761,9 @@ void DataSetlist::ModifyingByYear(int x){
 	cout << "*************************************************************" << endl;
 	cout << "Changing to what year? (YYYY)" << endl;
 	getline(cin, z);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -742,6 +811,9 @@ void DataSetlist::ModifyingByYear(int x){
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::ModifyingByPgType(int x){
@@ -755,6 +827,9 @@ void DataSetlist::ModifyingByPgType(int x){
 	cout << "tvSeries	tvShort	  tvSpecial	  video		     videoGame " << endl;
 	cout << "*************************************************************" << endl;
 	getline(cin, z);
+	clock_t start;
+	double duration;
+	start = clock();
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
@@ -800,6 +875,8 @@ void DataSetlist::ModifyingByPgType(int x){
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
 
 }
 
