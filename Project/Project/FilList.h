@@ -12,8 +12,11 @@ public:
 
 public:
 	FilList();
-	void fildisplay();
+	void fildisplay(int x);
 	void make_Type_List(Node *x, string  condition);
+	void make_gen_List2(Node* x, string condition1, string condition2);
+	void make_gen_List3(Node* x, string condition1, string condition2, string condition3);
+
 };
 
 #endif
