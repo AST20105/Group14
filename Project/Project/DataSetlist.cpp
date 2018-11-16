@@ -304,7 +304,7 @@ void DataSetlist::MainDecision(){
 		system("pause"); exit(0);
 	case 1:	{fileinput();
 		for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
-		InnerDataSetHead->listSet->display(); system("pause");
+		//InnerDataSetHead->listSet->display(); system("pause");
 		FilList * IninnerfillistHead = InnerDataSetHead->filListSet;
 		for (int i = 0; i < 10; i++) {
 			if (InnerDataSetHead->filListSet->filhead == NULL) {
@@ -322,6 +322,8 @@ void DataSetlist::MainDecision(){
 
 		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
 		/*InnerDataSetHead->filListSet->fildisplay();*/ system("pause"); system("cls"); MainDecision();
+	//	InnerDataSetHead->filListSet->fildisplay(); 
+		system("pause"); system("cls"); MainDecision();
 	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
