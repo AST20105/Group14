@@ -7,6 +7,8 @@ DataSetlist::DataSetlist()
 	DataSethead = new DataSet();
 };
 	
+
+
 void DataSetlist::fileinput() {
 	DataSet * outerhead = DataSethead;
 	Node * innerhead = DataSethead->listSet->head;
@@ -173,6 +175,8 @@ void DataSetlist::fileinput() {
 	cout << i << endl;
 }
 
+
+
 void DataSetlist::MainDecision(){
 	DataSet * InnerDataSetHead = DataSethead;
 	DataSet * IninnerDataSetHead = DataSethead;
@@ -222,6 +226,8 @@ void DataSetlist::MainDecision(){
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
 	}
 }
+
+
 
 void DataSetlist::MangeInDataSetSearch() {
 	int counter = 0;
@@ -522,6 +528,8 @@ void DataSetlist::searchingByType3(int x) {
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
 }
 
+
+
 void DataSetlist::MangeInDataSetModify(){
 	int counter = 0;
 	int x;
@@ -551,6 +559,7 @@ void DataSetlist::MangeInDataSetModify(){
 		MakeModifyingChoice(x);
 	}
 }
+
 
 void DataSetlist::MakeModifyingChoice(int x){
 	int y;
