@@ -1721,6 +1721,7 @@ void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
 	int counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
+	DataSet* CurrNode1 = DataSethead;
 	if (firsttime == true) {
 		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 			counter++;
@@ -1748,6 +1749,13 @@ void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
 				break;
 			}
 		}
+		counter = 0;
+		for (CurrNode1 = DataSethead; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + y;
@@ -1759,7 +1767,7 @@ void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_Type_List(CurrNode->listSet->head, y);
+		newfillist->make_Type_List(CurrNode1->listSet->head, y);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
@@ -1780,6 +1788,7 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
+	DataSet* CurrNode1 = DataSethead;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;
 		if (counter == x) {
@@ -1813,6 +1822,13 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 				break;
 			}
 		}
+		counter = 0;
+		for (CurrNode1 = DataSethead; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + y;
@@ -1824,7 +1840,7 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_Type_List(CurrNode->listSet->head, y);
+		newfillist->make_Type_List(CurrNode1->listSet->head, y);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
@@ -1846,6 +1862,7 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
+	DataSet* CurrNode1 = DataSethead;
 	if (firsttime == true) {
 		for (; CurrNode != NULL; CurrNode = CurrNode->next) {
 			counter++;
@@ -1873,6 +1890,13 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 				break;
 			}
 		}
+		counter = 0;
+		for (CurrNode1 = DataSethead; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + CurrNode->typelist[y-1];
@@ -1884,7 +1908,7 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_Type_List(CurrNode->listSet->head, CurrNode->typelist[y-1]);
+		newfillist->make_Type_List(CurrNode1->listSet->head, CurrNode->typelist[y-1]);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
@@ -1905,6 +1929,7 @@ void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
+	DataSet* CurrNode1 = DataSethead;
 	if (firsttime == true) {
 		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 			counter++;
@@ -1932,6 +1957,13 @@ void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 				break;
 			}
 		}
+		counter = 0;
+		for (CurrNode1 = DataSethead; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + y;
@@ -1943,7 +1975,7 @@ void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_Type_List(CurrNode->listSet->head, y);
+		newfillist->make_Type_List(CurrNode1->listSet->head, y);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
@@ -1967,6 +1999,7 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
+	DataSet* CurrNode1 = DataSethead;
 	if (firsttime == true) {
 		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 			counter++;
@@ -1994,6 +2027,13 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 				break;
 			}
 		}
+		counter = 0;
+		for (CurrNode1 = DataSethead; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + j + "," + k;
@@ -2005,7 +2045,7 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_gen_List2(CurrNode->listSet->head, j,k);
+		newfillist->make_gen_List2(CurrNode1->listSet->head, j,k);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
@@ -2032,6 +2072,7 @@ void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
+	DataSet* CurrNode1 = DataSethead;
 	if (firsttime == true) {
 		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 			counter++;
@@ -2059,6 +2100,13 @@ void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
 				break;
 			}
 		}
+		counter = 0;
+		for (CurrNode1 = DataSethead; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + j + "," + k + "," + l;
@@ -2070,7 +2118,7 @@ void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_gen_List3(CurrNode->listSet->head, j, k, l);
+		newfillist->make_gen_List3(CurrNode1->listSet->head, j, k, l);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
