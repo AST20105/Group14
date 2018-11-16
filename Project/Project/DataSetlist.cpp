@@ -218,6 +218,7 @@ void DataSetlist::MainDecision(){
 			IninnerDataSetHead->filListSet->fildisplay(i);
 		}
 	}
+	case 5: MangeInDataSetModify(); system("pause"); system("cls"); MainDecision();
 	case 6:for (int i = 0; i < 20; i++) {
 		cout << i + 1 << "." << DataSethead->typelist[i] << endl;
 	}
@@ -257,7 +258,6 @@ void DataSetlist::MangeInDataSetSearch() {
 	}
 }
 
-
 void DataSetlist::MakeSearchingChoice(int x) {
 	int y;
 	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	0. Stop Searching" << endl;
@@ -273,9 +273,6 @@ void DataSetlist::MakeSearchingChoice(int x) {
 	default: cout << "wrong input." << endl; MakeSearchingChoice(x); MainDecision();
 	}
 }
-
-
-
 
 void DataSetlist::searchingByID(int x) {
 	string y;
@@ -308,8 +305,6 @@ void DataSetlist::searchingByID(int x) {
 	}
 }
 
-
-
 void DataSetlist::searchingByName(int x) {
 	string y;
 	cout << "Enter the Name of the data" << endl;
@@ -331,7 +326,7 @@ void DataSetlist::searchingByName(int x) {
 		if (y.compare(CurrNode1->primaryTitle) == 0) {
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			counter++;
-			break;
+
 		}
 	}
 	if (counter == 0) {
@@ -343,9 +338,7 @@ void DataSetlist::searchingByName(int x) {
 
 }
 
-
-
-void DataSetlist::searchingByYear(int x) {
+void DataSetlist::searchingByYear(int x) {// add number of data which is equal to the year that user want to search
 	string y;
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
@@ -373,11 +366,11 @@ void DataSetlist::searchingByYear(int x) {
 	FilList * innerfillist = CurrNode->filListSet;
 	FilList * newfillist = new FilList();
 	for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
+	cout << "Number of data match: ";
 	newfillist->make_Type_List(CurrNode->listSet->head, y);
 	innerfillist->next = newfillist;
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
 }
-
 
 void DataSetlist::searchingByPgType(int y) {
 	int x;
@@ -419,7 +412,7 @@ void DataSetlist::NumberOfType(int x) {
 	case 1: searchingByType1(x); MainDecision();
 	case 2: searchingByType2(x); MainDecision();
 	case 3: searchingByType3(x); MainDecision();
-	default: NumberOfType(x);
+	default: cout << "wrong input" << endl; NumberOfType(x);
 	}
 }
 
@@ -451,6 +444,7 @@ void DataSetlist::searchingByType1(int x) {
 	FilList * innerfillist = CurrNode->filListSet;
 	FilList * newfillist = new FilList();
 	for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
+	cout << "Number of data match: ";
 	newfillist->make_Type_List(CurrNode->listSet->head, y);
 	innerfillist->next = newfillist;
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
@@ -535,6 +529,394 @@ void DataSetlist::searchingByType3(int x) {
 
 
 
+void DataSetlist::MangeInDataSetModify(){
+	int counter = 0;
+	int x;
+	bool check = false;
+	DataSet* CurrNode = DataSethead;
+	cout << "which DataSet you want to modify" << endl;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		cout << "DataSet " << counter << endl;
+	}
+	cout << "*************************************************************" << endl;
+	cin >> x;
+	cout << "*************************************************************" << endl;
+	counter = 0;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			check = true;
+			break;
+		}
+	}
+	if (check == false) {
+		cout << "Wrong input" << endl;
+		MainDecision();;
+	}
+	else {
+		MakeModifyingChoice(x);
+	}
+}
+
+
+void DataSetlist::MakeModifyingChoice(int x){
+	int y;
+	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	0. Stop Searching" << endl;
+	cin >> y;
+	switch (y)
+	{
+	case 0: return;
+	case 1: ModifyingByID(x); MainDecision();
+	case 2: ModifyingByName(x); MainDecision();
+	case 3: ModifyingByYear(x); MainDecision();
+	case 4: ModifyingByPgType(x); MainDecision();
+	case 5: modifyingByType(x); MainDecision();
+	default: cout << "wrong input." << endl; MakeSearchingChoice(x); MainDecision();
+	}
+}
+
+void DataSetlist::ModifyingByID(int x) {
+	string y;
+	cout << "Enter the ID of the data" << endl;
+	cin.ignore();
+	getline(cin, y);
+	cout << "*************************************************************" << endl;
+	int counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+	counter = 0;
+	Node* CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (y.compare(CurrNode1->tconst) == 0) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			cout << "Enter the programme title" << endl;
+			cout << "movie		short	  tvEpisode	  tvMiniSeries	 tvMovie	" << endl;
+			cout << "tvSeries	tvShort	  tvSpecial	  video		     videoGame " << endl;
+			cin >> CurrNode1->titleType;
+			cout << "Enter the name of the data" << endl; cin >> CurrNode1->primaryTitle;
+			cout << "Enter the year" << endl; cin >> CurrNode1->startYear;
+			cout << "Enter the duration(H)" << endl; cin >> CurrNode1->runtimeMinutes;
+			for (int i = 0; i < 3; i++) {
+				if (CurrNode1->genres[i] != " ") {
+					cout << "Enter the " << i + 1 << "type of data" << endl; cin >> CurrNode1->genres[i];
+				}
+			}
+			counter++;
+			break;
+		}
+	}
+	if (counter == 0) {
+		cout << "No data found" << endl;
+	}
+	else {
+		cout << "Number of Data change: " << counter << endl;
+	}
+}
+
+void DataSetlist::ModifyingByName(int x){
+	string y;
+	cout << "Enter the Name of the data" << endl;
+	cin.ignore();
+	getline(cin, y);
+	cout << "*************************************************************" << endl;
+	int counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+	counter = 0;
+	Node* CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (y.compare(CurrNode1->primaryTitle) == 0) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			cout << "Enter the programme title" << endl;
+			cout << "movie		short	  tvEpisode	  tvMiniSeries	 tvMovie	" << endl;
+			cout << "tvSeries	tvShort	  tvSpecial	  video		     videoGame " << endl;
+			cin >> CurrNode1->titleType;
+			cout << "Enter the name of the data" << endl;cin >> CurrNode1->primaryTitle;
+			cout << "Enter the year" << endl; cin >> CurrNode1->startYear;
+			cout << "Enter the duration(H)" << endl; cin >> CurrNode1->runtimeMinutes;
+			for (int i = 0; i < 3; i++) {
+				if (CurrNode1->genres[i] != " ") {
+					cout << "Enter the " << i + 1 << "type of data" << endl; cin >> CurrNode1->genres[i];
+				}
+			}
+			counter++;
+			break;
+		}
+	}
+	if (counter == 0) {
+		cout << "No data found" << endl;
+	}
+	else {
+		cout << "Number of Data change: " << counter << endl;
+	}
+}
+
+void DataSetlist::ModifyingByYear(int x){
+	string y,z;
+	cout << "Enter the Year of the data" << endl;
+	cin.ignore();
+	getline(cin, y);
+	cout << "*************************************************************" << endl;
+	cout << "Changing to what year? (YYYY)" << endl;
+	getline(cin, z);
+	cout << "*************************************************************" << endl;
+	int	counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+
+	counter = 0;
+	Node* CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (y.compare(CurrNode1->startYear) == 0) {
+			CurrNode1->startYear = z;
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			counter++;
+		}
+	}
+
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (z.compare(CurrNode1->startYear) == 0) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		}
+	}
+	
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "*************************************************************" << endl;
+		cout << "Number of Data change: " << counter << endl;
+	}
+}
+
+void DataSetlist::ModifyingByPgType(int x){
+	string y, z;
+	cout << "Enter the programme of the data" << endl;
+	cin.ignore();
+	getline(cin, y);
+	cout << "*************************************************************" << endl;
+	cout << "Changing to whtat programme type?" << endl;
+	cout << "movie		short	  tvEpisode	  tvMiniSeries	 tvMovie	" << endl;
+	cout << "tvSeries	tvShort	  tvSpecial	  video		     videoGame " << endl;
+	cout << "*************************************************************" << endl;
+	getline(cin, z);
+	int	counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+
+	counter = 0;
+	Node* CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (y.compare(CurrNode1->titleType) == 0) {
+			counter++;
+			CurrNode1->titleType = z;
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		}
+	}
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (z.compare(CurrNode1->titleType) == 0) {
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		}
+	}
+
+	if (counter == 0) {
+		cout << "No data match" << endl;
+	}
+	else {
+		cout << "*************************************************************" << endl;
+		cout << "Number of Data change: " << counter << endl;
+	}
+
+
+}
+
+/*void DataSetlist::NumberOfTypeMod(int x){
+	int y;
+	cout << "How many type U want to input? Maximun: 3. " << endl;
+	cin >> y;
+	switch (y) {
+	case 1: modifyingByType1(x); MainDecision();
+	case 2: modifyingByType2(x); MainDecision();
+	case 3: modifyingByType3(x); MainDecision();
+	default: cout << "wrong input" << endl; NumberOfType(x);
+	}
+}*/
+
+void DataSetlist::modifyingByType(int x){
+	string y,a;
+	cout << "Enter the type of the data: " << endl;
+	cin.ignore();
+	getline(cin, y);
+	cout << "*************************************************************" << endl;
+	cout << "Enter the type of the data u want to replace : " << endl;
+	getline(cin, a);
+	cout << "*************************************************************" << endl;
+	int	counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+
+	counter = 0;
+	Node * CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		for (int i = 0; i < 3; i++) {
+			if (y.compare(CurrNode1->genres[i]) == 0) {
+				CurrNode1->genres[i] = a;
+				//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+				counter++;
+				break;
+			}
+		}
+	}
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		for (int i = 0; i < 3; i++) {
+			if (a.compare(CurrNode1->genres[i]) == 0) {
+				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+				break;
+			}
+		}
+	}
+
+	if (counter == 0) {
+		cout << "No data match" << endl;
+		cout << "*************************************************************" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+		cout << "*************************************************************" << endl;
+	}
+}
+
+/*void DataSetlist::modifyingByType2(int x){
+	string y[2];
+	string z[2];
+	for (int i = 0; i < 2; i++) {
+		cout << "Enter the "<< i+1 <<" type of the data: " << endl;
+		cin.ignore();
+		getline(cin, y[i]);
+		cout << "*************************************************************" << endl;
+		cout << "Enter the type "<< i+1 <<" of the data u want to replace : " << endl;
+		getline(cin, z[i]);
+		cout << "*************************************************************" << endl;
+	}
+	int	counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+
+	counter = 0;
+	Node * CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		for (int i = 0; i < 3; i++) {
+			if (y[i].compare(CurrNode1->genres[i]) == 0) {
+				CurrNode1->genres[i] = z[i];
+				//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+				counter++;
+				break;
+			}
+		}
+	}
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		for (int i = 0; i < 3; i++) {
+			if (z[i].compare(CurrNode1->genres[i]) == 0) {
+				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			}
+		}
+	}
+
+	if (counter == 0) {
+		cout << "No data match" << endl;
+		cout << "*************************************************************" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+		cout << "*************************************************************" << endl;
+	}
+}
+
+void DataSetlist::modifyingByType3(int x){
+	string y[3];
+	string z[3];
+	for (int i = 0; i < 3; i++) {
+		cout << "Enter the "<<i<<" type of the data: " << endl;
+		cin.ignore();
+		getline(cin, y[i]);
+		cout << "*************************************************************" << endl;
+		cout << "Enter the type "<<i<<" of the data u want to replace : " << endl;
+		getline(cin, z[i]);
+		cout << "*************************************************************" << endl;
+	}
+	int	counter = 0;
+	DataSet* CurrNode = DataSethead;
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+		counter++;
+		if (counter == x) {
+			break;
+		}
+	}
+
+	counter = 0;
+	Node * CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		for (int i = 0; i < 3; i++) {
+			if (y[i].compare(CurrNode1->genres[i]) == 0) {
+				CurrNode1->genres[i] = z[i];
+				//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+				counter++;
+				break;
+			}
+		}
+	}
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		for (int i = 0; i < 3; i++) {
+			if (z[i].compare(CurrNode1->genres[i]) == 0) {
+				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			}
+		}
+	}
+
+	if (counter == 0) {
+		cout << "No data match" << endl;
+		cout << "*************************************************************" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+		cout << "*************************************************************" << endl;
+	}
+}
+*/
+
+
+
 void DataSetlist::MangeInDataSetDelete() {
 	int counter = 0;
 	int x;
@@ -565,7 +947,7 @@ void DataSetlist::MangeInDataSetDelete() {
 
 void DataSetlist::MakeDeletionChoice(int x) {
 	int y;
-	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
+	cout << "1. By ID   2. By Name   3. By Year   4. By Programe Type   5.By Movie Type   0. Stop Searching" << endl;
 	cin >> y;
 	switch (y)
 	{
@@ -578,8 +960,6 @@ void DataSetlist::MakeDeletionChoice(int x) {
 	default: MakeDeletionChoice(x);
 	}
 }
-
-
 
 void DataSetlist::DeletionByID(int x) {
 	string y;
@@ -640,7 +1020,6 @@ void DataSetlist::DeletionByID(int x) {
 	}
 }
 
-
 void DataSetlist::DeletionByName(int x) {
 	string y;
 	cout << "Enter the Name of the data" << endl;
@@ -699,7 +1078,6 @@ void DataSetlist::DeletionByName(int x) {
 		}
 	}
 }
-
 
 void DataSetlist::DeletionByYear(int x) {
 	string y;
@@ -765,7 +1143,6 @@ void DataSetlist::DeletionByYear(int x) {
 		}
 	}
 }
-
 
 void DataSetlist::DeletionByPgType(int x) {
 	string y;
