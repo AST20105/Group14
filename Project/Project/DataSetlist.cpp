@@ -676,4 +676,5 @@ void DataSetlist::DeletionByYear() {
 		cout << "Number of data deleted: " << counter << endl;
 	}
 
+
 }
