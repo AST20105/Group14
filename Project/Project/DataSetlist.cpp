@@ -577,7 +577,10 @@ void DataSetlist::ModifyingByID(int x) {
 	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 		if (y.compare(CurrNode1->tconst) == 0) {
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-			cout << "Enter the programme title" << endl; cin >> CurrNode1->titleType;
+			cout << "Enter the programme title" << endl;
+			cout << "movie		short	  tvEpisode	  tvMiniSeries	 tvMovie	" << endl;
+			cout << "tvSeries	tvShort	  tvSpecial	  video		     videoGame " << endl;
+			cin >> CurrNode1->titleType;
 			cout << "Enter the name of the data" << endl; cin >> CurrNode1->primaryTitle;
 			cout << "Enter the year" << endl; cin >> CurrNode1->startYear;
 			cout << "Enter the duration(H)" << endl; cin >> CurrNode1->runtimeMinutes;
@@ -617,8 +620,11 @@ void DataSetlist::ModifyingByName(int x){
 	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 		if (y.compare(CurrNode1->primaryTitle) == 0) {
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-			cout << "Enter the programme title" << endl; cin >> CurrNode1->titleType;
-			cout << "Enter the name of the data" << endl; cin >> CurrNode1->primaryTitle;
+			cout << "Enter the programme title" << endl;
+			cout << "movie		short	  tvEpisode	  tvMiniSeries	 tvMovie	" << endl;
+			cout << "tvSeries	tvShort	  tvSpecial	  video		     videoGame " << endl;
+			cin >> CurrNode1->titleType;
+			cout << "Enter the name of the data" << endl;cin >> CurrNode1->primaryTitle;
 			cout << "Enter the year" << endl; cin >> CurrNode1->startYear;
 			cout << "Enter the duration(H)" << endl; cin >> CurrNode1->runtimeMinutes;
 			for (int i = 0; i < 3; i++) {
@@ -666,8 +672,8 @@ void DataSetlist::ModifyingByYear(int x){
 		}
 	}
 
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		if (z.compare(CurrNode1->titleType) == 0) {
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		if (z.compare(CurrNode1->startYear) == 0) {
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 		}
 	}
@@ -710,7 +716,7 @@ void DataSetlist::ModifyingByPgType(int x){
 			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 		}
 	}
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 		if (z.compare(CurrNode1->titleType) == 0) {
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 		}
