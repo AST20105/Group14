@@ -401,7 +401,7 @@ void DataSetlist::searchingByPgType(int y) {
 		case 10:	CurrNode->filListSet->fildisplay(10); system("pause"); system("cls"); MainDecision();
 		default: searchingByPgType(y);
 		}
-	}
+}
 
 void DataSetlist::NumberOfType(int x) {
 	int y;
@@ -803,8 +803,8 @@ void DataSetlist::ModifyingByPgType(int x){
 
 }
 
-void DataSetlist::modifyingByType(int x){
-	string y,a;
+void DataSetlist::modifyingByType(int x) {
+	string y, a;
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
 	getline(cin, y);
@@ -820,55 +820,9 @@ void DataSetlist::modifyingByType(int x){
 			break;
 		}
 	}
+}
 
 
-void DataSetlist::searchingByType() {
-	string x;
-	cout << "Enter the Type of the data" << endl;
-	cin >> x;
-	Node* CurrNode = DataSethead->listSet->head;
-	int counter = 0;
-	for (CurrNode = DataSethead->listSet->head; CurrNode != NULL; CurrNode = CurrNode->next) {
-		for (int i = 0; i < sizeof(CurrNode->genres); i++) {
-			if (CurrNode->genres[i] == x) {
-				cout << CurrNode;
-				counter++;
-				break;
-			}
-		}
-	}
-	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (int i = 0; i < 3; i++) {
-			if (a.compare(CurrNode1->genres[i]) == 0) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				break;
-			}
-		}
-	}
-
-	if (counter == 0) {
-		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
-	}
-	else {
-		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
-	}
-	delete CurrNode->filListSet;
-	CurrNode->filListSet = new FilList();
-	DataSet * InnerDataSetHead = CurrNode;
-	FilList * innerfillist = InnerDataSetHead->filListSet;
-	for (int i = 0; i < 10; i++) {
-		if (innerfillist->filhead == NULL) {
-			innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-		}
-		else {
-			innerfillist->next = new FilList();
-			innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-			innerfillist = innerfillist->next;
-		}
-	}
-}*/
 
 
 void DataSetlist::MangeInDataSetDelete() {
@@ -1335,6 +1289,7 @@ void DataSetlist::DeleteByType2(int x) {
 		}
 	}
 }
+
 void DataSetlist::DeleteByType3(int x) {
 	bool check = false;
 	string j, k, l;
