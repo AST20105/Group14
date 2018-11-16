@@ -94,7 +94,7 @@ void FilList::make_gen_List2(Node* x, string condition1, string condition2) {
 	}
 
 
-	cout << i << endl;
+	cout << "Number of data match: " << i << endl;
 }
 
 void FilList::make_gen_List3(Node* x, string condition1, string condition2, string condition3) {
@@ -125,6 +125,5 @@ void FilList::make_gen_List3(Node* x, string condition1, string condition2, stri
 		filhead = filterlist;
 	}
 
-
-	//cout << i << endl;
+	cout << "Number of data match: " << i << endl;
 }

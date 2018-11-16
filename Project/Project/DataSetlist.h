@@ -19,9 +19,13 @@ public:
 	void MainDecision();
 	
 	void MangeInDataSetSearch();
-	void MangeInDataSetDelete();
+
+	void MangeInDataSetCombine(bool firsttime, int targetpos);
 
 
+
+
+	void MakeSearchingChoice(int x);
 	void searchingByID(int x);
 	void searchingByName(int x);
 	void searchingByYear(int x);
@@ -62,16 +66,16 @@ public:
 
 
 
-	void MakeCombineChoice(int x, bool firsttime);
-	void combineByID(int x, bool firsttime);
-	void combineByName(int x, bool firsttime);
-	void combineByYear(int x, bool firsttime);
-	void combineByPgType(int x, bool firsttime);
+	void MakeCombineChoice(int x, bool firsttime, int targetpos);
+	void combineByID(int x, bool firsttime, int targetpos);
+	void combineByName(int x, bool firsttime, int targetpos);
+	void combineByYear(int x, bool firsttime, int targetpos);
+	void combineByPgType(int x, bool firsttime, int targetpos);
 
-	void combineNumberOfType(int x, bool firsttime);
-	void combineByType1(int x, bool firsttime);
-	void combineByType2(int x, bool firsttime);
-	void combineByType3(int x, bool firsttime);
+	void combineNumberOfType(int x, bool firsttime, int targetpos);
+	void combineByType1(int x, bool firsttime, int targetpos);
+	void combineByType2(int x, bool firsttime, int targetpos);
+	void combineByType3(int x, bool firsttime, int targetpos);
 
 
 

@@ -181,7 +181,7 @@ void DataSetlist::MainDecision(){
 	cout << "Welcome to the program, it use for searching and update data." << endl;
 	cout << "*************************************************************" << endl;
 	cout << "Choose What function you want to do " << endl;
-	cout << "0. End		1. Insertion	2. Searching	3. Deletion	4.combination" << endl;
+	cout << "0. End		1. Insertion	2. Searching	3. Deletion	4.combination	5.Modify" << endl;
 	cin >> choice;
 	switch (choice)
 	{
@@ -208,13 +208,17 @@ void DataSetlist::MainDecision(){
 	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
-	case 4: MangeInDataSetCombine(true);system("pause"); system("cls"); MainDecision();
-	case 5: for (; IninnerDataSetHead != NULL; IninnerDataSetHead = IninnerDataSetHead->next) {
-		for (int i = 1; i <= 12; i++) {
+	case 4: MangeInDataSetCombine(true,0);system("pause"); system("cls"); MainDecision();
+	
+	case 5: MangeInDataSetModify(); system("pause"); system("cls"); MainDecision();
+	case 6:for (int i = 0; i < 20; i++) {
+		cout << i + 1 << "." << DataSethead->typelist[i] << endl;
+	} system("pause"); system("cls"); MainDecision();
+	case 7: for (; IninnerDataSetHead != NULL; IninnerDataSetHead = IninnerDataSetHead->next) {
+		for (int i = 1; i <= 11; i++) {
 			IninnerDataSetHead->filListSet->fildisplay(i);
 		}
-	}
-	case 5: MangeInDataSetModify(); system("pause"); system("cls"); MainDecision();
+	}system("pause"); system("cls"); MainDecision();
 	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
 	}
 }
@@ -591,9 +595,7 @@ void DataSetlist::ModifyingByID(int x) {
 			cout << "Enter the year" << endl; cin >> CurrNode1->startYear;
 			cout << "Enter the duration(H)" << endl; cin >> CurrNode1->runtimeMinutes;
 			for (int i = 0; i < 3; i++) {
-				if (CurrNode1->genres[i] != " ") {
-					cout << "Enter the " << i + 1 << "type of data" << endl; cin >> CurrNode1->genres[i];
-				}
+					cout << "Enter the " << i + 1 << "type of data(If nothing, just input /.) : " << endl; cin >> CurrNode1->genres[i];
 			}
 			counter++;
 			break;
@@ -604,6 +606,20 @@ void DataSetlist::ModifyingByID(int x) {
 	}
 	else {
 		cout << "Number of Data change: " << counter << endl;
+	}
+	delete CurrNode->filListSet;
+	CurrNode->filListSet = new FilList();
+	DataSet * InnerDataSetHead = CurrNode;
+	FilList * innerfillist = InnerDataSetHead->filListSet;
+	for (int i = 0; i < 10; i++) {
+		if (innerfillist->filhead == NULL) {
+			innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+		}
+		else {
+			innerfillist->next = new FilList();
+			innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+			innerfillist = innerfillist->next;
+		}
 	}
 }
 
@@ -648,6 +664,20 @@ void DataSetlist::ModifyingByName(int x){
 	else {
 		cout << "Number of Data change: " << counter << endl;
 	}
+	delete CurrNode->filListSet;
+	CurrNode->filListSet = new FilList();
+	DataSet * InnerDataSetHead = CurrNode;
+	FilList * innerfillist = InnerDataSetHead->filListSet;
+	for (int i = 0; i < 10; i++) {
+		if (innerfillist->filhead == NULL) {
+			innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+		}
+		else {
+			innerfillist->next = new FilList();
+			innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+			innerfillist = innerfillist->next;
+		}
+	}
 }
 
 void DataSetlist::ModifyingByYear(int x){
@@ -690,6 +720,20 @@ void DataSetlist::ModifyingByYear(int x){
 	else {
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data change: " << counter << endl;
+	}
+	delete CurrNode->filListSet;
+	CurrNode->filListSet = new FilList();
+	DataSet * InnerDataSetHead = CurrNode;
+	FilList * innerfillist = InnerDataSetHead->filListSet;
+	for (int i = 0; i < 10; i++) {
+		if (innerfillist->filhead == NULL) {
+			innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+		}
+		else {
+			innerfillist->next = new FilList();
+			innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+			innerfillist = innerfillist->next;
+		}
 	}
 }
 
@@ -735,21 +779,22 @@ void DataSetlist::ModifyingByPgType(int x){
 		cout << "*************************************************************" << endl;
 		cout << "Number of Data change: " << counter << endl;
 	}
-
+	delete CurrNode->filListSet;
+	CurrNode->filListSet = new FilList();
+	DataSet * InnerDataSetHead = CurrNode;
+	FilList * innerfillist = InnerDataSetHead->filListSet;
+	for (int i = 0; i < 10; i++) {
+		if (innerfillist->filhead == NULL) {
+			innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+		}
+		else {
+			innerfillist->next = new FilList();
+			innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+			innerfillist = innerfillist->next;
+		}
+	}
 
 }
-
-/*void DataSetlist::NumberOfTypeMod(int x){
-	int y;
-	cout << "How many type U want to input? Maximun: 3. " << endl;
-	cin >> y;
-	switch (y) {
-	case 1: modifyingByType1(x); MainDecision();
-	case 2: modifyingByType2(x); MainDecision();
-	case 3: modifyingByType3(x); MainDecision();
-	default: cout << "wrong input" << endl; NumberOfType(x);
-	}
-}*/
 
 void DataSetlist::modifyingByType(int x){
 	string y,a;
@@ -798,111 +843,21 @@ void DataSetlist::modifyingByType(int x){
 		cout << "Number of Data: " << counter << endl;
 		cout << "*************************************************************" << endl;
 	}
-}
-
-/*void DataSetlist::modifyingByType2(int x){
-	string y[2];
-	string z[2];
-	for (int i = 0; i < 2; i++) {
-		cout << "Enter the "<< i+1 <<" type of the data: " << endl;
-		cin.ignore();
-		getline(cin, y[i]);
-		cout << "*************************************************************" << endl;
-		cout << "Enter the type "<< i+1 <<" of the data u want to replace : " << endl;
-		getline(cin, z[i]);
-		cout << "*************************************************************" << endl;
-	}
-	int	counter = 0;
-	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
+	delete CurrNode->filListSet;
+	CurrNode->filListSet = new FilList();
+	DataSet * InnerDataSetHead = CurrNode;
+	FilList * innerfillist = InnerDataSetHead->filListSet;
+	for (int i = 0; i < 10; i++) {
+		if (innerfillist->filhead == NULL) {
+			innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
 		}
-	}
-
-	counter = 0;
-	Node * CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (int i = 0; i < 3; i++) {
-			if (y[i].compare(CurrNode1->genres[i]) == 0) {
-				CurrNode1->genres[i] = z[i];
-				//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				counter++;
-				break;
-			}
+		else {
+			innerfillist->next = new FilList();
+			innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+			innerfillist = innerfillist->next;
 		}
-	}
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (int i = 0; i < 3; i++) {
-			if (z[i].compare(CurrNode1->genres[i]) == 0) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-			}
-		}
-	}
-
-	if (counter == 0) {
-		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
-	}
-	else {
-		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
 	}
 }
-
-void DataSetlist::modifyingByType3(int x){
-	string y[3];
-	string z[3];
-	for (int i = 0; i < 3; i++) {
-		cout << "Enter the "<<i<<" type of the data: " << endl;
-		cin.ignore();
-		getline(cin, y[i]);
-		cout << "*************************************************************" << endl;
-		cout << "Enter the type "<<i<<" of the data u want to replace : " << endl;
-		getline(cin, z[i]);
-		cout << "*************************************************************" << endl;
-	}
-	int	counter = 0;
-	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-
-	counter = 0;
-	Node * CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (int i = 0; i < 3; i++) {
-			if (y[i].compare(CurrNode1->genres[i]) == 0) {
-				CurrNode1->genres[i] = z[i];
-				//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				counter++;
-				break;
-			}
-		}
-	}
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		for (int i = 0; i < 3; i++) {
-			if (z[i].compare(CurrNode1->genres[i]) == 0) {
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-			}
-		}
-	}
-
-	if (counter == 0) {
-		cout << "No data match" << endl;
-		cout << "*************************************************************" << endl;
-	}
-	else {
-		cout << "Number of Data: " << counter << endl;
-		cout << "*************************************************************" << endl;
-	}
-}
-*/
-
 
 
 void DataSetlist::MangeInDataSetDelete() {
@@ -1369,7 +1324,6 @@ void DataSetlist::DeleteByType2(int x) {
 		}
 	}
 }
-
 void DataSetlist::DeleteByType3(int x) {
 	bool check = false;
 	string j, k, l;
@@ -1454,7 +1408,7 @@ void DataSetlist::DeleteByType3(int x) {
 	}
 }
 
-void DataSetlist::MangeInDataSetCombine(bool firsttime){
+void DataSetlist::MangeInDataSetCombine(bool firsttime , int targetpos){
 	int counter = 0;
 	int x;
 	bool check = false;
@@ -1462,26 +1416,44 @@ void DataSetlist::MangeInDataSetCombine(bool firsttime){
 	if (firsttime == true) {
 		cout << "Which DataSet you want to combine?" << endl;
 		cout << "Reminder:This DataSet will be the path of the list)" << endl;
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			cout << "DataSet " << counter << endl;
+		}
+		cout << "*************************************************************" << endl;
+		cin >> x;
+		targetpos = x;
+		cout << "*************************************************************" << endl;
+		counter = 0;
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				check = true;
+				break;
+			}
+		}
 	}
 	else {
 		cout << "Which DataSet you want to combine?" << endl;
 		cout << "Reminder:This will not be the path of the list)" << endl;
-	}
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		cout << "DataSet " << counter << endl;
-	}
-	cout << "*************************************************************" << endl;
-	cin >> x;
-	cout << "*************************************************************" << endl;
-	counter = 0;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			check = true;
-			break;
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			cout << "DataSet " << counter << endl;
+		}
+		cout << "*************************************************************" << endl;
+		cin >> x;
+
+		cout << "*************************************************************" << endl;
+		counter = 0;
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				check = true;
+				break;
+			}
 		}
 	}
+
 	if (check == false) {
 		cout << "Here is no such a DataSet" << endl;
 		cout << "Now return to lobby" << endl;
@@ -1490,39 +1462,39 @@ void DataSetlist::MangeInDataSetCombine(bool firsttime){
 		MainDecision();
 	}
 	else {
-		MakeCombineChoice(x, firsttime);
+		MakeCombineChoice(x, firsttime, targetpos);
 	}
 };
 
-void DataSetlist::MakeCombineChoice(int x, bool firsttime) {
+void DataSetlist::MakeCombineChoice(int x, bool firsttime, int targetpos) {
 	int y;
 	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	0. Stop Searching" << endl;
 	cin >> y;
 	switch (y)
 	{
 	case 0: return;
-	case 1: combineByID(x , firsttime); 
-	case 2: combineByName(x , firsttime); 
-	case 3: combineByYear(x , firsttime); 
-	case 4: combineByPgType(x , firsttime); 
-	case 5: combineNumberOfType(x , firsttime); 
+	case 1: combineByID(x , firsttime, targetpos);
+	case 2: combineByName(x , firsttime, targetpos);
+	case 3: combineByYear(x , firsttime, targetpos);
+	case 4: combineByPgType(x , firsttime, targetpos);
+	case 5: combineNumberOfType(x , firsttime, targetpos);
 	default: cout << "wrong input." << endl; system("pause"); system("cls"); MainDecision();
 	}
 }
 
-void DataSetlist::combineNumberOfType(int x, bool firsttime) {
+void DataSetlist::combineNumberOfType(int x, bool firsttime, int targetpos) {
 	int y;
 	cout << "How many type U want to input? Maximun: 3. " << endl;
 	cin >> y;
 	switch (y) {
-	case 1: combineByType1(x, firsttime);
-	case 2: combineByType2(x, firsttime);
-	case 3: combineByType3(x, firsttime);
-	default: combineNumberOfType(x, firsttime);
+	case 1: combineByType1(x, firsttime, targetpos);
+	case 2: combineByType2(x, firsttime, targetpos);
+	case 3: combineByType3(x, firsttime, targetpos);
+	default: combineNumberOfType(x, firsttime, targetpos);
 	}
 }
 
-void DataSetlist::combineByID(int x, bool firsttime) {
+void DataSetlist::combineByID(int x, bool firsttime, int targetpos) {
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
@@ -1531,13 +1503,14 @@ void DataSetlist::combineByID(int x, bool firsttime) {
 	int counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
+	DataSet* CurrNode1 = DataSethead;
 	if (firsttime == true) {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
 				CurrNode->typelist[i] = y;
@@ -1549,9 +1522,22 @@ void DataSetlist::combineByID(int x, bool firsttime) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_Type_List(CurrNode->listSet->head, y);
 		innerfillist->next = newfillist;
-		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false);
+		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == targetpos) {
+				break;
+			}
+		}
+		counter = 0;
+		for (CurrNode1 = DataSethead; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i+1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i]+","+y;
@@ -1563,13 +1549,13 @@ void DataSetlist::combineByID(int x, bool firsttime) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_Type_List(CurrNode->listSet->head, y);
+		newfillist->make_Type_List(CurrNode1->listSet->head, y);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
 }
 
-void DataSetlist::combineByName(int x, bool firsttime) {
+void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
 	string y;
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
@@ -1578,13 +1564,13 @@ void DataSetlist::combineByName(int x, bool firsttime) {
 	int counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
 	if (firsttime == true) {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
 				CurrNode->typelist[i] = y;
@@ -1596,9 +1582,15 @@ void DataSetlist::combineByName(int x, bool firsttime) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_Type_List(CurrNode->listSet->head, y);
 		innerfillist->next = newfillist;
-		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false);
+		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == targetpos) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + y;
@@ -1616,7 +1608,7 @@ void DataSetlist::combineByName(int x, bool firsttime) {
 	}
 }
 
-void DataSetlist::combineByYear(int x, bool firsttime){
+void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 	string y;
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
@@ -1632,6 +1624,12 @@ void DataSetlist::combineByYear(int x, bool firsttime){
 		}
 	}
 	if (firsttime == true) {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
 				CurrNode->typelist[i] = y;
@@ -1643,9 +1641,15 @@ void DataSetlist::combineByYear(int x, bool firsttime){
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_Type_List(CurrNode->listSet->head, y);
 		innerfillist->next = newfillist;
-		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false);
+		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == targetpos) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + y;
@@ -1663,7 +1667,7 @@ void DataSetlist::combineByYear(int x, bool firsttime){
 	}
 }
 
-void DataSetlist::combineByPgType(int x, bool firsttime) {
+void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 	int y;
 	cout << "Which programme type?" << endl;
 	cout << "1. movie		2. short	3. tvEpisode	4. tvMiniSeries		5. tvMovie	" << endl;
@@ -1673,13 +1677,13 @@ void DataSetlist::combineByPgType(int x, bool firsttime) {
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
-	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
 	if (firsttime == true) {
+		for (; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[y-1];
@@ -1691,9 +1695,15 @@ void DataSetlist::combineByPgType(int x, bool firsttime) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_Type_List(CurrNode->listSet->head, CurrNode->typelist[y-1]);
 		innerfillist->next = newfillist;
-		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false);
+		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
+		for (; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == targetpos){
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + CurrNode->typelist[y-1];
@@ -1711,7 +1721,7 @@ void DataSetlist::combineByPgType(int x, bool firsttime) {
 	}
 }
 
-void DataSetlist::combineByType1(int x, bool firsttime) {
+void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 	string y;
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
@@ -1720,14 +1730,13 @@ void DataSetlist::combineByType1(int x, bool firsttime) {
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-
 	if (firsttime == true) {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
 				CurrNode->typelist[i] = y;
@@ -1739,9 +1748,15 @@ void DataSetlist::combineByType1(int x, bool firsttime) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_Type_List(CurrNode->listSet->head, y);
 		innerfillist->next = newfillist;
-		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false);
+		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == targetpos) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + y;
@@ -1759,7 +1774,7 @@ void DataSetlist::combineByType1(int x, bool firsttime) {
 	}
 }
 
-void DataSetlist::combineByType2(int x, bool firsttime) {
+void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 	string j, k;
 	cout << "Enter the first type of the data: " << endl;
 	cin.ignore();
@@ -1771,14 +1786,13 @@ void DataSetlist::combineByType2(int x, bool firsttime) {
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-
 	if (firsttime == true) {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
 				CurrNode->typelist[i] = j+","+k;
@@ -1790,9 +1804,15 @@ void DataSetlist::combineByType2(int x, bool firsttime) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_gen_List2(CurrNode->listSet->head, j , k);
 		innerfillist->next = newfillist;
-		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false);
+		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == targetpos) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + j + "," + k;
@@ -1810,7 +1830,7 @@ void DataSetlist::combineByType2(int x, bool firsttime) {
 	}
 }
 
-void DataSetlist::combineByType3(int x, bool firsttime) {
+void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
 	string j, k, l;
 	cout << "Enter the first type of the data: " << endl;
 	cin.ignore();
@@ -1825,14 +1845,13 @@ void DataSetlist::combineByType3(int x, bool firsttime) {
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-
 	if (firsttime == true) {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == x) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
 				CurrNode->typelist[i] = j + "," + k + "," + l;
@@ -1844,9 +1863,15 @@ void DataSetlist::combineByType3(int x, bool firsttime) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_gen_List3(CurrNode->listSet->head, j, k, l);
 		innerfillist->next = newfillist;
-		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false);
+		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
+		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+			counter++;
+			if (counter == targetpos) {
+				break;
+			}
+		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
 				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + j + "," + k + "," + l;
