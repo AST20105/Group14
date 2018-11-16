@@ -963,6 +963,9 @@ void DataSetlist::MangeInDataSetDelete() {
 		cout << "DataSet " << counter << endl;
 	}
 	cin >> x;
+	clock_t start;
+	double duration;
+	start = clock();
 	counter = 0;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;
@@ -978,6 +981,9 @@ void DataSetlist::MangeInDataSetDelete() {
 	else {
 		MakeDeletionChoice(x);
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::MakeDeletionChoice(int x) {
@@ -1001,6 +1007,9 @@ void DataSetlist::DeletionByID(int x) {
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -1053,6 +1062,9 @@ void DataSetlist::DeletionByID(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::DeletionByName(int x) {
@@ -1060,6 +1072,9 @@ void DataSetlist::DeletionByName(int x) {
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -1112,6 +1127,9 @@ void DataSetlist::DeletionByName(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::DeletionByYear(int x) {
@@ -1119,6 +1137,9 @@ void DataSetlist::DeletionByYear(int x) {
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -1177,6 +1198,9 @@ void DataSetlist::DeletionByYear(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::DeletionByPgType(int x) {
@@ -1184,6 +1208,9 @@ void DataSetlist::DeletionByPgType(int x) {
 	cout << "Enter the programe type of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -1242,6 +1269,9 @@ void DataSetlist::DeletionByPgType(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::NumberOfTypeDel(int x) {
@@ -1263,6 +1293,9 @@ void DataSetlist::DeleteByType1(int x) {
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -1333,6 +1366,9 @@ void DataSetlist::DeleteByType1(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::DeleteByType2(int x) {
@@ -1344,6 +1380,9 @@ void DataSetlist::DeleteByType2(int x) {
 	cout << "*************************************************************" << endl;
 	cout << "Enter the second type of the data: " << endl;
 	getline(cin, k);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -1415,6 +1454,9 @@ void DataSetlist::DeleteByType2(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::DeleteByType3(int x) {
@@ -1429,6 +1471,9 @@ void DataSetlist::DeleteByType3(int x) {
 	cout << "*************************************************************" << endl;
 	cout << "Enter the third type of the data: " << endl;
 	getline(cin, l);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -1499,6 +1544,9 @@ void DataSetlist::DeleteByType3(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::MangeInDataSetCombine(bool firsttime , int targetpos){
@@ -1506,6 +1554,9 @@ void DataSetlist::MangeInDataSetCombine(bool firsttime , int targetpos){
 	int x;
 	bool check = false;
 	DataSet* CurrNode = DataSethead;
+	clock_t start;
+	double duration;
+	start = clock();
 	if (firsttime == true) {
 		cout << "Which DataSet you want to combine?" << endl;
 		cout << "Reminder:This DataSet will be the path of the list)" << endl;
@@ -1515,6 +1566,7 @@ void DataSetlist::MangeInDataSetCombine(bool firsttime , int targetpos){
 		}
 		cout << "*************************************************************" << endl;
 		cin >> x;
+
 		targetpos = x;
 		cout << "*************************************************************" << endl;
 		counter = 0;
@@ -1557,6 +1609,9 @@ void DataSetlist::MangeInDataSetCombine(bool firsttime , int targetpos){
 	else {
 		MakeCombineChoice(x, firsttime, targetpos);
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 };
 
 void DataSetlist::MakeCombineChoice(int x, bool firsttime, int targetpos) {
@@ -1592,6 +1647,9 @@ void DataSetlist::combineByID(int x, bool firsttime, int targetpos) {
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	int i = 0;
@@ -1646,6 +1704,9 @@ void DataSetlist::combineByID(int x, bool firsttime, int targetpos) {
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
@@ -1653,6 +1714,9 @@ void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	int i = 0;
@@ -1699,6 +1763,9 @@ void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
@@ -1706,6 +1773,9 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	int i = 0;
@@ -1758,6 +1828,9 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
@@ -1767,6 +1840,9 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 	cout << "6. tvSeries	7. tvShort	8. tvSpecial	9. video			10. videoGame	" << endl;
 	cout << "0. End" << endl;
 	cin >> y;
+	clock_t start;
+	double duration;
+	start = clock();
 	int	counter = 0;
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
@@ -1812,6 +1888,9 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
@@ -1819,6 +1898,9 @@ void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
 	getline(cin, y);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	int i = 0;
@@ -1865,6 +1947,9 @@ void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
@@ -1875,6 +1960,9 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 	cout << "*************************************************************" << endl;
 	cout << "Enter the second type of the data: " << endl;
 	getline(cin, k);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	int i = 0;
@@ -1921,6 +2009,9 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
@@ -1934,6 +2025,9 @@ void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
 	cout << "*************************************************************" << endl;
 	cout << "Enter the third type of the data: " << endl;
 	getline(cin, l);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	int i = 0;
@@ -1980,4 +2074,7 @@ void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
