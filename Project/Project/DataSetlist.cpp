@@ -1,7 +1,54 @@
 #include "DataSetlist.h"
 #include <cstdio>
 #include <ctime>
+#include <windows.h>
+#include <fstream>
 
+typedef enum FG_COLORS //foreground colors
+{
+	FG_BLACK = 0,
+	FG_BLUE = 1,
+	FG_GREEN = 2,
+	FG_CYAN = 3,
+	FG_RED = 4,
+	FG_MAGENTA = 5,
+	FG_BROWN = 6,
+	FG_LIGHTGRAY = 7,
+	FG_GRAY = 8,
+	FG_LIGHTBLUE = 9,
+	FG_LIGHTGREEN = 10,
+	FG_LIGHTCYAN = 11,
+	FG_LIGHTRED = 12,
+	FG_LIGHTMAGENTA = 13,
+	FG_YELLOW = 14,
+	FG_WHITE = 15
+}FG_COLORS;
+
+typedef enum BG_COLORS //backfround colors
+{
+	BG_NAVYBLUE = 16,
+	BG_GREEN = 32,
+	BG_TEAL = 48,
+	BG_MAROON = 64,
+	BG_PURPLE = 80,
+	BG_OLIVE = 96,
+	BG_SILVER = 112,
+	BG_GRAY = 128,
+	BG_BLUE = 144,
+	BG_LIME = 160,
+	BG_CYAN = 176,
+	BG_RED = 192,
+	BG_MAGENTA = 208,
+	BG_YELLOW = 224,
+	BG_WHITE = 240
+}BG_COLORS;
+
+WORD GetConsoleTextAttribute(HANDLE hCon) //color
+{
+	CONSOLE_SCREEN_BUFFER_INFO con_info;
+	GetConsoleScreenBufferInfo(hCon, &con_info);
+	return con_info.wAttributes;
+}
 
 DataSetlist::DataSetlist()
 {
@@ -11,6 +58,8 @@ DataSetlist::DataSetlist()
 
 
 void DataSetlist::fileinput() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	DataSet * outerhead = DataSethead;
 	Node * innerhead = DataSethead->listSet->head;
 	string tconst;
@@ -24,10 +73,13 @@ void DataSetlist::fileinput() {
 
 	int i = 0;
 
-
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 	cout << "Which dataSet you want to input?" << endl;
 	cout << "Filename: ";
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> filename;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	clock_t start;
 	double duration;
 	start = clock();
@@ -176,26 +228,68 @@ void DataSetlist::fileinput() {
 			outerhead->next = newset;
 		}
 	}
+	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN);
 	cout << i << endl;
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
+	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 
 
 void DataSetlist::MainDecision(){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	DataSet * InnerDataSetHead = DataSethead;
 	DataSet * IninnerDataSetHead = DataSethead;
 	int choice;
+	SetConsoleTextAttribute(hConsole, FG_LIGHTGREEN );
+	cout << "                                                       #      #####   #######       #####     ###      #      ###    #######                       " << endl;
+	cout << "                                                      # #    #     #     #         #     #   #   #    ##     #   #   #                             " << endl;
+	cout << "                                                     #   #   #           #               #  #     #  # #    #     #  #                             " << endl;
+	cout << "                                                    #     #   #####      #          #####   #     #    #    #     #  ######                        " << endl;
+	cout << "                                                    #######        #     #         #        #     #    #    #     #        #                       " << endl;
+	cout << "                                                    #     #  #     #     #         #         #   #     #     #   #   #     #                       " << endl;
+	cout << "                                                    #     #   #####      #         #######    ###    #####    ###     #####                        " << endl;
+	cout << "                                                                                                                                                   " << endl;
+	cout << "                                                          #####                                         #    #                                     " << endl;
+	cout << "                                                        #     #  #####    ####   #    #  #####        ##    #    #                                 " << endl;
+	cout << "                                                        #        #    #  #    #  #    #  #    #      # #    #    #                                 " << endl;
+	cout << "                                                        #  ####  #    #  #    #  #    #  #    #        #    #    #                                 " << endl;
+	cout << "                                                        #     #  #####   #    #  #    #  #####         #    #######                                " << endl;
+	cout << "                                                        #     #  #   #   #    #  #    #  #             #         #                                 " << endl;
+	cout << "                                                         #####   #    #   ####    ####   #           #####       #                                 " << endl;
+	cout << "                                                                                                                                                   " << endl;
+	cout << "                             ######                                  ######                                                                        " << endl;
+	cout << "                             #     #    ##    #####    ##            #     #  #####    ####    ####   ######   ####    ####   #  #    #   ####     " << endl;
+	cout << "                             #     #   #  #     #     #  #           #     #  #    #  #    #  #    #  #       #       #       #  ##   #  #    #    " << endl;
+	cout << "                             #     #  #    #    #    #    #          ######   #    #  #    #  #       #####    ####    ####   #  # #  #  #         " << endl;
+	cout << "                             #     #  ######    #    ######          #        #####   #    #  #       #            #       #  #  #  # #  #  ###    " << endl;
+	cout << "                             #     #  #    #    #    #    #          #        #   #   #    #  #    #  #       #    #  #    #  #  #   ##  #    #    " << endl;
+	cout << "                             ######   #    #    #    #    #          #        #    #   ####    ####   ######   ####    ####   #  #    #   ####     " << endl;
+	cout << "                                                                                                                                                   " << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
 	cout << "*************************************************************" << endl;
+	SetConsoleTextAttribute(hConsole, FG_LIGHTGREEN);
 	cout << "Welcome to the program, it use for searching and update data." << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
+	SetConsoleTextAttribute(hConsole, FG_LIGHTGREEN);
 	cout << "Choose What function you want to do " << endl;
-	cout << "0. End		1. Insertion	2. Searching	3. Deletion	4.combination	5.Modify" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_RED);
+	cout << "0. End		" ;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_YELLOW);
+	cout << "1. Insertion	2. Searching	3. Deletion	4.combination	5.Modify" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA);
 	cin >> choice;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	switch (choice)
 	{
-	case 0: system("cls"); cout << "Thanks for using our program!!" << endl; system("pause"); exit(0);
+	case 0: system("cls"); SetConsoleTextAttribute(hConsole, FG_LIGHTGREEN); cout << "Thanks for using our program!!" << endl; SetConsoleTextAttribute(hConsole, saved_colors); system("pause"); exit(0);
 	case 1:	{fileinput();
 		for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
 		system("pause");
@@ -221,31 +315,42 @@ void DataSetlist::MainDecision(){
 	
 	case 5: MangeInDataSetModify(); system("pause"); system("cls"); MainDecision();
 	case 6:for (int i = 0; i < 20; i++) {
+		SetConsoleTextAttribute(hConsole, FG_LIGHTGREEN);
 		cout << i + 1 << "." << DataSethead->typelist[i] << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	} system("pause"); system("cls"); MainDecision();
 	case 7: for (; IninnerDataSetHead != NULL; IninnerDataSetHead = IninnerDataSetHead->next) {
 		for (int i = 1; i <= 11; i++) {
 			IninnerDataSetHead->filListSet->fildisplay(i);
 		}
 	}system("pause"); system("cls"); MainDecision();
-	default: cout << "wrong input" << endl;	system("pause"); system("cls"); MainDecision(); 
+	default: SetConsoleTextAttribute(hConsole, FG_RED); cout << "wrong input" << endl;	system("pause");
+		SetConsoleTextAttribute(hConsole, saved_colors); system("cls"); MainDecision();
 	}
 }
 
 
 
 void DataSetlist::MangeInDataSetSearch() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int counter = 0;
 	int x;
 	bool check = false;
 	DataSet* CurrNode = DataSethead;
+	SetConsoleTextAttribute(hConsole, FG_LIGHTGREEN);
 	cout << "which DataSet you want to modify" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode=CurrNode->next) {
 		counter++;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTGREEN);
 		cout << "DataSet " << counter << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	cout << "*************************************************************" << endl;
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA);
 	cin >> x;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	clock_t start;
 	double duration;
 	start = clock();
@@ -259,19 +364,29 @@ void DataSetlist::MangeInDataSetSearch() {
 		}
 	}
 	if (check == false) {
+		SetConsoleTextAttribute(hConsole, FG_RED);
 		cout << "Wrong input" << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 		MainDecision();
 	}
 	else {
 		MakeSearchingChoice(x);
 	}
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+
+	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	cout << "Program Run time: " << duration << "s" << '\n';
+	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::MakeSearchingChoice(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
-	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	0. Stop Searching" << endl;
+
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	";
+	cout << "0. Stop Searching" << endl;
 	cin >> y;
 	switch (y)
 	{
@@ -286,6 +401,8 @@ void DataSetlist::MakeSearchingChoice(int x) {
 }
 
 void DataSetlist::searchingByID(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
@@ -322,6 +439,8 @@ void DataSetlist::searchingByID(int x) {
 }
 
 void DataSetlist::searchingByName(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
@@ -361,6 +480,8 @@ void DataSetlist::searchingByName(int x) {
 }
 
 void DataSetlist::searchingByYear(int x) {// add number of data which is equal to the year that user want to search
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
@@ -401,6 +522,8 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 }
 
 void DataSetlist::searchingByPgType(int y) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int x;
 	cout << "Which programme type?" << endl;
 	cout << "1. movie		2. short	3. tvEpisode	4. tvMiniSeries		5. tvMovie	" << endl;
@@ -433,6 +556,8 @@ void DataSetlist::searchingByPgType(int y) {
 }
 
 void DataSetlist::NumberOfType(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	cout << "How many type you want to input? Maximun: 3. " << endl;
 	cin >> y;
@@ -445,6 +570,8 @@ void DataSetlist::NumberOfType(int x) {
 }
 
 void DataSetlist::searchingByType1(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
@@ -485,6 +612,8 @@ void DataSetlist::searchingByType1(int x) {
 }
 
 void DataSetlist::searchingByType2(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string j,k;
 	cout << "Enter the first type of the data: " << endl;
 	cin.ignore();
@@ -529,6 +658,8 @@ void DataSetlist::searchingByType2(int x) {
 }
 
 void DataSetlist::searchingByType3(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string j, k,l;
 	cout << "Enter the first type of the data: " << endl;
 	cin.ignore();
@@ -577,6 +708,8 @@ void DataSetlist::searchingByType3(int x) {
 
 
 void DataSetlist::MangeInDataSetModify(){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int counter = 0;
 	int x;
 	bool check = false;
@@ -614,6 +747,8 @@ void DataSetlist::MangeInDataSetModify(){
 
 
 void DataSetlist::MakeModifyingChoice(int x){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	0. Stop Searching" << endl;
 	cin >> y;
@@ -630,6 +765,8 @@ void DataSetlist::MakeModifyingChoice(int x){
 }
 
 void DataSetlist::ModifyingByID(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
@@ -691,6 +828,8 @@ void DataSetlist::ModifyingByID(int x) {
 }
 
 void DataSetlist::ModifyingByName(int x){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
@@ -754,6 +893,8 @@ void DataSetlist::ModifyingByName(int x){
 }
 
 void DataSetlist::ModifyingByYear(int x){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y,z;
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
@@ -817,6 +958,8 @@ void DataSetlist::ModifyingByYear(int x){
 }
 
 void DataSetlist::ModifyingByPgType(int x){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y, z;
 	cout << "Enter the programme of the data" << endl;
 	cin.ignore();
@@ -881,6 +1024,8 @@ void DataSetlist::ModifyingByPgType(int x){
 }
 
 void DataSetlist::modifyingByType(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y, a;
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
@@ -953,6 +1098,8 @@ void DataSetlist::modifyingByType(int x) {
 
 
 void DataSetlist::MangeInDataSetDelete() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int counter = 0;
 	int x;
 	bool check = false;
@@ -987,6 +1134,8 @@ void DataSetlist::MangeInDataSetDelete() {
 }
 
 void DataSetlist::MakeDeletionChoice(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	cout << "1. By ID   2. By Name   3. By Year   4. By Programe Type   5.By Movie Type   0. Stop Searching" << endl;
 	cin >> y;
@@ -1003,6 +1152,8 @@ void DataSetlist::MakeDeletionChoice(int x) {
 }
 
 void DataSetlist::DeletionByID(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
@@ -1068,6 +1219,8 @@ void DataSetlist::DeletionByID(int x) {
 }
 
 void DataSetlist::DeletionByName(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
@@ -1133,6 +1286,8 @@ void DataSetlist::DeletionByName(int x) {
 }
 
 void DataSetlist::DeletionByYear(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
@@ -1204,6 +1359,8 @@ void DataSetlist::DeletionByYear(int x) {
 }
 
 void DataSetlist::DeletionByPgType(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the programe type of the data" << endl;
 	cin.ignore();
@@ -1275,6 +1432,8 @@ void DataSetlist::DeletionByPgType(int x) {
 }
 
 void DataSetlist::NumberOfTypeDel(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	cout << "How many type U want to input? Maximun: 3. " << endl;
 	cin >> y;
@@ -1288,6 +1447,8 @@ void DataSetlist::NumberOfTypeDel(int x) {
 }
 
 void DataSetlist::DeleteByType1(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	bool check = false;
 	string y;
 	cout << "Enter the type of the data: " << endl;
@@ -1372,6 +1533,8 @@ void DataSetlist::DeleteByType1(int x) {
 }
 
 void DataSetlist::DeleteByType2(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	bool check = false;
 	string j, k;
 	cout << "Enter the first type of the data: " << endl;
@@ -1460,6 +1623,8 @@ void DataSetlist::DeleteByType2(int x) {
 }
 
 void DataSetlist::DeleteByType3(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	bool check = false;
 	string j, k, l;
 	cout << "Enter the first type of the data: " << endl;
@@ -1550,6 +1715,8 @@ void DataSetlist::DeleteByType3(int x) {
 }
 
 void DataSetlist::MangeInDataSetCombine(bool firsttime , int targetpos){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int counter = 0;
 	int x;
 	bool check = false;
@@ -1615,6 +1782,8 @@ void DataSetlist::MangeInDataSetCombine(bool firsttime , int targetpos){
 };
 
 void DataSetlist::MakeCombineChoice(int x, bool firsttime, int targetpos) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	0. Stop Searching" << endl;
 	cin >> y;
@@ -1631,6 +1800,8 @@ void DataSetlist::MakeCombineChoice(int x, bool firsttime, int targetpos) {
 }
 
 void DataSetlist::combineNumberOfType(int x, bool firsttime, int targetpos) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	cout << "How many type U want to input? Maximun: 3. " << endl;
 	cin >> y;
@@ -1643,6 +1814,8 @@ void DataSetlist::combineNumberOfType(int x, bool firsttime, int targetpos) {
 }
 
 void DataSetlist::combineByID(int x, bool firsttime, int targetpos) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the ID of the data" << endl;
 	cin.ignore();
@@ -1710,6 +1883,8 @@ void DataSetlist::combineByID(int x, bool firsttime, int targetpos) {
 }
 
 void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the Name of the data" << endl;
 	cin.ignore();
@@ -1777,6 +1952,8 @@ void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
 }
 
 void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the Year of the data" << endl;
 	cin.ignore();
@@ -1850,6 +2027,8 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 }
 
 void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	cout << "Which programme type?" << endl;
 	cout << "1. movie		2. short	3. tvEpisode	4. tvMiniSeries		5. tvMovie	" << endl;
@@ -1918,6 +2097,8 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 }
 
 void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	cout << "Enter the type of the data: " << endl;
 	cin.ignore();
@@ -1985,6 +2166,8 @@ void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 }
 
 void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string j, k;
 	cout << "Enter the first type of the data: " << endl;
 	cin.ignore();
@@ -2055,6 +2238,8 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 }
 
 void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string j, k, l;
 	cout << "Enter the first type of the data: " << endl;
 	cin.ignore();
