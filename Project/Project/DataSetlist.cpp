@@ -888,6 +888,9 @@ void DataSetlist::modifyingByType(int x) {
 	cout << "*************************************************************" << endl;
 	cout << "Enter the type of the data u want to replace : " << endl;
 	getline(cin, a);
+	clock_t start;
+	double duration;
+	start = clock();
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -897,6 +900,53 @@ void DataSetlist::modifyingByType(int x) {
 			break;
 		}
 	}
+
+	counter = 0;
+	Node * CurrNode1 = CurrNode->listSet->head;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		for (int i = 0; i < 3; i++) {
+			if (y.compare(CurrNode1->genres[i]) == 0) {
+				CurrNode1->genres[i] = a;
+				//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+				counter++;
+				break;
+			}
+		}
+	}
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+		for (int i = 0; i < 3; i++) {
+			if (a.compare(CurrNode1->genres[i]) == 0) {
+				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+				break;
+			}
+		}
+	}
+
+	if (counter == 0) {
+		cout << "No data match" << endl;
+		cout << "*************************************************************" << endl;
+	}
+	else {
+		cout << "Number of Data: " << counter << endl;
+		cout << "*************************************************************" << endl;
+	}
+	delete CurrNode->filListSet;
+	CurrNode->filListSet = new FilList();
+	DataSet * InnerDataSetHead = CurrNode;
+	FilList * innerfillist = InnerDataSetHead->filListSet;
+	for (int i = 0; i < 10; i++) {
+		if (innerfillist->filhead == NULL) {
+			innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+		}
+		else {
+			innerfillist->next = new FilList();
+			innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
+			innerfillist = innerfillist->next;
+		}
+	}
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+
 }
 
 
