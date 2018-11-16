@@ -2,6 +2,8 @@
 #include <windows.h>
 #include <cstdio>
 #include <ctime>
+#include <fstream>
+
 
 typedef enum FG_COLORS //foreground colors
 {
@@ -66,8 +68,11 @@ DataSetlist::DataSetlist()
 
 
 
-
 void DataSetlist::fileinput() {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	DataSet * outerhead = DataSethead;
 	Node * innerhead = DataSethead->listSet->head;
 	string tconst;
@@ -80,11 +85,15 @@ void DataSetlist::fileinput() {
 	string filename = " ";
 
 	int lastdatasetpos = 0;
-
-
+	cout << "*************************************************************" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 	cout << "Which dataSet you want to input?" << endl;
 	cout << "Filename: ";
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> filename;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << endl;
 
 	dataSet.open(filename);
@@ -237,40 +246,30 @@ void DataSetlist::MainDecision(){
 	DataSet * InnerDataSetHead = DataSethead;
 	int choice;
 	SetConsoleTextAttribute(hConsole, FG_GREEN );
-	cout <<"                                                       #      #####   #######       #####     ###      #      ###    #######                           "<< endl;
-	cout <<"                                                      # #    #     #     #         #     #   #   #    ##     #   #   #                               "<< endl;  
-	cout <<"                                                     #   #   #           #               #  #     #  # #    #     #  #                                 "<< endl;
-	cout <<"                                                    #     #   #####      #          #####   #     #    #    #     #  ######                            "<< endl;
-	cout <<"                                                    #######        #     #         #        #     #    #    #     #        #                           "<< endl;
-	cout <<"                                                    #     #  #     #     #         #         #   #     #     #   #   #     #                           "<< endl;
-	cout <<"                                                    #     #   #####      #         #######    ###    #####    ###     #####                            "<< endl;
-	cout <<"                                                                                                                                                              "<< endl;
-	cout <<"                                                          #####                                         #    #                                      "<< endl;
+	cout <<"                                                       #      #####   #######       #####     ###      #      ###    #######                       "<< endl;
+	cout <<"                                                      # #    #     #     #         #     #   #   #    ##     #   #   #                             "<< endl;  
+	cout <<"                                                     #   #   #           #               #  #     #  # #    #     #  #                             "<< endl;
+	cout <<"                                                    #     #   #####      #          #####   #     #    #    #     #  ######                        "<< endl;
+	cout <<"                                                    #######        #     #         #        #     #    #    #     #        #                       "<< endl;
+	cout <<"                                                    #     #  #     #     #         #         #   #     #     #   #   #     #                       "<< endl;
+	cout <<"                                                    #     #   #####      #         #######    ###    #####    ###     #####                        "<< endl;
+	cout <<"                                                                                                                                                   "<< endl;
+	cout <<"                                                          #####                                         #    #                                     "<< endl;
 	cout <<"                                                        #     #  #####    ####   #    #  #####        ##    #    #                                 "<< endl;
 	cout <<"                                                        #        #    #  #    #  #    #  #    #      # #    #    #                                 "<< endl;
 	cout <<"                                                        #  ####  #    #  #    #  #    #  #    #        #    #    #                                 "<< endl;
 	cout <<"                                                        #     #  #####   #    #  #    #  #####         #    #######                                "<< endl;
 	cout <<"                                                        #     #  #   #   #    #  #    #  #             #         #                                 "<< endl;
 	cout <<"                                                         #####   #    #   ####    ####   #           #####       #                                 "<< endl;
-	cout <<"                                                                                                                                                                "<< endl;
-	cout <<"                             ######                                  ######                                                                     "<< endl;
-	cout <<"                             #     #    ##    #####    ##            #     #  #####    ####    ####   ######   ####    ####   #  #    #   ####  "<< endl;
-	cout <<"                             #     #   #  #     #     #  #           #     #  #    #  #    #  #    #  #       #       #       #  ##   #  #    # "<< endl;
-	cout <<"                             #     #  #    #    #    #    #          ######   #    #  #    #  #       #####    ####    ####   #  # #  #  #      "<< endl;
-	cout <<"                             #     #  ######    #    ######          #        #####   #    #  #       #            #       #  #  #  # #  #  ### "<< endl;
-	cout <<"                             #     #  #    #    #    #    #          #        #   #   #    #  #    #  #       #    #  #    #  #  #   ##  #    # "<< endl;
-	cout <<"                             ######   #    #    #    #    #          #        #    #   ####    ####   ######   ####    ####   #  #    #   ####  "<< endl;
-	cout <<"                                                                                                                                                                "<< endl;
-	/*
-	cout << "_______ _______ _______         _______    _______ _______ _______________________ ________________  " << endl;
-	cout << "(  ____ (  ____ (  ___  |\\     /(  ____ )  (  ____ (  ____ (  ___  \__    _(  ____ (  ____ \\__   __/  " << endl;
-	cout << "| (    \\| (    )| (   ) | )   ( | (    )|  | (    )| (    )| (   ) |  )  ( | (    \\| (    \\/  ) (    " << endl;
-	cout << "| |     | (____)| |   | | |   | | (____)|  | (____)| (____)| |   | |  |  | | (__   | |        | |    " << endl;
-	cout << "| | ____|     __| |   | | |   | |  _____)  |  _____|     __| |   | |  |  | |  __)  | |        | |    " << endl;
-	cout << "| | \\_  | (\\ (  | |   | | |   | | (        | (     | (\\ (  | |   | |  |  | | (     | |        | |    " << endl;
-	cout << "| (___) | ) \\ \\_| (___) | (___) | )        | )     | ) \\ \\_| (___) |\\_)  ) | (____/| (____/\\  | |    " << endl;
-	cout << "(_______|/   \\__(_______(_______|/         |/      |/   \\__(_______(____/  (_______(_______/  )_(    " << endl;
-	*/
+	cout <<"                                                                                                                                                   "<< endl;
+	cout <<"                             ######                                  ######                                                                        "<< endl;
+	cout <<"                             #     #    ##    #####    ##            #     #  #####    ####    ####   ######   ####    ####   #  #    #   ####     "<< endl;
+	cout <<"                             #     #   #  #     #     #  #           #     #  #    #  #    #  #    #  #       #       #       #  ##   #  #    #    "<< endl;
+	cout <<"                             #     #  #    #    #    #    #          ######   #    #  #    #  #       #####    ####    ####   #  # #  #  #         "<< endl;
+	cout <<"                             #     #  ######    #    ######          #        #####   #    #  #       #            #       #  #  #  # #  #  ###    "<< endl;
+	cout <<"                             #     #  #    #    #    #    #          #        #   #   #    #  #    #  #       #    #  #    #  #  #   ##  #    #    "<< endl;
+	cout <<"                             ######   #    #    #    #    #          #        #    #   ####    ####   ######   ####    ####   #  #    #   ####     "<< endl;
+	cout <<"                                                                                                                                                   "<< endl;
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
@@ -287,7 +286,8 @@ void DataSetlist::MainDecision(){
 
 	
 	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
-	cin >> choice;  cout << endl; SetConsoleTextAttribute(hConsole, saved_colors);
+	cin >> choice;  cout << endl << endl; SetConsoleTextAttribute(hConsole, saved_colors);
+	cout << endl;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 	if (choice == 1)
 		cout << "You chose Insertion" << endl << endl;
@@ -300,7 +300,7 @@ void DataSetlist::MainDecision(){
 	switch (choice)
 	{
 	case 0: system("cls");	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-		cout << "Thanks for using our program ! Hope you can give us a praise after that." << endl;	SetConsoleTextAttribute(hConsole, saved_colors);
+		cout << "Thanks for using our program ! Hope you can give us a praise after that." << endl << endl;	SetConsoleTextAttribute(hConsole, saved_colors);
 		system("pause"); exit(0);
 	case 1:	{fileinput();
 		for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
@@ -325,7 +325,7 @@ void DataSetlist::MainDecision(){
 	}
 	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
 	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
-	default: SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);  cout << "Please input a proper NUMBER !" << endl;	SetConsoleTextAttribute(hConsole, saved_colors);  system("pause"); system("cls"); MainDecision();
+	default: SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);  cout << "Please input a proper NUMBER !" << endl << endl;	SetConsoleTextAttribute(hConsole, saved_colors);  system("pause"); system("cls"); MainDecision();
 	}
 }
 
@@ -338,16 +338,22 @@ void DataSetlist::MangeInDataSetSearch() {
 	int x;
 	bool check = false;
 	DataSet* CurrNode = DataSethead;
+	cout << "*************************************************************" << endl;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 	cout << "Which DataSet you want to modify ? " << endl << endl ;
 	SetConsoleTextAttribute(hConsole, saved_colors);
-	///////////////////////TOBY 11.14 edited////////////////////////////`1
+	///////////////////////TOBY 11.14 edited////////////////////////////
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode=CurrNode->next) {
 		counter++;
-		cout << "DataSet " << counter << endl;
+		SetConsoleTextAttribute(hConsole, FG_YELLOW | FOREGROUND_INTENSITY);
+		cout << "DataSet " << counter << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	cout << "*************************************************************" << endl;
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> x;
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	counter = 0;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
@@ -358,7 +364,9 @@ void DataSetlist::MangeInDataSetSearch() {
 		}
 	}
 	if (check == false) {
-		cout << "Wrong input" << endl;
+		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+		cout << "Wrong input! Please input an integer ! " << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 		MangeInDataSetSearch();
 	}
 	else {
@@ -369,16 +377,26 @@ void DataSetlist::MangeInDataSetSearch() {
 
 
 void DataSetlist::MangeInDataSetDelete() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int counter = 0;
 	int x;
 	bool check = false;
 	DataSet* CurrNode = DataSethead;
-	cout << "which DataSet you want to modify" << endl;
+	cout << "*************************************************************" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "which DataSet you want to modify" << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;
-		cout << "DataSet " << counter << endl;
+		SetConsoleTextAttribute(hConsole, FG_YELLOW | FOREGROUND_INTENSITY);
+		cout << "DataSet " << counter << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA| FOREGROUND_INTENSITY);
 	cin >> x;
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	counter = 0;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 		counter++;
@@ -388,7 +406,9 @@ void DataSetlist::MangeInDataSetDelete() {
 		}
 	}
 	if (check == false) {
-		cout << "Wrong input" << endl;
+		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+		cout << "Wrong input" << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 		MangeInDataSetSearch();
 	}
 	else {
@@ -399,9 +419,22 @@ void DataSetlist::MangeInDataSetDelete() {
 
 
 void DataSetlist::MakeSearchingChoice(int x) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	int y;
-	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type	0. Stop Searching" << endl;
+	SetConsoleTextAttribute(hConsole, FG_YELLOW | FOREGROUND_INTENSITY);
+	cout << "1. By ID	2. By Name	3. By Year	4. By Programe Type	 5.By Movie Type";
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+	cout <<"	0. Stop Searching" << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> y;
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	
 	switch (y)
 	{
 	case 0: return;
@@ -417,10 +450,20 @@ void DataSetlist::MakeSearchingChoice(int x) {
 
 
 
-void DataSetlist::searchingByID(int x) {    
+void DataSetlist::searchingByID(int x) { 
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	string y;
-	cout << "Enter the ID of the data" << endl;
-	cin >> y;   
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the ID of the data" << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
+	cin >> y; 
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
 	clock_t start;
 	double duration;
 	start = clock();
@@ -444,23 +487,36 @@ void DataSetlist::searchingByID(int x) {
 		}
 	if (counter == 0) {
 		cout << "*************************************************************" << endl;
-		cout << "No data match" << endl;
+		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+		cout << "No data match" << endl ;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	else {
 		cout << "*************************************************************" << endl;
-		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	SetConsoleTextAttribute(hConsole, FG_BLUE | FOREGROUND_INTENSITY);
 	cout << "Program Run time: " << duration << "s" << '\n' ;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 
 
 void DataSetlist::searchingByName(int x) {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	string y;
-	cout << "Enter the Name of the data" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Name of the data" << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cin.ignore();
 	getline(cin, y);
+	cout << endl;
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -481,19 +537,31 @@ void DataSetlist::searchingByName(int x) {
 		}
 	if (counter == 0) {
 		cout << "*************************************************************" << endl;
+		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 		cout << "No data match" << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	else {
 		cout << "*************************************************************" << endl;
-		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 }
 
 
 void DataSetlist::searchingByYear(int x) {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
-	cout << "Enter the Year of the data" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Year of the data" << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> y;
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -514,20 +582,38 @@ void DataSetlist::searchingByYear(int x) {
 	}
 	if (counter == 0) {
 		cout << "*************************************************************" << endl;
-		cout << "No data match" << endl;
+		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+		cout << "No data match" << endl ;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	else {
 		cout << "*************************************************************" << endl;
-		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 }
 
 
 void DataSetlist::searchingByPgType() {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	int x;
-	cout << "Which programme type?" << endl;
-	cout << "1. short	2. movie	3. tvseries		4. tvepisode	5. video	0. End" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Please choose a programme type." << endl<< endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_YELLOW | FOREGROUND_INTENSITY);
+	cout << "1. short	2. movie	3. tvseries		4. tvepisode	5. video	";
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+	cout <<"	0. End "<< endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> x;
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	switch (x)
 	{
 	case 0: return;
@@ -567,9 +653,21 @@ void DataSetlist::searchingByPgType() {
 
 
 void DataSetlist::MakeDeletionChoice(int x) {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	int y;
-	cout << "1. By ID		2. By Name		3. By Year		4. By Programe Type		5.By Movie Type		0. Stop Searching" << endl;
+	SetConsoleTextAttribute(hConsole, FG_YELLOW | FOREGROUND_INTENSITY);
+	cout << "1. By ID  2. By Name  3. By Year  4. By Programe Type  5.By Movie Type  ";
+	SetConsoleTextAttribute(hConsole, saved_colors); 
+	SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+	cout << "0. Stop Searching" << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> y;
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	switch (y)
 	{
 	case 0: return;
@@ -585,9 +683,18 @@ void DataSetlist::MakeDeletionChoice(int x) {
 
 
 void DataSetlist::DeletionByID(int x) {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	string y;
-	cout << "Enter the ID of the data" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the ID of the data" << endl << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> y;
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -602,20 +709,26 @@ void DataSetlist::DeletionByID(int x) {
 	for (; CurrNode1 != NULL && CurrNode1->tconst != y; preNode = CurrNode1, CurrNode1 = CurrNode1->next);
 	if (CurrNode1->tconst != y) {
 		cout << "*************************************************************" << endl;
-		cout << "Data cannot find" << endl;
+		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+		cout << "Data cannot find" << endl ;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	else
 	{
 		if (preNode == NULL && CurrNode1->tconst == y) {
 			CurrNode->listSet->head = CurrNode1->next;
 			cout << "*************************************************************" << endl;
-			cout << "Data has been deleted" << endl;
+			SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+			cout << "Data deleted successfully" << endl ;
+			SetConsoleTextAttribute(hConsole, saved_colors);
 		}
 		else {
 			preNode->next = CurrNode1->next;
 			delete CurrNode1;
 			cout << "*************************************************************" << endl;
-			cout << "Data has been deleted" << endl;
+			SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+			cout << "Data deleted successfully" << endl  ;
+			SetConsoleTextAttribute(hConsole, saved_colors);
 		}
 	}
 	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
@@ -625,10 +738,22 @@ void DataSetlist::DeletionByID(int x) {
 
 
 void DataSetlist::DeletionByName(int x) {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	string y;
-	cout << "Enter the Name of the data" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Name of the data : " << endl << endl ;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
 	cin.ignore();
+	cout << endl << endl ; 
+
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	getline(cin,y);
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -643,20 +768,26 @@ void DataSetlist::DeletionByName(int x) {
 	for (; CurrNode1 != NULL &&CurrNode1->primaryTitle != y; preNode = CurrNode1, CurrNode1 = CurrNode1->next);
 	if (CurrNode1->primaryTitle != y) {
 		cout << "*************************************************************" << endl;
-		cout << "Data cannot find" << endl;
+		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+		cout << "Data cannot find" << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	else
 	{
 		if (preNode == NULL && CurrNode1->primaryTitle == y) {
 			CurrNode->listSet->head = CurrNode1->next;
 			cout << "*************************************************************" << endl;
-			cout << "Data has been deleted" << endl;
+			SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+			cout << "Data deleted successfully" << endl ;
+			SetConsoleTextAttribute(hConsole, saved_colors);
 		}
 		else {
 			preNode->next = CurrNode1->next;
 			delete CurrNode1;
 			cout << "*************************************************************" << endl;
-			cout << "Data has been deleted" << endl;
+			SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+			cout << "Data deleted successfully" << endl << endl ;
+			SetConsoleTextAttribute(hConsole, saved_colors);
 		}
 	}
 	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
@@ -666,9 +797,18 @@ void DataSetlist::DeletionByName(int x) {
 
 
 void DataSetlist::DeletionByYear() {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+
 	string x;
-	cout << "Enter the Year of the data" << endl;
+	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Year of the data" << endl << endl ;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> x;
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	Node* CurrNode = DataSethead->listSet->head, *preNode = NULL;
 	int counter = 0;
 	for (CurrNode = DataSethead->listSet->head; CurrNode->next != NULL; preNode = CurrNode, CurrNode = CurrNode->next) {
@@ -679,9 +819,13 @@ void DataSetlist::DeletionByYear() {
 		}
 	}
 	if (counter == 0) {
-		cout << "No data match" << endl;
+		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
+		cout << "No data match" << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	else {
-		cout << "Number of data deleted: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of data deleted: " << counter << endl << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 }
