@@ -57,6 +57,7 @@ public:
 	void DeletionByName(int x);
 	void DeletionByYear(int x);
 	void DeletionByPgType(int x);
+	void DeletionDataSet(int x);
 	void NumberOfTypeDel(int x);
 	void DeleteByType1(int x);
 	void DeleteByType2(int x);
