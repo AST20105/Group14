@@ -54,7 +54,7 @@ DataSetlist::DataSetlist()
 {
 	DataSethead = new DataSet();
 };
-
+	
 
 
 void DataSetlist::fileinput() {
@@ -235,9 +235,6 @@ void DataSetlist::fileinput() {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	cout << i << endl;
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 
@@ -321,65 +318,11 @@ void DataSetlist::MainDecision(){
 		SetConsoleTextAttribute(hConsole, saved_colors);
 		system("pause"); system("cls"); MainDecision();
 	}
-	case 2:	if (DataSethead->listSet->head == NULL) {
-		cout << "There is no dataSet import yet" << endl;
-		cout << "Press anykey to go to insert function" << endl;
-		system("pause"); system("cls");
-		fileinput(); for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
-		system("pause");
-		FilList * innerfillist = InnerDataSetHead->filListSet;
-		for (int i = 0; i < 10; i++) {
-			if (innerfillist->filhead == NULL) {
-				innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-			}
-			else {
-				innerfillist->next = new FilList();
-				innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-				innerfillist = innerfillist->next;
-			}
-		}
-		system("pause"); system("cls"); MainDecision();
-	}MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
-	case 3: if (DataSethead->listSet->head == NULL) {
-		cout << "There is no dataSet import yet" << endl;
-		cout << "Press anykey to go to insert function" << endl;
-		system("pause"); system("cls");
-		fileinput(); for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
-		system("pause");
-		FilList * innerfillist = InnerDataSetHead->filListSet;
-		for (int i = 0; i < 10; i++) {
-			if (innerfillist->filhead == NULL) {
-				innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-			}
-			else {
-				innerfillist->next = new FilList();
-				innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-				innerfillist = innerfillist->next;
-			}
-		}
-		system("pause"); system("cls"); MainDecision();
-	}MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
-	case 4: MangeInDataSetCombine(true, 0); system("pause"); system("cls"); MainDecision();
-
-	case 5: if (DataSethead->listSet->head == NULL) {
-		cout << "There is no dataSet import yet" << endl;
-		cout << "Press anykey to go to insert function" << endl;
-		system("pause"); system("cls");
-		fileinput(); for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
-		system("pause");
-		FilList * innerfillist = InnerDataSetHead->filListSet;
-		for (int i = 0; i < 10; i++) {
-			if (innerfillist->filhead == NULL) {
-				innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-			}
-			else {
-				innerfillist->next = new FilList();
-				innerfillist->next->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
-				innerfillist = innerfillist->next;
-			}
-		}
-		system("pause"); system("cls"); MainDecision();
-	}MangeInDataSetModify(); system("pause"); system("cls"); MainDecision();
+	case 2:	MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
+	case 3: MangeInDataSetDelete(); system("pause"); system("cls"); MainDecision();
+	case 4: MangeInDataSetCombine(true,0);system("pause"); system("cls"); MainDecision();
+	
+	case 5: MangeInDataSetModify(); system("pause"); system("cls"); MainDecision();
 	case 6:for (int i = 0; i < 20; i++) {
 		SetConsoleTextAttribute(hConsole, FG_LIGHTGREEN);
 		cout << i + 1 << "." << DataSethead->typelist[i] << endl;
@@ -435,11 +378,6 @@ void DataSetlist::MangeInDataSetSearch() {
 	else {
 		MakeSearchingChoice(x);
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::MakeSearchingChoice(int x) {
@@ -464,7 +402,7 @@ void DataSetlist::MakeSearchingChoice(int x) {
 	case 3: searchingByYear(x); system("pause"); system("cls"); MainDecision();
 	case 4: searchingByPgType(x); system("pause"); system("cls"); MainDecision();
 	case 5: NumberOfType(x); system("pause"); system("cls"); MainDecision();
-	default: SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY); cout << "Wrong input." << endl; SetConsoleTextAttribute(hConsole, saved_colors); MakeSearchingChoice(x);
+	default: SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY); cout << "Wrong input." << endl; SetConsoleTextAttribute(hConsole, saved_colors); MakeSearchingChoice(x); MainDecision();
 	}
 }
 
@@ -502,12 +440,6 @@ void DataSetlist::searchingByID(int x) {
 			break;
 		}
 	}
-
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
-
 	if (counter == 0) {
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 		cout << "No data found" << endl;
@@ -518,7 +450,10 @@ void DataSetlist::searchingByID(int x) {
 		cout << "Number of Data: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
-
+	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::searchingByName(int x) {
@@ -557,12 +492,6 @@ void DataSetlist::searchingByName(int x) {
 
 		}
 	}
-
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
-
 	if (counter == 0) {
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 		cout << "No data found" << endl;
@@ -573,9 +502,10 @@ void DataSetlist::searchingByName(int x) {
 		cout << "Number of data: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
+	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
-
+	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::searchingByYear(int x) {// add number of data which is equal to the year that user want to search
@@ -623,11 +553,8 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::searchingByPgType(int y) {
@@ -664,43 +591,43 @@ void DataSetlist::searchingByPgType(int y) {
 		case 0: return;
 		case 1: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(1); system("pause"); system("cls"); MainDecision();  //shortlist
 		case 2: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(2); system("pause"); system("cls"); MainDecision(); //movielist
 		case 3: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(3); system("pause"); system("cls"); MainDecision(); //tvserieslist
 		case 4: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(4); system("pause"); system("cls"); MainDecision(); //tvepisode
 		case 5:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(5); system("pause"); system("cls"); MainDecision(); //videolist
 		case 6:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(6); system("pause"); system("cls"); MainDecision();
 		case 7:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(7); system("pause"); system("cls"); MainDecision();
 		case 8:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(8); system("pause"); system("cls"); MainDecision();
 		case 9:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(9); system("pause"); system("cls"); MainDecision();
 		case 10:SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(10); system("pause"); system("cls"); MainDecision();
 		default: searchingByPgType(y);
 		}
@@ -775,11 +702,7 @@ void DataSetlist::searchingByType1(int x) {
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
 	SetConsoleTextAttribute(hConsole, saved_colors);
-	system("pause");
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::searchingByType2(int x) {
@@ -814,19 +737,19 @@ void DataSetlist::searchingByType2(int x) {
 
 	int i = 0;
 	for (; i < 20; i++) {
-		if ((CurrNode->typelist[i] == j + "," + k) || (CurrNode->typelist[i] == k + "," + j)) {
-			CurrNode->filListSet->next->fildisplay(i);
+		if ((CurrNode->typelist[i] == j+","+k)|| (CurrNode->typelist[i] == k + "," + j)) {
+			CurrNode->filListSet->next->fildisplay(i); 
 			system("pause"); system("cls"); MainDecision();
 		}
 		if (CurrNode->typelist[i] == "") {
-			CurrNode->typelist[i] = j + "," + k;
+			CurrNode->typelist[i] = j+","+k;
 			break;
 		}
 	}
 	FilList * innerfillist = CurrNode->filListSet;
 	FilList * newfillist = new FilList();
 	for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
-	newfillist->make_gen_List2(CurrNode->listSet->head, j, k);
+	newfillist->make_gen_List2(CurrNode->listSet->head, j , k);
 	innerfillist->next = newfillist;
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
@@ -877,28 +800,25 @@ void DataSetlist::searchingByType3(int x) {
 
 	int i = 0;
 	for (; i < 20; i++) {
-		if ((CurrNode->typelist[i] == j + "," + k + "," + l) || (CurrNode->typelist[i] == j + "," + l + "," + k) || (CurrNode->typelist[i] == k + "," + j + "," + l) || (CurrNode->typelist[i] == k + "," + l + "," + j) || (CurrNode->typelist[i] == l + "," + k + "," + j) || (CurrNode->typelist[i] == l + "," + j + "," + k)) {
-			CurrNode->filListSet->next->fildisplay(i);
+		if ((CurrNode->typelist[i] == j+","+k+","+l)|| (CurrNode->typelist[i] == j + "," + l + "," + k)|| (CurrNode->typelist[i] == k + "," + j + "," + l)|| (CurrNode->typelist[i] == k + "," + l + "," + j)|| (CurrNode->typelist[i] == l + "," + k + "," + j)|| (CurrNode->typelist[i] == l + "," + j + "," + k)) {
+			CurrNode->filListSet->next->fildisplay(i); 
 			system("pause"); system("cls"); MainDecision();
 		}
 		if (CurrNode->typelist[i] == "") {
-			CurrNode->typelist[i] = j + "," + k + "," + l;
+			CurrNode->typelist[i] = j + "," + k+","+l;
 			break;
 		}
 	}
 	FilList * innerfillist = CurrNode->filListSet;
 	FilList * newfillist = new FilList();
 	for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
-	newfillist->make_gen_List3(CurrNode->listSet->head, j, k, l);
+	newfillist->make_gen_List3(CurrNode->listSet->head, j, k ,l);
 	innerfillist->next = newfillist;
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 
@@ -965,13 +885,13 @@ void DataSetlist::MakeModifyingChoice(int x){
 	switch (y)
 	{
 	case 0: return;
-	case 1: ModifyingByID(x); system("pause"); system("cls"); MainDecision();
-	case 2: ModifyingByName(x); system("pause"); system("cls"); MainDecision();
-	case 3: ModifyingByYear(x); system("pause"); system("cls"); MainDecision();
-	case 4: ModifyingByPgType(x); system("pause"); system("cls"); MainDecision();
-	case 5: modifyingByType(x); system("pause"); system("cls"); MainDecision();
+	case 1: ModifyingByID(x); MainDecision();
+	case 2: ModifyingByName(x); MainDecision();
+	case 3: ModifyingByYear(x); MainDecision();
+	case 4: ModifyingByPgType(x); MainDecision();
+	case 5: modifyingByType(x); MainDecision();
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
-	default: cout << "Wrong input." << endl; system("pause"); system("cls"); MakeSearchingChoice(x);
+	default: cout << "Wrong input." << endl; MakeSearchingChoice(x); MainDecision();
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 }
@@ -1076,9 +996,6 @@ void DataSetlist::ModifyingByID(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::ModifyingByName(int x){
@@ -1186,9 +1103,6 @@ void DataSetlist::ModifyingByName(int x){
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::ModifyingByYear(int x){
@@ -1365,8 +1279,6 @@ void DataSetlist::ModifyingByPgType(int x){
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
 
 }
 
@@ -1507,9 +1419,6 @@ void DataSetlist::MangeInDataSetDelete() {
 	else {
 		MakeDeletionChoice(x);
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::MakeDeletionChoice(int x) {
@@ -1529,12 +1438,12 @@ void DataSetlist::MakeDeletionChoice(int x) {
 	switch (y)
 	{
 	case 0: return;
-	case 1: DeletionByID(x); system("pause"); system("cls"); MainDecision();
-	case 2: DeletionByName(x); system("pause"); system("cls"); MainDecision();
-	case 3: DeletionByYear(x); system("pause"); system("cls"); MainDecision();
-	case 4: DeletionByPgType(x); system("pause"); system("cls"); MainDecision();
-	case 5: NumberOfTypeDel(x); system("pause"); system("cls"); MainDecision();
-	default: system("cls"); MakeDeletionChoice(x);
+	case 1: DeletionByID(x); MainDecision();
+	case 2: DeletionByName(x); MainDecision();
+	case 3: DeletionByYear(x); MainDecision();
+	case 4: DeletionByPgType(x); MainDecision();
+	case 5: NumberOfTypeDel(x); MainDecision();
+	default: MakeDeletionChoice(x);
 	}
 }
 
@@ -1632,9 +1541,6 @@ void DataSetlist::DeletionByID(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::DeletionByName(int x) {
@@ -1729,9 +1635,6 @@ void DataSetlist::DeletionByName(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::DeletionByYear(int x) {
@@ -1917,45 +1820,6 @@ void DataSetlist::DeletionByPgType(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
-}
-
-void DataSetlist::DeletionDataSet(int x) {
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
-	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
-	clock_t start;
-	double duration;
-	start = clock();
-	cout << "*************************************************************" << endl;
-	int	counter = 0;
-	DataSet* CurrNode = DataSethead;
-	DataSet* PvNode = NULL;
-	for (CurrNode = DataSethead; CurrNode != NULL; PvNode = CurrNode, CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
-	if (PvNode == NULL) {
-		if (CurrNode->next == NULL) {
-			delete CurrNode;
-			DataSet* n1 = new DataSet();
-			CurrNode = n1;
-		}
-		else {
-			DataSethead = CurrNode->next;
-			delete CurrNode;
-		}
-	}
-	else {
-		PvNode->next = CurrNode->next;
-		delete CurrNode;
-	}
-
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
 }
 
 void DataSetlist::NumberOfTypeDel(int x) {
@@ -2023,22 +1887,22 @@ void DataSetlist::DeleteByType1(int x) {
 				break;
 			}
 		}
-		if (check == true) {
-			if (innerhead == NULL) {
-				Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
-				innerhead = newlist1;
-				CurrNode->listSet->head = innerhead;
+			if (check == true) {
+				if (innerhead == NULL) {
+					Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+					innerhead = newlist1;
+					CurrNode->listSet->head = innerhead;
+				}
+				else {
+					Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
+					innerhead->next = newlist1;
+					innerhead = innerhead->next;
+
+				}
 			}
 			else {
-				Node* newlist1 = new Node(CurrNode1->tconst, CurrNode1->titleType, CurrNode1->primaryTitle, CurrNode1->startYear, CurrNode1->runtimeMinutes, CurrNode1->genres[0], CurrNode1->genres[1], CurrNode1->genres[2]);
-				innerhead->next = newlist1;
-				innerhead = innerhead->next;
-
+				counter++;
 			}
-		}
-		else {
-			counter++;
-		}
 	}
 	CurrNode1 = CurrNode->listSet->head;
 
@@ -2080,9 +1944,6 @@ void DataSetlist::DeleteByType1(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::DeleteByType2(int x) {
@@ -2196,9 +2057,6 @@ void DataSetlist::DeleteByType2(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::DeleteByType3(int x) {
@@ -2321,9 +2179,6 @@ void DataSetlist::DeleteByType3(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 
@@ -2441,11 +2296,11 @@ void DataSetlist::MakeCombineChoice(int x, bool firsttime, int targetpos) {
 	switch (y)
 	{
 	case 0: return;
-	case 1: combineByID(x, firsttime, targetpos); system("pause"); system("cls"); MainDecision();
-	case 2: combineByName(x , firsttime, targetpos); system("pause"); system("cls"); MainDecision();
-	case 3: combineByYear(x , firsttime, targetpos); system("pause"); system("cls"); MainDecision();
-	case 4: combineByPgType(x , firsttime, targetpos); system("pause"); system("cls"); MainDecision();
-	case 5: combineNumberOfType(x , firsttime, targetpos); system("pause"); system("cls"); MainDecision();
+	case 1: combineByID(x , firsttime, targetpos);
+	case 2: combineByName(x , firsttime, targetpos);
+	case 3: combineByYear(x , firsttime, targetpos);
+	case 4: combineByPgType(x , firsttime, targetpos);
+	case 5: combineNumberOfType(x , firsttime, targetpos);
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 	default: cout << "Wrong input." << endl; 
 		SetConsoleTextAttribute(hConsole, saved_colors);
@@ -2531,8 +2386,8 @@ void DataSetlist::combineByID(int x, bool firsttime, int targetpos) {
 			}
 		}
 		for (; i < 20; i++) {
-			if (CurrNode->typelist[i + 1] == "") {
-				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + y;
+			if (CurrNode->typelist[i+1] == "") {
+				CurrNode->typelist[i] = CurrNode->typelist[i]+","+y;
 				break;
 			}
 		}
@@ -2549,9 +2404,6 @@ void DataSetlist::combineByID(int x, bool firsttime, int targetpos) {
 		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::combineByName(int x, bool firsttime, int targetpos) {
@@ -2751,21 +2603,21 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
-				CurrNode->typelist[i] = CurrNode->typelist[y - 1];
+				CurrNode->typelist[i] = CurrNode->typelist[y-1];
 				break;
 			}
 		}
 		FilList * innerfillist = CurrNode->filListSet;
 		FilList * newfillist = new FilList();
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
-		newfillist->make_Type_List(CurrNode->listSet->head, CurrNode->typelist[y - 1]);
+		newfillist->make_Type_List(CurrNode->listSet->head, CurrNode->typelist[y-1]);
 		innerfillist->next = newfillist;
 		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
 		for (; CurrNode != NULL; CurrNode = CurrNode->next) {
 			counter++;
-			if (counter == targetpos) {
+			if (counter == targetpos){
 				break;
 			}
 		}
@@ -2778,7 +2630,7 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i + 1] == "") {
-				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + CurrNode->typelist[y - 1];
+				CurrNode->typelist[i] = CurrNode->typelist[i] + "," + CurrNode->typelist[y-1];
 				break;
 			}
 		}
@@ -2787,7 +2639,7 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_Type_List(CurrNode1->listSet->head, CurrNode->typelist[y - 1]);
+		newfillist->make_Type_List(CurrNode1->listSet->head, CurrNode->typelist[y-1]);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
@@ -2909,14 +2761,14 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 		}
 		for (; i < 20; i++) {
 			if (CurrNode->typelist[i] == "") {
-				CurrNode->typelist[i] = j + "," + k;
+				CurrNode->typelist[i] = j+","+k;
 				break;
 			}
 		}
 		FilList * innerfillist = CurrNode->filListSet;
 		FilList * newfillist = new FilList();
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
-		newfillist->make_gen_List2(CurrNode->listSet->head, j, k);
+		newfillist->make_gen_List2(CurrNode->listSet->head, j , k);
 		innerfillist->next = newfillist;
 		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
@@ -2945,7 +2797,7 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		filterNode * innerfillisthead = innerfillist->filhead;
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
-		newfillist->make_gen_List2(CurrNode1->listSet->head, j, k);
+		newfillist->make_gen_List2(CurrNode1->listSet->head, j,k);
 		innerfillisthead->filnext = newfillist->filhead;
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
