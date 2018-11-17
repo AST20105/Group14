@@ -562,8 +562,6 @@ void DataSetlist::searchingByName(int x) {
 		cout << "Number of data: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
 
 }
 
@@ -614,8 +612,6 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 	cout << "Program Run time: " << duration << "s" << '\n';
 	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
 
 }
 
@@ -766,8 +762,6 @@ void DataSetlist::searchingByType1(int x) {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	system("pause");
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
 
 }
 
@@ -819,7 +813,7 @@ void DataSetlist::searchingByType2(int x) {
 	innerfillist->next = newfillist;
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 
@@ -883,10 +877,8 @@ void DataSetlist::searchingByType3(int x) {
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
 
 }
 
@@ -910,9 +902,6 @@ void DataSetlist::MangeInDataSetModify(){
 	}
 	cout << "*************************************************************" << endl;
 	cin >> x;
-	clock_t start;
-	double duration;
-	start = clock();
 	cout << "*************************************************************" << endl;
 	counter = 0;
 	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
@@ -931,10 +920,6 @@ void DataSetlist::MangeInDataSetModify(){
 	else {
 		MakeModifyingChoice(x);
 	}
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 
 }
 
@@ -1150,6 +1135,7 @@ void DataSetlist::ModifyingByName(int x){
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
 	SetConsoleTextAttribute(hConsole, saved_colors);
+	system("pause");
 
 	if (counter == 0) {
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
@@ -1175,9 +1161,6 @@ void DataSetlist::ModifyingByName(int x){
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::ModifyingByYear(int x){
@@ -1619,9 +1602,6 @@ void DataSetlist::DeletionByID(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::DeletionByName(int x) {
@@ -1716,9 +1696,6 @@ void DataSetlist::DeletionByName(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::DeletionByYear(int x) {
@@ -1787,9 +1764,9 @@ void DataSetlist::DeletionByYear(int x) {
 	}
 	else {
 		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-			//SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-			//SetConsoleTextAttribute(hConsole, saved_colors);
+			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
+			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			SetConsoleTextAttribute(hConsole, saved_colors);
 
 		}
 		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
@@ -1904,8 +1881,7 @@ void DataSetlist::DeletionByPgType(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
+
 
 }
 
@@ -1940,9 +1916,6 @@ void DataSetlist::DeletionDataSet(int x) {
 		PvNode->next = CurrNode->next;
 		delete CurrNode;
 	}
-
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
 }
 
 void DataSetlist::NumberOfTypeDel(int x) {
@@ -2029,8 +2002,8 @@ void DataSetlist::DeleteByType1(int x) {
 	}
 	CurrNode1 = CurrNode->listSet->head;
 
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	ConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duratSetion = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	system("pause");
@@ -2067,9 +2040,6 @@ void DataSetlist::DeleteByType1(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::DeleteByType2(int x) {
@@ -2183,8 +2153,6 @@ void DataSetlist::DeleteByType2(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
 
 }
 
@@ -2308,9 +2276,6 @@ void DataSetlist::DeleteByType3(int x) {
 			innerfillist = innerfillist->next;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 
@@ -2404,10 +2369,6 @@ void DataSetlist::MangeInDataSetCombine(bool firsttime , int targetpos){
 	else {
 		MakeCombineChoice(x, firsttime, targetpos);
 	}
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 
 };
 
@@ -2536,8 +2497,7 @@ void DataSetlist::combineByID(int x, bool firsttime, int targetpos) {
 		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
+
 
 }
 
@@ -2662,6 +2622,10 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_Type_List(CurrNode->listSet->head, y);
 		innerfillist->next = newfillist;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
@@ -2692,12 +2656,12 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
 		newfillist->make_Type_List(CurrNode1->listSet->head, y);
 		innerfillisthead->filnext = newfillist->filhead;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
@@ -2743,6 +2707,10 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_Type_List(CurrNode->listSet->head, CurrNode->typelist[y - 1]);
 		innerfillist->next = newfillist;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
@@ -2772,12 +2740,12 @@ void DataSetlist::combineByPgType(int x, bool firsttime, int targetpos) {
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
 		newfillist->make_Type_List(CurrNode1->listSet->head, CurrNode->typelist[y - 1]);
 		innerfillisthead->filnext = newfillist->filhead;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
@@ -2818,6 +2786,10 @@ void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_Type_List(CurrNode->listSet->head, y);
 		innerfillist->next = newfillist;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
@@ -2847,12 +2819,12 @@ void DataSetlist::combineByType1(int x, bool firsttime, int targetpos) {
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
 		newfillist->make_Type_List(CurrNode1->listSet->head, y);
 		innerfillisthead->filnext = newfillist->filhead;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
@@ -2901,6 +2873,10 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_gen_List2(CurrNode->listSet->head, j, k);
 		innerfillist->next = newfillist;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
@@ -2930,12 +2906,12 @@ void DataSetlist::combineByType2(int x, bool firsttime, int targetpos) {
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
 		newfillist->make_gen_List2(CurrNode1->listSet->head, j, k);
 		innerfillisthead->filnext = newfillist->filhead;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
@@ -2992,6 +2968,10 @@ void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
 		for (; innerfillist->next != NULL; innerfillist = innerfillist->next) {}
 		newfillist->make_gen_List3(CurrNode->listSet->head, j, k, l);
 		innerfillist->next = newfillist;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->next->fildisplay(i); system("pause"); system("cls"); MangeInDataSetCombine(false, targetpos);
 	}
 	else {
@@ -3021,10 +3001,10 @@ void DataSetlist::combineByType3(int x, bool firsttime, int targetpos) {
 		for (; innerfillisthead->filnext != NULL; innerfillisthead = innerfillisthead->filnext) {}
 		newfillist->make_gen_List3(CurrNode1->listSet->head, j, k, l);
 		innerfillisthead->filnext = newfillist->filhead;
+		SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		cout << "Program Run time: " << duration << "s" << '\n';
+		SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 		innerfillist->fildisplay(i); system("pause"); system("cls"); MainDecision();
 	}
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
