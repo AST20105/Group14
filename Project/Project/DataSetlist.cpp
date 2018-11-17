@@ -235,9 +235,6 @@ void DataSetlist::fileinput() {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	cout << i << endl;
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 
@@ -313,9 +310,6 @@ void DataSetlist::MainDecision(){
 				innerfillist = innerfillist->next;
 			}
 		}
-
-		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
-		//InnerDataSetHead->filListSet->fildisplay(); 
 		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 		cout << "Program Run time: " << duration << "s" << '\n';
 		SetConsoleTextAttribute(hConsole, saved_colors);
@@ -435,11 +429,6 @@ void DataSetlist::MangeInDataSetSearch() {
 	else {
 		MakeSearchingChoice(x);
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::MakeSearchingChoice(int x) {
@@ -717,9 +706,9 @@ void DataSetlist::NumberOfType(int x) {
 	cin >> y;
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	switch (y) {
-	case 1: searchingByType1(x); MainDecision();
-	case 2: searchingByType2(x); MainDecision();
-	case 3: searchingByType3(x); MainDecision();
+	case 1: searchingByType1(x); system("pause"); system("cls"); MainDecision();
+	case 2: searchingByType2(x); system("pause"); system("cls"); MainDecision();
+	case 3: searchingByType3(x); system("pause"); system("cls"); MainDecision();
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 	default: cout << "Wrong input" << endl; NumberOfType(x);
 		SetConsoleTextAttribute(hConsole, saved_colors);
@@ -1507,9 +1496,6 @@ void DataSetlist::MangeInDataSetDelete() {
 	else {
 		MakeDeletionChoice(x);
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-
 }
 
 void DataSetlist::MakeDeletionChoice(int x) {
@@ -1517,7 +1503,7 @@ void DataSetlist::MakeDeletionChoice(int x) {
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	SetConsoleTextAttribute(hConsole, FG_YELLOW | FOREGROUND_INTENSITY);
-	cout << "1. By ID   2. By Name   3. By Year   4. By Programe Type   5.By Movie Type   ";
+	cout << "1. By ID   2. By Name   3. By Year   4. By Programe Type   5.By Movie Type  6.By DataSet ";
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 	cout << "0. Stop Searching" << endl;
@@ -1534,6 +1520,7 @@ void DataSetlist::MakeDeletionChoice(int x) {
 	case 3: DeletionByYear(x); system("pause"); system("cls"); MainDecision();
 	case 4: DeletionByPgType(x); system("pause"); system("cls"); MainDecision();
 	case 5: NumberOfTypeDel(x); system("pause"); system("cls"); MainDecision();
+	case 6: DeletionDataSet(x); system("pause"); system("cls"); MainDecision();
 	default: system("cls"); MakeDeletionChoice(x);
 	}
 }
@@ -1970,10 +1957,10 @@ void DataSetlist::NumberOfTypeDel(int x) {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 
 	switch (y) {
-	case 1: DeleteByType1(x); MainDecision();
-	case 2: DeleteByType2(x); MainDecision();
-	case 3: DeleteByType3(x); MainDecision();
-	default: NumberOfType(x);
+	case 1: DeleteByType1(x); system("pause"); system("cls"); MainDecision();
+	case 2: DeleteByType2(x); system("pause"); system("cls"); MainDecision();
+	case 3: DeleteByType3(x); system("pause"); system("cls"); MainDecision();
+	default: NumberOfTypeDel(x);
 	}
 
 }
@@ -2465,9 +2452,9 @@ void DataSetlist::combineNumberOfType(int x, bool firsttime, int targetpos) {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 
 	switch (y) {
-	case 1: combineByType1(x, firsttime, targetpos);
-	case 2: combineByType2(x, firsttime, targetpos);
-	case 3: combineByType3(x, firsttime, targetpos);
+	case 1: combineByType1(x, firsttime, targetpos); system("pause"); system("cls"); MainDecision();
+	case 2: combineByType2(x, firsttime, targetpos); system("pause"); system("cls"); MainDecision();
+	case 3: combineByType3(x, firsttime, targetpos); system("pause"); system("cls"); MainDecision();
 	default: combineNumberOfType(x, firsttime, targetpos);
 	}
 }
@@ -2656,12 +2643,7 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 	int i = 0;
 	DataSet* CurrNode = DataSethead;
 	DataSet* CurrNode1 = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
-		counter++;
-		if (counter == x) {
-			break;
-		}
-	}
+
 	if (firsttime == true) {
 		for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
 			counter++;
@@ -2688,6 +2670,7 @@ void DataSetlist::combineByYear(int x, bool firsttime, int targetpos){
 			if (counter == targetpos) {
 				break;
 			}
+			//counter++;
 		}
 		counter = 0;
 		for (CurrNode1 = DataSethead; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
