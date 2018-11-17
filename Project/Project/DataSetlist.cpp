@@ -304,9 +304,6 @@ void DataSetlist::MainDecision() {
 				innerfillist = innerfillist->next;
 			}
 		}
-
-		//InnerDataSetHead->filListSet->make_Type_List(InnerDataSetHead->listSet->head, "short");
-		//InnerDataSetHead->filListSet->fildisplay(); 
 		system("pause"); system("cls"); MainDecision();
 	}
 	case 2:	if (DataSethead->listSet->head == NULL) {
