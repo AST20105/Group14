@@ -440,12 +440,6 @@ void DataSetlist::searchingByID(int x) {
 			break;
 		}
 	}
-
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
-
 	if (counter == 0) {
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 		cout << "No data found" << endl;
@@ -456,7 +450,10 @@ void DataSetlist::searchingByID(int x) {
 		cout << "Number of Data: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
-
+	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::searchingByName(int x) {
@@ -495,12 +492,6 @@ void DataSetlist::searchingByName(int x) {
 
 		}
 	}
-
-	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
-
 	if (counter == 0) {
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 		cout << "No data found" << endl;
@@ -511,7 +502,10 @@ void DataSetlist::searchingByName(int x) {
 		cout << "Number of data: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
-
+	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';
+	SetConsoleTextAttribute(hConsole, saved_colors);
 }
 
 void DataSetlist::searchingByYear(int x) {// add number of data which is equal to the year that user want to search
@@ -559,7 +553,7 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
-	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
+	SetConsoleTextAttribute(hConsole, saved_colors);
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
 }
 
@@ -597,43 +591,43 @@ void DataSetlist::searchingByPgType(int y) {
 		case 0: return;
 		case 1: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(1); system("pause"); system("cls"); MainDecision();  //shortlist
 		case 2: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(2); system("pause"); system("cls"); MainDecision(); //movielist
 		case 3: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(3); system("pause"); system("cls"); MainDecision(); //tvserieslist
 		case 4: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(4); system("pause"); system("cls"); MainDecision(); //tvepisode
 		case 5:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(5); system("pause"); system("cls"); MainDecision(); //videolist
 		case 6:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(6); system("pause"); system("cls"); MainDecision();
 		case 7:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(7); system("pause"); system("cls"); MainDecision();
 		case 8:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(8); system("pause"); system("cls"); MainDecision();
 		case 9:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(9); system("pause"); system("cls"); MainDecision();
 		case 10:SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
+				cout << "Program Run time: " << duration << "s" << '\n'; 
 				CurrNode->filListSet->fildisplay(10); system("pause"); system("cls"); MainDecision();
 		default: searchingByPgType(y);
 		}
@@ -708,7 +702,6 @@ void DataSetlist::searchingByType1(int x) {
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
 	SetConsoleTextAttribute(hConsole, saved_colors);
-	system("pause");
 	innerfillist->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
 }
 
