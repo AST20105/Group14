@@ -592,6 +592,10 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 	int i = 0;
 	for (; i < 20; i++) {
 		if (CurrNode->typelist[i] == y) {
+			SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+			duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+			cout << "Program Run time: " << duration << "s" << '\n';
+			SetConsoleTextAttribute(hConsole, saved_colors);
 			CurrNode->filListSet->next->fildisplay(i); system("pause"); system("cls"); MainDecision();
 		}
 		if (CurrNode->typelist[i] == "") {
@@ -2002,8 +2006,8 @@ void DataSetlist::DeleteByType1(int x) {
 	}
 	CurrNode1 = CurrNode->listSet->head;
 
-	ConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duratSetion = (clock() - start) / (double)CLOCKS_PER_SEC;
+	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	cout << "Program Run time: " << duration << "s" << '\n';
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	system("pause");
