@@ -402,7 +402,7 @@ void DataSetlist::MakeSearchingChoice(int x) {
 	case 3: searchingByYear(x); system("pause"); system("cls"); MainDecision();
 	case 4: searchingByPgType(x); system("pause"); system("cls"); MainDecision();
 	case 5: NumberOfType(x); system("pause"); system("cls"); MainDecision();
-	default: SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY); cout << "Wrong input." << endl; SetConsoleTextAttribute(hConsole, saved_colors); MakeSearchingChoice(x); MainDecision();
+	default: SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY); cout << "Wrong input." << endl; SetConsoleTextAttribute(hConsole, saved_colors); MakeSearchingChoice(x);
 	}
 }
 
@@ -892,13 +892,13 @@ void DataSetlist::MakeModifyingChoice(int x){
 	switch (y)
 	{
 	case 0: return;
-	case 1: ModifyingByID(x); MainDecision();
-	case 2: ModifyingByName(x); MainDecision();
-	case 3: ModifyingByYear(x); MainDecision();
-	case 4: ModifyingByPgType(x); MainDecision();
-	case 5: modifyingByType(x); MainDecision();
+	case 1: ModifyingByID(x); system("pause"); system("cls"); MainDecision();
+	case 2: ModifyingByName(x); system("pause"); system("cls"); MainDecision();
+	case 3: ModifyingByYear(x); system("pause"); system("cls"); MainDecision();
+	case 4: ModifyingByPgType(x); system("pause"); system("cls"); MainDecision();
+	case 5: modifyingByType(x); system("pause"); system("cls"); MainDecision();
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
-	default: cout << "Wrong input." << endl; MakeSearchingChoice(x); MainDecision();
+	default: cout << "Wrong input." << endl; system("pause"); system("cls"); MakeSearchingChoice(x);
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 }
@@ -1445,12 +1445,12 @@ void DataSetlist::MakeDeletionChoice(int x) {
 	switch (y)
 	{
 	case 0: return;
-	case 1: DeletionByID(x); MainDecision();
-	case 2: DeletionByName(x); MainDecision();
-	case 3: DeletionByYear(x); MainDecision();
-	case 4: DeletionByPgType(x); MainDecision();
-	case 5: NumberOfTypeDel(x); MainDecision();
-	default: MakeDeletionChoice(x);
+	case 1: DeletionByID(x); system("pause"); system("cls"); MainDecision();
+	case 2: DeletionByName(x); system("pause"); system("cls"); MainDecision();
+	case 3: DeletionByYear(x); system("pause"); system("cls"); MainDecision();
+	case 4: DeletionByPgType(x); system("pause"); system("cls"); MainDecision();
+	case 5: NumberOfTypeDel(x); system("pause"); system("cls"); MainDecision();
+	default: system("cls"); MakeDeletionChoice(x);
 	}
 }
 
@@ -2303,11 +2303,11 @@ void DataSetlist::MakeCombineChoice(int x, bool firsttime, int targetpos) {
 	switch (y)
 	{
 	case 0: return;
-	case 1: combineByID(x , firsttime, targetpos);
-	case 2: combineByName(x , firsttime, targetpos);
-	case 3: combineByYear(x , firsttime, targetpos);
-	case 4: combineByPgType(x , firsttime, targetpos);
-	case 5: combineNumberOfType(x , firsttime, targetpos);
+	case 1: combineByID(x, firsttime, targetpos); system("pause"); system("cls"); MainDecision();
+	case 2: combineByName(x , firsttime, targetpos); system("pause"); system("cls"); MainDecision();
+	case 3: combineByYear(x , firsttime, targetpos); system("pause"); system("cls"); MainDecision();
+	case 4: combineByPgType(x , firsttime, targetpos); system("pause"); system("cls"); MainDecision();
+	case 5: combineNumberOfType(x , firsttime, targetpos); system("pause"); system("cls"); MainDecision();
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 	default: cout << "Wrong input." << endl; 
 		SetConsoleTextAttribute(hConsole, saved_colors);
