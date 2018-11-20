@@ -49964,7 +49964,7 @@ tt0068294	movie	Bluebeard	1972	125	"Crime,Drama,Thriller"
 tt0068295	movie	Bloody Friday	1972	94	"Action,Crime,Drama"
 tt0068296	movie	Naughty Nymphs	1972	90	Comedy
 tt0068297	movie	Blutjunge Verfhrerinnen 2	1972	\N	Comedy
-tt0068298	movie	Blutjunge Verfhrerinnen 3. Teil	1972	82	Comedy
+tt0068298	movie	Blutjunge Verfhrerinnen 3	1972	82	Comedy
 tt0068299	tvEpisode	Bob herceg	1972	84	Musical
 tt0068300	movie	Boccaccio	1972	102	Comedy
 tt0068301	movie	La boda o la vida	1974	94	"Comedy,Musical"
