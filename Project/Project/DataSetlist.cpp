@@ -413,7 +413,7 @@ void DataSetlist::MangeInDataSetSearch() {		// to ask user want to search base o
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	counter = 0;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {// moving the node pointer which is equal to the dataset that user want to search
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) { // moving the node pointer which is equal to the dataset that user want to search
 		counter++;
 		if (counter == x) {
 			check = true;
@@ -460,7 +460,7 @@ void DataSetlist::MakeSearchingChoice(int x) {
 
 void DataSetlist::searchingByID(int x) {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
-	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color..
 	string y;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 	cout << "Enter the ID of the data" << endl;
@@ -475,7 +475,7 @@ void DataSetlist::searchingByID(int x) {
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {	//moving the pointer to the destination dataset
 		counter++;
 		if (counter == x) {
 			break;
@@ -483,27 +483,27 @@ void DataSetlist::searchingByID(int x) {
 	}
 	counter = 0;
 	Node* CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		if (y.compare(CurrNode1->tconst) == 0) {
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {  // searching the id for each record.
+		if (y.compare(CurrNode1->tconst) == 0) {	// if the id match with user input id, cout the record and stop searching.
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			SetConsoleTextAttribute(hConsole, saved_colors);
-			counter++;
+			counter++;// user for counting how many record are match with the input condition.
 			break;
 		}
 	}
 
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the time that use for searching
 	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 
-	if (counter == 0) {
+	if (counter == 0) {	// cout if there are no data match.
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
-		cout << "No data found" << endl;
+		cout << "No data found" << endl;	
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
-	else {
+	else {	// cout the number of data match with the input condition
 		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 		cout << "Number of Data: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
@@ -524,11 +524,11 @@ void DataSetlist::searchingByName(int x) {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock();	// starting counting 
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {		//moving the pointer to the destination dataset
 		counter++;
 		if (counter == x) {
 			break;
@@ -538,8 +538,8 @@ void DataSetlist::searchingByName(int x) {
 
 	counter = 0;
 	Node* CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		if (y.compare(CurrNode1->primaryTitle) == 0) {
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {	// searching the name by each record.
+		if (y.compare(CurrNode1->primaryTitle) == 0) {		// if the title name equal to the input condition, cout out the record.
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			SetConsoleTextAttribute(hConsole, saved_colors);
@@ -549,16 +549,16 @@ void DataSetlist::searchingByName(int x) {
 	}
 
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;// stop counting the time
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the time that 
 	SetConsoleTextAttribute(hConsole, saved_colors); system("pause");
 
-	if (counter == 0) {
+	if (counter == 0) {	// cout if there not data match with the input condition
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 		cout << "No data found" << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
-	else {
+	else {		//cout the number of data match with the condition.
 		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 		cout << "Number of data: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
@@ -579,7 +579,7 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock();	//start counting
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -620,7 +620,7 @@ void DataSetlist::searchingByYear(int x) {// add number of data which is equal t
 
 }
 
-void DataSetlist::searchingByPgType(int y) {
+void DataSetlist::searchingByPgType(int y) {// prompt user to choose which programme type that he/she want to search and cout the record which is fill in 10 kinds of data.
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int x;
@@ -639,7 +639,7 @@ void DataSetlist::searchingByPgType(int y) {
 
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock(); //start counting
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -654,44 +654,44 @@ void DataSetlist::searchingByPgType(int y) {
 		case 0: return;
 		case 1: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(1); system("pause"); system("cls"); MainDecision();  //shortlist
+				cout << "Program Run time: " << duration << "s" << '\n'; system("pause"); // cout out the time, the run time should be 0s because it has aready filtered in the file input function.
+				CurrNode->filListSet->fildisplay(1); system("pause"); system("cls"); MainDecision();  //movielist
 		case 2: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(2); system("pause"); system("cls"); MainDecision(); //movielist
+				CurrNode->filListSet->fildisplay(2); system("pause"); system("cls"); MainDecision(); //shortlist
 		case 3: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(3); system("pause"); system("cls"); MainDecision(); //tvserieslist
+				CurrNode->filListSet->fildisplay(3); system("pause"); system("cls"); MainDecision(); //tvEpisodelist
 		case 4: SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(4); system("pause"); system("cls"); MainDecision(); //tvepisode
+				CurrNode->filListSet->fildisplay(4); system("pause"); system("cls"); MainDecision(); //tvMiniSerieslist
 		case 5:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(5); system("pause"); system("cls"); MainDecision(); //videolist
+				CurrNode->filListSet->fildisplay(5); system("pause"); system("cls"); MainDecision(); //tvMovielist
 		case 6:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(6); system("pause"); system("cls"); MainDecision();
+				CurrNode->filListSet->fildisplay(6); system("pause"); system("cls"); MainDecision(); //tvSerieslist
 		case 7:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(7); system("pause"); system("cls"); MainDecision();
+				CurrNode->filListSet->fildisplay(7); system("pause"); system("cls"); MainDecision(); //tvShortlist
 		case 8:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(8); system("pause"); system("cls"); MainDecision();
+				CurrNode->filListSet->fildisplay(8); system("pause"); system("cls"); MainDecision(); //tvSpeciallist
 		case 9:	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(9); system("pause"); system("cls"); MainDecision();
+				CurrNode->filListSet->fildisplay(9); system("pause"); system("cls"); MainDecision(); //videolist
 		case 10:SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 				duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 				cout << "Program Run time: " << duration << "s" << '\n'; system("pause");
-				CurrNode->filListSet->fildisplay(10); system("pause"); system("cls"); MainDecision();
+				CurrNode->filListSet->fildisplay(10); system("pause"); system("cls"); MainDecision(); //videoGamelist
 		default: searchingByPgType(y);
 		}
 }
@@ -701,15 +701,15 @@ void DataSetlist::NumberOfType(int x) {
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int y;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-	cout << "How many type you want to input? Maximun: 3. " << endl;
-	SetConsoleTextAttribute(hConsole, saved_colors);
+	cout << "How many type you want to input? Maximun: 3. " << endl; // prompt user to input how many type of the movie he/she want to search in the same time 
+	SetConsoleTextAttribute(hConsole, saved_colors);				 // and go to the function.
 	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin >> y;
 	SetConsoleTextAttribute(hConsole, saved_colors);
-	switch (y) {	//filter the number of types
-	case 1: searchingByType1(x); system("pause"); system("cls"); MainDecision();
-	case 2: searchingByType2(x); system("pause"); system("cls"); MainDecision();
-	case 3: searchingByType3(x); system("pause"); system("cls"); MainDecision();
+	switch (y) {
+	case 1: searchingByType1(x); system("pause"); system("cls"); MainDecision();	// go to searchingByType1 function 
+	case 2: searchingByType2(x); system("pause"); system("cls"); MainDecision();	// go to searchingByType2 function 
+	case 3: searchingByType3(x); system("pause"); system("cls"); MainDecision();	// go to searchingByType3 function 
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 	default: cout << "Wrong input" << endl; NumberOfType(x);
 		SetConsoleTextAttribute(hConsole, saved_colors);
@@ -722,7 +722,7 @@ void DataSetlist::searchingByType1(int x) {
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-	cout << "Enter the type of the data: " << endl;
+	cout << "Enter the type of the data: " << endl;	// input the movie type.
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin.ignore();
@@ -731,11 +731,11 @@ void DataSetlist::searchingByType1(int x) {
 
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock();	//start counting
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {	//check the correctness of data
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {	// move to the dataset user want to search on.
 		counter++;
 		if (counter == x) {
 			break;
@@ -889,7 +889,7 @@ void DataSetlist::searchingByType3(int x) {
 
 
 
-void DataSetlist::MangeInDataSetModify(){
+void DataSetlist::MangeInDataSetModify(){	// to ask user want to search base on which dataset, it is acording to the dataset that user input ascendingly.
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int counter = 0;
@@ -909,21 +909,21 @@ void DataSetlist::MangeInDataSetModify(){
 	cin >> x;
 	cout << "*************************************************************" << endl;
 	counter = 0;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {  // moving the node pointer which is equal to the dataset that user want to search
 		counter++;
 		if (counter == x) {
 			check = true;
 			break;
 		}
 	}
-	if (check == false) {
+	if (check == false) {	// for checking weather there has the dataset or not.
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
-		cout << "Wrong input" << endl;
+		cout << "Wrong input" << endl;	//error message will come out if user choose the wrong dataset.
 		SetConsoleTextAttribute(hConsole, saved_colors);
-		MainDecision();;
+		MainDecision();;	//recursive function, going back to the mainDecision function.
 	}
 	else {
-		MakeModifyingChoice(x);
+		MakeModifyingChoice(x);		// if the checking is true, go into the searching choice 
 	}
 
 }
@@ -944,13 +944,13 @@ void DataSetlist::MakeModifyingChoice(int x){
 	switch (y)
 	{
 	case 0: return;
-	case 1: ModifyingByID(x); system("pause"); system("cls"); MainDecision();
-	case 2: ModifyingByName(x); system("pause"); system("cls"); MainDecision();
-	case 3: ModifyingByYear(x); system("pause"); system("cls"); MainDecision();
-	case 4: ModifyingByPgType(x); system("pause"); system("cls"); MainDecision();
-	case 5: modifyingByType(x); system("pause"); system("cls"); MainDecision();
+	case 1: ModifyingByID(x); system("pause"); system("cls"); MainDecision();	// go to moidfy function by id and after ward go back to the main decision.
+	case 2: ModifyingByName(x); system("pause"); system("cls"); MainDecision();	//go to modify function by Name and after ward go back to the main decision.
+	case 3: ModifyingByYear(x); system("pause"); system("cls"); MainDecision();  //go to modify function by year and after ward go back to the main decision.
+	case 4: ModifyingByPgType(x); system("pause"); system("cls"); MainDecision();  //go to modify function by titletype and after ward go back to the main decision.
+	case 5: modifyingByType(x); system("pause"); system("cls"); MainDecision();  //go to modify function by movie type.
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
-	default: cout << "Wrong input." << endl; system("pause"); system("cls"); MakeSearchingChoice(x);
+	default: cout << "Wrong input." << endl; system("pause"); system("cls"); MakeSearchingChoice(x); //wrong input and go back to searching choice.
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 }
@@ -968,7 +968,7 @@ void DataSetlist::ModifyingByID(int x) {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock(); // start counting 
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
@@ -986,36 +986,36 @@ void DataSetlist::ModifyingByID(int x) {
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-			cout << "Enter the programme title" << endl;
+			cout << "Enter the programme title" << endl; // enter the program type 
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_YELLOW | FOREGROUND_INTENSITY);
 			cout << "movie		short	  tvEpisode	  tvMiniSeries	 tvMovie	" << endl;
 			cout << "tvSeries	tvShort	  tvSpecial	  video		     videoGame " << endl;
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
-			cin >> CurrNode1->titleType;
+			cin >> CurrNode1->titleType;	
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-			cout << "Enter the name of the data" << endl; 
+			cout << "Enter the name of the data" << endl;  // enter the name
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_MAGENTA| FOREGROUND_INTENSITY);
-			cin >> CurrNode1->primaryTitle;
+			cin >> CurrNode1->primaryTitle;	
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-			cout << "Enter the year" << endl; 
+			cout << "Enter the year" << endl;	// enter the year
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 			cin >> CurrNode1->startYear;
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-			cout << "Enter the duration(H)" << endl; 
+			cout << "Enter the duration(H)" << endl;	// enter the duration
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 			cin >> CurrNode1->runtimeMinutes;
 			SetConsoleTextAttribute(hConsole, saved_colors);
 			for (int i = 0; i < 3; i++) {
 				SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-					cout << "Enter the " << i + 1 << "type of data(If nothing, just input /.) : " << endl; 
+					cout << "Enter the " << i + 1 << "type of data(If nothing, just input /.) : " << endl; // enter the movie type
 					SetConsoleTextAttribute(hConsole, saved_colors);
 					SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 					cin >> CurrNode1->genres[i];
@@ -1028,15 +1028,15 @@ void DataSetlist::ModifyingByID(int x) {
 
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
+	cout << "Program Run time: " << duration << "s" << '\n';	// cout the time for the function used.
 	SetConsoleTextAttribute(hConsole, saved_colors);
 
-	if (counter == 0) {
+	if (counter == 0) {	// cout if there are no data match
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 		cout << "No data found" << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
-	else {
+	else {	// cout the number of how many data has been change,
 		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 		cout << "Number of Data change: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
@@ -1060,7 +1060,7 @@ void DataSetlist::ModifyingByID(int x) {
 
 }
 
-void DataSetlist::ModifyingByName(int x){
+void DataSetlist::ModifyingByName(int x){	// same as the id but the condition change to the name of the data
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y;
@@ -1173,7 +1173,7 @@ void DataSetlist::ModifyingByYear(int x){
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	string y,z;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-	cout << "Enter the Year of the data" << endl;
+	cout << "Enter the Year of the data" << endl;	// the data with the same year change to be the new one.
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin.ignore();
@@ -1181,7 +1181,7 @@ void DataSetlist::ModifyingByYear(int x){
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
-	cout << "Changing to what year? (YYYY)" << endl;
+	cout << "Changing to what year? (YYYY)" << endl; // the year that change to be
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	getline(cin, z);
@@ -1192,7 +1192,7 @@ void DataSetlist::ModifyingByYear(int x){
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {	// move the pointer to the dataset that user want to modify on
 		counter++;
 		if (counter == x) {
 			break;
@@ -1201,9 +1201,9 @@ void DataSetlist::ModifyingByYear(int x){
 
 	counter = 0;
 	Node* CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
-		if (y.compare(CurrNode1->startYear) == 0) {
-			CurrNode1->startYear = z;
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {	
+		if (y.compare(CurrNode1->startYear) == 0) {	// search the year is it equal to the user input.
+			CurrNode1->startYear = z;	// change to the year to the new one that user want to change be.
 			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			counter++;
 		}
@@ -1212,7 +1212,7 @@ void DataSetlist::ModifyingByYear(int x){
 	
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
+	cout << "Program Run time: " << duration << "s" << '\n';// function fun time.
 	SetConsoleTextAttribute(hConsole, saved_colors);
 
 	if (counter == 0) {
@@ -1228,10 +1228,10 @@ void DataSetlist::ModifyingByYear(int x){
 	}
 	system("pause");
 
-	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) { // for cout the data after modify
 		if (z.compare(CurrNode1->startYear) == 0) {
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			SetConsoleTextAttribute(hConsole, saved_colors);
 		}
 	}
@@ -1262,7 +1262,7 @@ void DataSetlist::ModifyingByPgType(int x){
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FG_MAGENTA | FOREGROUND_INTENSITY);
 	cin.ignore();
-	getline(cin, y);
+	getline(cin, y); // the programme type user want to modify 
 	SetConsoleTextAttribute(hConsole, saved_colors);
 
 	cout << "*************************************************************" << endl;
@@ -1274,14 +1274,14 @@ void DataSetlist::ModifyingByPgType(int x){
 	cout << "*************************************************************" << endl;
 	
 	SetConsoleTextAttribute(hConsole, FG_MAGENTA| FOREGROUND_INTENSITY);
-	getline(cin, z);
+	getline(cin, z); // the data change to be the type.
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock(); // start counting the time
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {	// move the pointer to the dataset user want to modify on
 		counter++;
 		if (counter == x) {
 			break;
@@ -1290,9 +1290,9 @@ void DataSetlist::ModifyingByPgType(int x){
 
 	counter = 0;
 	Node* CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {	//search the pgtype that match the condition
 		if (y.compare(CurrNode1->titleType) == 0) {
-			counter++;
+			counter++; // counter how many data has been changed.
 			CurrNode1->titleType = z;
 			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 		}
@@ -1300,16 +1300,16 @@ void DataSetlist::ModifyingByPgType(int x){
 
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the function time that used.
 	SetConsoleTextAttribute(hConsole, saved_colors);
 
-	if (counter == 0) {
+	if (counter == 0) {	// cout if there are no data match
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 		cout << "No data match" << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 
 	}
-	else {
+	else {	//cout how many data has been changed.
 		cout << "*************************************************************" << endl;
 		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 		cout << "Number of Data change: " << counter << endl;
@@ -1322,7 +1322,7 @@ void DataSetlist::ModifyingByPgType(int x){
 
 		if (z.compare(CurrNode1->titleType) == 0) {
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 			SetConsoleTextAttribute(hConsole, saved_colors);
 
 		}
@@ -1368,11 +1368,11 @@ void DataSetlist::modifyingByType(int x) {
 
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock();// start counting
 	cout << "*************************************************************" << endl;
 	int	counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) { // move the pointer to the dataset that user want to modify on
 		counter++;
 		if (counter == x) {
 			break;
@@ -1381,12 +1381,12 @@ void DataSetlist::modifyingByType(int x) {
 
 	counter = 0;
 	Node * CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {	// search the data match with the condition
 		for (int i = 0; i < 3; i++) {
 			if (y.compare(CurrNode1->genres[i]) == 0) {
-				CurrNode1->genres[i] = a;
+				CurrNode1->genres[i] = a;	// change the movie type 
 				//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
-				counter++;
+				counter++;	// count how many data has been changed.
 				break;
 			}
 		}
@@ -1394,10 +1394,10 @@ void DataSetlist::modifyingByType(int x) {
 
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
 	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-	cout << "Program Run time: " << duration << "s" << '\n';
+	cout << "Program Run time: " << duration << "s" << '\n';// function run time.
 	SetConsoleTextAttribute(hConsole, saved_colors);
 
-	if (counter == 0) {
+	if (counter == 0) {	//cout if there are no data match
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
 
 		cout << "No data match" << endl;
@@ -1405,7 +1405,7 @@ void DataSetlist::modifyingByType(int x) {
 
 		cout << "*************************************************************" << endl;
 	}
-	else {
+	else {	// cout how many data has benn changed.
 		SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 		cout << "Number of Data: " << counter << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
@@ -1413,11 +1413,11 @@ void DataSetlist::modifyingByType(int x) {
 	}
 	system("pause");
 
-	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {// cout the changed data
 		for (int i = 0; i < 3; i++) {
 			if (a.compare(CurrNode1->genres[i]) == 0) {
 				SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-				cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+				//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 				SetConsoleTextAttribute(hConsole, saved_colors);
 				break;
 			}
