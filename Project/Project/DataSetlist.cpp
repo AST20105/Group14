@@ -57,7 +57,7 @@ DataSetlist::DataSetlist()
 
 
 
-void DataSetlist::fileinput() {
+void DataSetlist::fileinput() {		// This is the main function for inserting the dataset into the linked list data structure.
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	DataSet * outerhead = DataSethead;
@@ -82,22 +82,22 @@ void DataSetlist::fileinput() {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock();		// start counting after cin the txt file.
 	cout << endl;
 
 	dataSet.open(filename);
 	if (!(dataSet.is_open())) {
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
-		cerr << "Error. The file doesn't open correctly." << endl;
+		cerr << "Error. The file doesn't open correctly." << endl;		//error message while the input dataset file name is incorrect.
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 	else {
-		if (DataSethead->listSet->head == NULL) {
+		if (DataSethead->listSet->head == NULL) {		//inserting the variable into the linked list node if the head is equal to NULL.
 			do
 			{
-				getline(dataSet, tconst, '\t');
-				getline(dataSet, titleType, '\t');
-				getline(dataSet, primaryTitle, '\t');
+				getline(dataSet, tconst, '\t');		//getting the data id of the line.
+				getline(dataSet, titleType, '\t');		//getting the titleType of the line.
+				getline(dataSet, primaryTitle, '\t');	//....so far and so on.
 				getline(dataSet, startYear, '\t');
 				getline(dataSet, runtimeMinutes, '\t');
 
@@ -106,7 +106,7 @@ void DataSetlist::fileinput() {
 				string symbolofnothing = symbol;
 
 
-				getline(dataSet, originalgenre, '\n');
+				getline(dataSet, originalgenre, '\n');		//getting the movie type of the line.
 				if ((originalgenre.substr(0, 1) != symbol) && (originalgenre.substr(0, 2) != symbolofnothing)) {
 					genres[0] = originalgenre;
 					genres[1] = " ";
@@ -144,13 +144,13 @@ void DataSetlist::fileinput() {
 
 					}
 				}
-				if (innerhead == NULL) {
+				if (innerhead == NULL) {		//inserting the record as a Node into the linked list if the head is NULL
 					Node * mainlist = new Node(tconst, titleType, primaryTitle, startYear, runtimeMinutes, genres[0], genres[1], genres[2]);
 					DataSethead->listSet->head = mainlist;
 					innerhead = DataSethead->listSet->head;
 					i++;
 				}
-				else {
+				else {			// inserting the record as a Node into the linked list as a second Node. 
 					Node * mainlist = new Node(tconst, titleType, primaryTitle, startYear, runtimeMinutes, genres[0], genres[1], genres[2]);
 					innerhead->next = mainlist;
 					innerhead = innerhead->next;
@@ -230,7 +230,7 @@ void DataSetlist::fileinput() {
 			outerhead->next = newset;
 		}
 	}
-	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;		//complete counting the time use for inserting the dataset.
 	cout << "Program Run time: " << duration << "s" << '\n';
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FG_LIGHTCYAN | FOREGROUND_INTENSITY);
@@ -239,7 +239,7 @@ void DataSetlist::fileinput() {
 
 
 
-void DataSetlist::MainDecision(){
+void DataSetlist::MainDecision(){		// the main decision for calling different function 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	DataSet * InnerDataSetHead = DataSethead;
@@ -315,14 +315,14 @@ void DataSetlist::MainDecision(){
 		SetConsoleTextAttribute(hConsole, saved_colors);
 		system("pause"); system("cls"); MainDecision();
 	}
-	case 2:	if (DataSethead->listSet->head == NULL) {
+	case 2:	if (DataSethead->listSet->head == NULL) {	// if user haven't isert any dataset, it will prompt user to insert a dataset before searching the data.
 		cout << "There is no dataSet import yet" << endl;
 		cout << "Press anykey to go to insert function" << endl;
 		system("pause"); system("cls");
 		fileinput(); for (; InnerDataSetHead->next != NULL; InnerDataSetHead = InnerDataSetHead->next);
 		system("pause");
-		FilList * innerfillist = InnerDataSetHead->filListSet;
-		for (int i = 0; i < 10; i++) {
+		FilList * innerfillist = InnerDataSetHead->filListSet;	// it is use for inserting the searching history of the user, if the user search it again, 
+		for (int i = 0; i < 10; i++) {							// it will show the result but not searching in the linklist node.
 			if (innerfillist->filhead == NULL) {
 				innerfillist->make_Type_List(InnerDataSetHead->listSet->head, InnerDataSetHead->typelist[i]);
 			}
@@ -333,7 +333,7 @@ void DataSetlist::MainDecision(){
 			}
 		}
 		system("pause"); system("cls"); MainDecision();
-	}MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();
+	}MangeInDataSetSearch(); system("pause"); system("cls"); MainDecision();// go into the search choice function.
 	case 3: if (DataSethead->listSet->head == NULL) {
 		cout << "There is no dataSet import yet" << endl;
 		cout << "Press anykey to go to insert function" << endl;
@@ -391,7 +391,7 @@ void DataSetlist::MainDecision(){
 
 
 
-void DataSetlist::MangeInDataSetSearch() {
+void DataSetlist::MangeInDataSetSearch() {		// to ask user want to search base on which dataset, it is acording to the dataset that user input ascendingly.
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
 	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
 	int counter = 0;
@@ -413,21 +413,21 @@ void DataSetlist::MangeInDataSetSearch() {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	cout << "*************************************************************" << endl;
 	counter = 0;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {// moving the node pointer which is equal to the dataset that user want to search
 		counter++;
 		if (counter == x) {
 			check = true;
 			break;
 		}
 	}
-	if (check == false) {
+	if (check == false) {	// for checking weather there has the dataset or not.
 		SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY);
-		cout << "Wrong input" << endl;
+		cout << "Wrong input" << endl;	//error message will come out if user choose the wrong dataset.
 		SetConsoleTextAttribute(hConsole, saved_colors);
-		MainDecision();
+		MainDecision();		//recursive function, going back to the mainDecision function.
 	}
 	else {
-		MakeSearchingChoice(x);
+		MakeSearchingChoice(x);	// if the checking is true, go into the searching choice 
 	}
 }
 
@@ -448,12 +448,13 @@ void DataSetlist::MakeSearchingChoice(int x) {
 	switch (y)
 	{
 	case 0: return;
-	case 1: searchingByID(x); system("pause"); system("cls"); MainDecision();
-	case 2: searchingByName(x); system("pause"); system("cls"); MainDecision();
-	case 3: searchingByYear(x); system("pause"); system("cls"); MainDecision();
-	case 4: searchingByPgType(x); system("pause"); system("cls"); MainDecision();
-	case 5: NumberOfType(x); system("pause"); system("cls"); MainDecision();
+	case 1: searchingByID(x); system("pause"); system("cls"); MainDecision();  // go to searching by id function and after ward go back to the main decision.
+	case 2: searchingByName(x); system("pause"); system("cls"); MainDecision();	 //go to searching by Name function and after ward go back to the main decision.
+	case 3: searchingByYear(x); system("pause"); system("cls"); MainDecision();	//go to searching by year function and after ward go back to the main decision.
+	case 4: searchingByPgType(x); system("pause"); system("cls"); MainDecision();//go to searching by titletype function and after ward go back to the main decision.
+	case 5: NumberOfType(x); system("pause"); system("cls"); MainDecision();	//go to give number of type of the movie
 	default: SetConsoleTextAttribute(hConsole, FG_RED | FOREGROUND_INTENSITY); cout << "Wrong input." << endl; SetConsoleTextAttribute(hConsole, saved_colors); MakeSearchingChoice(x);
+	//wrong input and go back to searching choice.
 	}
 }
 
@@ -470,7 +471,7 @@ void DataSetlist::searchingByID(int x) {
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	clock_t start;
 	double duration;
-	start = clock();
+	start = clock();	//start counting the time for searching the record.
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
