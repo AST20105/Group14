@@ -408,7 +408,7 @@ void DataSetlist::MakeSearchingChoice(int x) {
 
 void DataSetlist::searchingByID(int x) {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //color
-	const int saved_colors = GetConsoleTextAttribute(hConsole); //color
+	const int saved_colors = GetConsoleTextAttribute(hConsole); //color..
 	string y;
 	SetConsoleTextAttribute(hConsole, FG_GREEN | FOREGROUND_INTENSITY);
 	cout << "Enter the ID of the data" << endl;
