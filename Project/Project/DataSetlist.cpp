@@ -1589,7 +1589,7 @@ void DataSetlist::DeletionByID(int x) {
 
 	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 		SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-		cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
+		//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
 		SetConsoleTextAttribute(hConsole, saved_colors);
 
 	}
@@ -1683,7 +1683,7 @@ void DataSetlist::DeletionByName(int x) {
 	}
 	for (CurrNode1 = CurrNode->listSet->head; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 		SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-		cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
+		//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
 		SetConsoleTextAttribute(hConsole, saved_colors);
 
 	}
@@ -1770,7 +1770,7 @@ void DataSetlist::DeletionByYear(int x) {
 	else {
 		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
 			SetConsoleTextAttribute(hConsole, saved_colors);
 
 		}
@@ -1863,7 +1863,7 @@ void DataSetlist::DeletionByPgType(int x) {
 	else {
 		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
 			SetConsoleTextAttribute(hConsole, saved_colors);
 
 		}
@@ -2022,7 +2022,7 @@ void DataSetlist::DeleteByType1(int x) {
 	else {
 		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
 			SetConsoleTextAttribute(hConsole, saved_colors);
 
 		}
@@ -2135,7 +2135,7 @@ void DataSetlist::DeleteByType2(int x) {
 	else {
 		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
 			SetConsoleTextAttribute(hConsole, saved_colors);
 
 		}
@@ -2258,7 +2258,7 @@ void DataSetlist::DeleteByType3(int x) {
 	else {
 		for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
-			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
+			//cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;	//display
 			SetConsoleTextAttribute(hConsole, saved_colors);
 
 		}
