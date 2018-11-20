@@ -33,7 +33,7 @@ void FilList::fildisplay(int x) {
 
 
 
-void FilList::make_Type_List(Node* x, string condition) {
+void FilList::make_Type_List(Node* x, string condition) {	//make normal fillist
 	Node *innernodelist = x;
 	filterNode * innerfilhead = filhead;
 	FilList * innernext = next;
@@ -56,7 +56,7 @@ void FilList::make_Type_List(Node* x, string condition) {
 			}
 		}
 	
-	if (i==0) {
+	if (i==0) {	//set default
 		filterNode * filterlist = new filterNode("", "", "", "", "", "", "", "", NULL);
 		filhead = filterlist;
 	}
@@ -65,7 +65,7 @@ void FilList::make_Type_List(Node* x, string condition) {
 	cout << i << endl;
 }
 
-void FilList::make_gen_List2(Node* x, string condition1, string condition2) {
+void FilList::make_gen_List2(Node* x, string condition1, string condition2) {	//make genres fillist with two genres appear
 	Node *innernodelist = x;
 	filterNode * innerfilhead = filhead;
 	FilList * innernext = next;
@@ -88,7 +88,7 @@ void FilList::make_gen_List2(Node* x, string condition1, string condition2) {
 		}
 	}
 
-	if (i == 0) {
+	if (i == 0) {	//set default
 		filterNode * filterlist = new filterNode("", "", "", "", "", "", "", "", NULL);
 		filhead = filterlist;
 	}
@@ -97,7 +97,7 @@ void FilList::make_gen_List2(Node* x, string condition1, string condition2) {
 	cout << "Number of data match: " << i << endl;
 }
 
-void FilList::make_gen_List3(Node* x, string condition1, string condition2, string condition3) {
+void FilList::make_gen_List3(Node* x, string condition1, string condition2, string condition3) {	//make genres fillist with three genres appear
 	Node *innernodelist = x;
 	filterNode * innerfilhead = filhead;
 	FilList * innernext = next;
@@ -120,7 +120,7 @@ void FilList::make_gen_List3(Node* x, string condition1, string condition2, stri
 		}
 	}
 
-	if (i == 0) {
+	if (i == 0) {	//set default
 		filterNode * filterlist = new filterNode("", "", "", "", "", "", "", "", NULL);
 		filhead = filterlist;
 	}
