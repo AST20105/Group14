@@ -475,7 +475,7 @@ void DataSetlist::searchingByID(int x) {
 	cout << "*************************************************************" << endl;
 	int counter = 0;
 	DataSet* CurrNode = DataSethead;
-	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {
+	for (CurrNode = DataSethead; CurrNode != NULL; CurrNode = CurrNode->next) {	//moving the pointer to the destination dataset
 		counter++;
 		if (counter == x) {
 			break;
@@ -483,7 +483,7 @@ void DataSetlist::searchingByID(int x) {
 	}
 	counter = 0;
 	Node* CurrNode1 = CurrNode->listSet->head;
-	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {
+	for (; CurrNode1 != NULL; CurrNode1 = CurrNode1->next) {  // searching the id for each record.
 		if (y.compare(CurrNode1->tconst) == 0) {
 			SetConsoleTextAttribute(hConsole, FG_WHITE | FOREGROUND_INTENSITY);
 			cout << CurrNode1->tconst << "\t" << CurrNode1->titleType << "\t" << CurrNode1->primaryTitle << "\t" << CurrNode1->startYear << "\t" << CurrNode1->runtimeMinutes << "\t" << CurrNode1->genres[0] << "\t" << CurrNode1->genres[1] << "\t" << CurrNode1->genres[2] << endl;
